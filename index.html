@@ -3,77 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caregiver Friend - Emergency Guide</title>
+    <title>Caregiver Friend - Songkran Emergency Guide</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Kanit', sans-serif; text-align: center; padding: 20px; background: #f0f4f8; color: #333; line-height: 1.6; }
         .container { max-width: 550px; margin: auto; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         h2 { color: #d32f2f; margin-bottom: 10px; }
         .mission-tag { background: #ffecb3; color: #856404; padding: 5px 15px; border-radius: 50px; font-size: 14px; font-weight: bold; display: inline-block; margin-bottom: 20px; }
-        
-        /* Button Styles */
         .btn-call { background: #ff5252; color: white; padding: 18px; border-radius: 15px; text-decoration: none; font-size: 22px; display: block; margin: 10px 0; font-weight: bold; box-shadow: 0 4px 10px rgba(255,82,82,0.3); transition: 0.2s; }
-        .btn-call:active { transform: scale(0.98); }
         .btn-secondary { background: #42a5f5; box-shadow: 0 4px 10px rgba(66,165,245,0.3); }
-
-        /* Traffic Light Logic */
-        .status-box { text-align: left; margin-top: 25px; border-radius: 15px; overflow: hidden; border: 1px solid #ddd; }
+        .status-box { text-align: left; margin-top: 15px; border-radius: 15px; overflow: hidden; border: 1px solid #ddd; }
         .status-header { padding: 10px 15px; font-weight: bold; color: white; }
         .status-body { padding: 15px; background: #fff; font-size: 15px; }
-        
         .red { background: #d32f2f; }
+        .orange { background: #fb8c00; }
         .yellow { background: #fbc02d; color: #333; }
         .green { background: #388e3c; }
-
-        .tip-section { background: #e1f5fe; padding: 15px; border-radius: 15px; margin-top: 20px; text-align: left; font-size: 14px; }
-        .footer-note { font-size: 11px; color: #777; margin-top: 30px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="mission-tag">🚀 ภารกิจที่ 1: พิชิตถนนหมื่นลี้</div>
-        <h2>คู่มือดูแลผู้สูงอายุเดินทางไกล</h2>
-        <p>หากเกิดเหตุไม่คาดคิดระหว่างเดินทาง<br>ใช้ระบบคัดกรองอาการและปุ่มโทรด่วนด้านล่างนี้</p>
+        <div class="mission-tag">🚀 Mission: พิชิตถนนหมื่นลี้</div>
+        <h2>คู่มือฉุกเฉินสำหรับผู้ดูแล</h2>
 
         <a href="tel:1669" class="btn-call">🚨 โทร 1669 (กู้ชีพฉุกเฉิน)</a>
         <a href="tel:1193" class="btn-call btn-secondary">🛣️ โทร 1193 (ตำรวจทางหลวง)</a>
 
         <div class="status-box">
-            <div class="status-header red">🔴 วิกฤต: ต้องโทร 1669 ทันที</div>
+            <div class="status-header red">🔴 วิกฤต: หอบเหนื่อย นอนราบไม่ได้</div>
             <div class="status-body">
-                <strong>อาการ:</strong> หอบเหนื่อยจน <strong>"นอนราบไม่ได้"</strong> ต้องนั่งตัวตรงเพื่อหายใจ หรือมีอาการปากเขียว หน้ามืด<br>
-                <em>*เสี่ยงภาวะหัวใจล้มเหลว/น้ำท่วมปอด อันตรายถึงชีวิต</em>
+                ต้องนั่งตัวตรงเพื่อหายใจ หรือปากเขียว <br>
+                <strong>Action:</strong> โทร 1669 ทันที เสี่ยงภาวะหัวใจล้มเหลว
             </div>
         </div>
 
         <div class="status-box">
-            <div class="status-header yellow">🟡 เฝ้าระวัง: หยุดรถพักด่วน</div>
+            <div class="status-header orange">🟠 เตือนภัย: ฮีทสโตรก (ร้อนจัด)</div>
             <div class="status-body">
-                <strong>อาการ:</strong> หอบเหนื่อยกว่าปกติ พูดเริ่มไม่เป็นประโยค หรือขาบวมกดบุ๋มอย่างเห็นได้ชัด<br>
-                <em>*ควรหาจุดพักรถที่ใกล้ที่สุดเพื่อสังเกตอาการ 15-30 นาที</em>
+                ตัวร้อนจัดแต่ไม่มีเหงื่อ, สับสน, พูดไม่รู้เรื่อง <br>
+                <strong>Action:</strong> เช็ดตัวด้วยน้ำธรรมดาตามข้อพับ และรีบส่งโรงพยาบาล
+            </div>
+        </div>
+
+        <div class="status-box">
+            <div class="status-header yellow">🟡 เฝ้าระวัง: ท้องอืด/เมารถ/เพลีย</div>
+            <div class="status-body">
+                แน่นท้อง คลื่นไส้ พูดไม่เป็นประโยค <br>
+                <strong>Action:</strong> หยุดรถพักทันที ทานผลไม้กากใยสูง (กล้วย/พรุน) และจิบน้ำ
             </div>
         </div>
 
         <div class="status-box">
             <div class="status-header green">🟢 ปกติ: ดูแลตามอาการ</div>
             <div class="status-body">
-                <strong>อาการ:</strong> อ่อนเพลียจากการนั่งนาน พักแล้วดีขึ้น<br>
-                <em>*ให้ทำ "ระบำนิ้วเท้า" และจิบน้ำบ่อยๆ</em>
+                <strong>Action:</strong> ทำ "ระบำนิ้วเท้า" ทุก 1 ชม. และใช้ผ้าเย็นเช็ดจุดชีพจร
             </div>
         </div>
 
-        <div class="tip-section">
-            <strong>💡 ไอเทมลับ "ระบำนิ้วเท้า" (ทำทุก 1 ชม.):</strong>
-            <ul>
-                <li>กระดกข้อเท้า ขึ้น-ลง 10 ครั้ง</li>
-                <li>หมุนข้อเท้า ซ้าย-ขวา 10 ครั้ง</li>
-                <li>จิกนิ้วเท้าแรงๆ แล้วปล่อย</li>
-            </ul>
-        </div>
-
-        <p class="footer-note">
-            จัดทำโดย Caregiver Friend Hub | ข้อมูลอ้างอิงมาตรฐานกรมการแพทย์<br>
-            *ใช้เพื่อประกอบการตัดสินใจเบื้องต้นเท่านั้น ไม่ใช่การวินิจฉัยโรคทางการแพทย์
+        <p style="font-size: 11px; color: #777; margin-top: 30px;">
+            จัดทำโดย Caregiver Friend Hub | ข้อมูลอ้างอิงกรมการแพทย์<br>
+            *ใช้เพื่อตัดสินใจเบื้องต้นเท่านั้น ไม่ใช่การวินิจฉัยโรค
         </p>
     </div>
 </body>
