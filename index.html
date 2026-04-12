@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caregiver Friend - 3-Language Emergency Guide</title>
+    <title>Caregiver Friend - Trilingual Emergency Guide</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Kanit', sans-serif; text-align: center; padding: 20px; background: #f0f4f8; color: #333; line-height: 1.5; }
@@ -12,21 +12,22 @@
         .mission-tag { background: #ffecb3; color: #856404; padding: 5px 15px; border-radius: 50px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
         
         /* Call Buttons */
-        .btn-call { background: #ff5252; color: white; padding: 18px; border-radius: 15px; text-decoration: none; font-size: 20px; display: block; margin: 10px 0; font-weight: bold; box-shadow: 0 4px 10px rgba(255,82,82,0.3); }
+        .btn-call { background: #ff5252; color: white; padding: 18px; border-radius: 15px; text-decoration: none; font-size: 20px; display: block; margin: 10px 0; font-weight: bold; box-shadow: 0 4px 10px rgba(255,82,82,0.3); transition: 0.2s; }
         .btn-secondary { background: #42a5f5; box-shadow: 0 4px 10px rgba(66,165,245,0.3); }
 
         /* Multi-language Status Box */
         .status-box { text-align: left; margin-top: 15px; border-radius: 15px; overflow: hidden; border: 1px solid #ddd; }
-        .status-header { padding: 10px 15px; font-weight: bold; color: white; font-size: 16px; display: flex; justify-content: space-between; }
+        .status-header { padding: 10px 15px; font-weight: bold; color: white; font-size: 16px; }
         .status-body { padding: 12px 15px; background: #fff; font-size: 14px; border-bottom: 1px dashed #eee; }
-        .lang-label { font-weight: bold; color: #555; width: 30px; display: inline-block; }
+        .lang-label { font-weight: bold; color: #555; width: 35px; display: inline-block; }
 
         .red { background: #d32f2f; }
         .orange { background: #fb8c00; }
         .yellow { background: #fbc02d; color: #333; }
         .green { background: #388e3c; }
 
-        .herb-tip { background: #e8f5e9; padding: 15px; border-radius: 15px; margin-top: 20px; text-align: left; font-size: 14px; border: 1px solid #c8e6c9; }
+        .herb-section { background: #e8f5e9; padding: 15px; border-radius: 15px; margin-top: 20px; text-align: left; border: 1px solid #c8e6c9; }
+        .herb-title { font-weight: bold; color: #2e7d32; display: block; margin-bottom: 8px; border-bottom: 1px solid #c8e6c9; padding-bottom: 5px; }
         .footer-note { font-size: 11px; color: #999; margin-top: 25px; }
     </style>
 </head>
@@ -34,35 +35,37 @@
     <div class="container">
         <div class="mission-tag">🚀 Mission: The Great Songkran Journey</div>
         <h2>คู่มือฉุกเฉิน 3 ภาษา (Trilingual Guide)</h2>
-        <p style="font-size: 14px;">Emergency Support for Caregivers & Travelers</p>
+        <p style="font-size: 14px; margin-top: 0;">Caregiver Support & Emergency Hotlines</p>
 
         <a href="tel:1669" class="btn-call">🚨 1669 (Medical / 急救)</a>
         <a href="tel:1193" class="btn-call btn-secondary">🛣️ 1193 (Highway Police / 交警)</a>
 
         <div class="status-box">
-            <div class="status-header red"><span>🔴 Critical / วิกฤต / 紧急</span></div>
-            <div class="status-body"><span class="lang-label">TH:</span> หอบเหนื่อย นอนราบไม่ได้ (น้ำท่วมปอด)</div>
+            <div class="status-header red">🔴 Critical / วิกฤต / 紧急</div>
+            <div class="status-body"><span class="lang-label">TH:</span> หอบเหนื่อย นอนราบไม่ได้ (เสี่ยงน้ำท่วมปอด)</div>
             <div class="status-body"><span class="lang-label">EN:</span> Shortness of breath, cannot lie flat.</div>
-            <div class="status-body" style="border:none;"><span class="lang-label">CN:</span> 呼吸困难，无法平นอน (肺水肿风险)</div>
+            <div class="status-body" style="border:none;"><span class="lang-label">CN:</span> 呼吸困难，无法平卧 (肺水肿风险)</div>
         </div>
 
         <div class="status-box">
-            <div class="status-header orange"><span>🟠 Heat Stroke / ฮีทสโตรก / 中暑</span></div>
-            <div class="status-body"><span class="lang-label">TH:</span> ตัวร้อนจัด ไม่มีเหงื่อ สับสน</div>
+            <div class="status-header orange">🟠 Heat Stroke / ฮีทสโตรก / 中暑</div>
+            <div class="status-body"><span class="lang-label">TH:</span> ตัวร้อนจัด ไม่มีเหงื่อ สับสน (เช็ดตัวด่วน)</div>
             <div class="status-body"><span class="lang-label">EN:</span> High fever, no sweat, confusion.</div>
             <div class="status-body" style="border:none;"><span class="lang-label">CN:</span> 高烧、无汗、意识模糊</div>
         </div>
 
-        <div class="herb-tip">
-            <strong>🌿 พลังสมุนไพรดับร้อน (Cooling Magic):</strong><br>
-            • <strong>TH:</strong> ใช้ "พิมเสน" หรือ "ผิวมะกรูด" ผสมน้ำเย็นเช็ดข้อพับ<br>
-            • <strong>EN:</strong> Use "Borneol" or "Kaffir Lime" with cold water on pulse points.<br>
-            • <strong>CN:</strong> 使用 "冰片" 或 "青柠皮" 配合冷水擦拭脉搏点。
+        <div class="herb-section">
+            <span class="herb-title">🌿 พลังสมุนไพรดับร้อน (Global Cooling Wisdom)</span>
+            <div style="font-size: 13px; line-height: 1.6;">
+                <strong>TH:</strong> พิมเสน / มะกรูด (เย็นลึก บำรุงหัวใจ)<br>
+                <strong>EN:</strong> Rosemary / Peppermint (Fresh & Alert)<br>
+                <strong>CN:</strong> 薄荷 / 菊花 (清热散风 - Clear Heat)
+            </div>
         </div>
 
         <p class="footer-note">
-            Caregiver Friend Hub | Data by Dept. of Medical Services TH<br>
-            *For initial guidance only. ไม่ใช่การวินิจฉัยทางการแพทย์
+            Caregiver Friend Hub | Based on Thai Medical Standards<br>
+            *Initial guidance only. ไม่ใช่การวินิจฉัยทางการแพทย์
         </p>
     </div>
 </body>
