@@ -10,7 +10,7 @@
         .container { max-width: 550px; margin: auto; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         h2 { color: #d32f2f; margin-bottom: 5px; font-size: 22px; }
         .mission-tag { background: #ffecb3; color: #856404; padding: 5px 15px; border-radius: 50px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
-        .btn-call { background: #ff5252; color: white; padding: 18px; border-radius: 15px; text-decoration: none; font-size: 20px; display: block; margin: 10px 0; font-weight: bold; box-shadow: 0 4px 10px rgba(255,82,82,0.3); transition: 0.2s; }
+        .btn-call { background: #ff5252; color: white; padding: 18px; border-radius: 15px; text-decoration: none; font-size: 20px; display: block; margin: 10px 0; font-weight: bold; box-shadow: 0 4px 10px rgba(255,82,82,0.3); }
         .btn-secondary { background: #42a5f5; box-shadow: 0 4px 10px rgba(66,165,245,0.3); }
         .status-box { text-align: left; margin-top: 15px; border-radius: 15px; overflow: hidden; border: 1px solid #ddd; }
         .status-header { padding: 10px 15px; font-weight: bold; color: white; font-size: 16px; }
@@ -29,24 +29,20 @@
         <div class="mission-tag">🚀 Mission: The Great Songkran Journey</div>
         <h2>คู่มือฉุกเฉิน 3 ภาษา (Trilingual Guide)</h2>
         <p style="font-size: 14px; margin-top: 0;">Caregiver Support & Emergency Hotlines</p>
-
         <a href="tel:1669" class="btn-call">🚨 1669 (Medical / 急救)</a>
         <a href="tel:1193" class="btn-call btn-secondary">🛣️ 1193 (Highway Police / 交警)</a>
-
         <div class="status-box">
             <div class="status-header red">🔴 Critical / วิกฤต / 紧急</div>
             <div class="status-body"><span class="lang-label">TH:</span> หอบเหนื่อย นอนราบไม่ได้ (น้ำท่วมปอด)</div>
             <div class="status-body"><span class="lang-label">EN:</span> Shortness of breath, cannot lie flat.</div>
             <div class="status-body" style="border:none;"><span class="lang-label">CN:</span> 呼吸困难，无法平卧 (肺水肿)</div>
         </div>
-
         <div class="status-box">
             <div class="status-header orange">🟠 Heat Stroke / ฮีทสโตรก / 中暑</div>
             <div class="status-body"><span class="lang-label">TH:</span> ตัวร้อนจัด ไม่มีเหงื่อ สับสน (เช็ดตัวด่วน)</div>
             <div class="status-body"><span class="lang-label">EN:</span> High fever, no sweat, confusion.</div>
             <div class="status-body" style="border:none;"><span class="lang-label">CN:</span> 高烧、无汗、意识模糊</div>
         </div>
-
         <div class="herb-section">
             <span class="herb-title">🌿 พลังสมุนไพรสกัดเย็น (Cold Infusion Wisdom)</span>
             <div style="font-size: 13px; line-height: 1.6;">
@@ -58,7 +54,6 @@
                 ⚠️ **Warning:** ล้างดอกมะลิให้สะอาดก่อนใช้ หรือใช้มะลิออร์แกนิก เพื่อเลี่ยงยาฆ่าแมลง / Wash flowers thoroughly to avoid pesticides / 彻底清洗花卉, 避免农药。
             </div>
         </div>
-
         <p class="footer-note">
             Caregiver Friend Hub | Data based on Thai Medical Standards<br>
             *For initial guidance only. ไม่ใช่การวินิจฉัยทางการแพทย์
