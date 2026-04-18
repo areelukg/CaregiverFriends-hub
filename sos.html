@@ -5,68 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOS - เพื่อนดูแลผู้สูงวัย Caregiver Friends</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; text-align: center; padding: 20px; background-color: #ffffff; color: #2d3436; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; text-align: center; padding: 15px; background: #fff; color: #2d3436; line-height: 1.4; }
+        .critical-area { border: 2px solid #dc3545; border-radius: 20px; padding: 20px; margin-bottom: 20px; background: #fffcfc; }
+        .btn { border-radius: 50px; display: block; font-weight: bold; text-decoration: none; margin-bottom: 12px; padding: 18px; font-size: 1.3rem; }
+        .btn-call { background: #dc3545; color: #fff; box-shadow: 0 4px 10px rgba(220,35,69,0.3); }
+        .btn-hospital { background: #007bff; color: #fff; font-size: 1rem; padding: 12px; }
         
-        /* 🚨 เฉพาะส่วนฉุกเฉินที่ต้องเห็นทันที */
-        .critical-area { border: 2px solid #dc3545; border-radius: 20px; padding: 25px; margin-bottom: 20px; background: #fffcfc; }
-        .critical-title { color: #dc3545; font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; }
-        .symptom-list { text-align: left; display: inline-block; font-size: 1rem; margin-bottom: 20px; line-height: 1.6; }
-        
-        /* 📞 ปุ่มกดโทรและค้นหา */
-        .btn { border-radius: 50px; display: block; font-weight: bold; text-decoration: none; margin-bottom: 15px; padding: 20px; font-size: 1.4rem; transition: 0.2s; }
-        .btn-call { background-color: #dc3545; color: white; box-shadow: 0 4px 15px rgba(220,53,69,0.3); }
-        .btn-hospital { background-color: #007bff; color: white; font-size: 1.1rem; padding: 15px; box-shadow: 0 4px 12px rgba(0,123,255,0.2); }
-        
-        /* 📋 เมนูภารกิจ */
-        .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 30px; }
-        .mission-item { border: 1px solid #eee; border-radius: 12px; padding: 12px; text-decoration: none; color: inherit; font-size: 0.85rem; text-align: center; background: #fafafa; }
-        .mission-item b { display: block; font-size: 1rem; margin-bottom: 5px; }
+        /* 4 กล่องภารกิจ */
+        .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
+        .mission-card { border: 1px solid #eee; border-radius: 15px; padding: 12px; text-decoration: none; color: inherit; text-align: left; background: #fafafa; border-left: 6px solid #ddd; }
+        .mission-card b { display: block; font-size: 1rem; margin-bottom: 3px; }
+        .mission-card span { font-size: 0.75rem; color: #666; }
 
-        .lang-hint { font-size: 0.75rem; color: #999; margin-top: 5px; }
-
-        /* 🌿 ส่วนรายละเอียดที่ต้องเลื่อนลงไปถึงจะเห็น */
-        .details-section { margin-top: 150vh; text-align: left; padding: 20px; border-top: 5px solid #eee; background: #fdfdfd; }
+        /* ส่วนวิธีปฏิบัติ (Action Section) - จะแสดงเมื่อกดลิงก์ */
+        .action-details { margin-top: 50px; text-align: left; padding: 15px; border-top: 5px solid #eee; }
+        .action-box { margin-bottom: 40px; padding: 20px; border-radius: 15px; background: #f9f9f9; border: 1px solid #eee; }
+        .step-img-alt { background: #eee; padding: 10px; border-radius: 8px; font-weight: bold; color: #d63031; margin-bottom: 10px; display: block; text-align: center; }
+        .lang-label { font-size: 0.8rem; color: #7f8c8d; margin-top: 10px; display: block; border-top: 1px solid #ddd; padding-top: 5px; }
     </style>
 </head>
 <body>
 
     <div class="critical-area">
-        <div class="critical-title">🚨 วิกฤต? | CRITICAL</div>
-        <div class="symptom-list">
-            • หมดสติ (Unconscious / 昏迷)<br>
-            • สำลัก / เขียว (Choking / 窒息)<br>
-            • หายใจติดขัด / กระตุก (Gasping / 呼吸困难)<br>
-            • แพ้รุนแรง / หน้าบวม (Allergy / 过敏)
+        <b style="color:#dc3545; font-size: 1.4rem;">🚨 วิกฤต? CALL 1669</b>
+        <div style="text-align: left; display: inline-block; font-size: 0.95rem; margin: 15px 0;">
+            • หมดสติ | สำลัก | แพ้รุนแรง | หายใจขัด
         </div>
-        
-        <a href="tel:1669" class="btn btn-call">📞 โทร 1669</a>
+        <a href="tel:1669" class="btn btn-call">📞 โทร 1669 ด่วน</a>
         <a href="https://www.google.com/maps/search/private+hospital+near+me" class="btn btn-hospital">🔍 ค้นหา รพ.เอกชน ใกล้ตัว</a>
     </div>
 
-    <p style="font-size: 0.9rem; font-weight: bold; margin-top: 25px; color: #636e72;">ภารกิจปฐมพยาบาล | FIRST AID</p>
+    <p style="font-size: 0.85rem; font-weight: bold; color: #636e72;">📋 ภารกิจกู้ชีพ (กดเพื่อดูวิธีทำทันที)</p>
     
     <div class="mission-grid">
-        <a href="#details-choking" class="mission-item"><b>🍞 สำลัก</b>Choking / 窒息</a>
-        <a href="#details-allergy" class="mission-item"><b>🦐 การแพ้</b>Allergy / 过敏</a>
-        <a href="#details-swelling" class="mission-item"><b>🦶 บวม/หอบ</b>Leg & Breath</a>
-        <a href="#details-heat" class="mission-item"><b>🌡️ ตัวร้อนจัด</b>Heat Relief</a>
-    </div>
-
-    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #f1f1f1;">
-        <a href="https://www.facebook.com/profile.php?id=61570530366624" style="color: #007bff; text-decoration: none; font-size: 0.85rem; font-weight: bold;">
-            🏠 เพื่อนดูแลผู้สูงวัย Caregiver Friends
+        <a href="#action-choking" class="mission-card" style="border-left-color: #fd7e14;">
+            <b>🍞 การสำลัก</b><span>วิธีรัดท้อง (Heimlich)</span>
+        </a>
+        <a href="#action-swelling" class="mission-card" style="border-left-color: #007bff;">
+            <b>🦶 บวม/หอบ</b><span>วิธีระบำเท้า/หนุนสูง</span>
+        </a>
+        <a href="#action-allergy" class="mission-card" style="border-left-color: #e83e8c;">
+            <b>🦐 การแพ้</b><span>อาการและจุดสังเกต</span>
+        </a>
+        <a href="#action-heat" class="mission-card" style="border-left-color: #ffc107;">
+            <b>🌡️ ตัวร้อนจัด</b><span>จุดเช็ดตัวระบายร้อน</span>
         </a>
     </div>
 
-    <div class="details-section">
-        <h2 id="details-heat">🌡️ ภารกิจตัวร้อนจัด (Heat Relief)</h2>
-        <p><b>Action:</b> เช็ดตัวด้วยน้ำสมุนไพรฤทธิ์เย็น หรือน้ำอุณหภูมิห้อง</p>
-        <p><b>จุดสำคัญ:</b> เน้นจุดชีพจร ซอกคอ ขมับ รักแร้ ขาหนีบ เพื่อระบายความร้อน</p>
-        <hr>
-        <h2 id="details-choking">🍞 ภารกิจสำลัก (Choking)</h2>
-        <p><b>Action:</b> หากไอไม่ออก ให้ใช้การรัดท้อง (Heimlich Maneuver)</p>
-        <hr>
+    <div class="action-details">
+        
+        <div id="action-choking" class="action-box" style="border-top: 5px solid #fd7e14;">
+            <h3 style="margin-top:0;">🍞 วิธีจัดการการสำลัก (Heimlich)</h3>
+            <span class="step-img-alt">กำปั้นวางเหนือสะดือ > ดึงเข้าหาตัวและยกขึ้นแรงๆ</span>
+            <p>1. ยืนซ้อนหลังผู้สูงอายุ โอบเอว<br>
+               2. กำปั้นวางเหนือสะดือ (ใต้กระดูกหน้าอก)<br>
+               3. กระแทกเข้าหาตัวและยกขึ้นด้านบน ทำซ้ำจนสิ่งแปลกปลอมหลุด</p>
+            <span class="lang-label">EN: Abdominal Thrusts | CN: 海姆立克急救法</span>
         </div>
+
+        <div id="action-swelling" class="action-box" style="border-top: 5px solid #007bff;">
+            <h3 style="margin-top:0;">🦶 วิธีลดบวม/หอบ (Ankle Pumps)</h3>
+            <span class="step-img-alt">นอนหนุนหัวสูง + หนุนขา + ขยับข้อเท้า</span>
+            <p>1. หนุนศีรษะสูง 45 องศา (ช่วยให้หายใจง่าย)<br>
+               2. หนุนขาสองข้างให้สูงกว่าระดับอก<br>
+               3. <b>ระบำนิ้วเท้า:</b> กระดกและหมุนข้อเท้าต่อเนื่อง 15 นาที</p>
+            <span class="lang-label">EN: Elevate & Ankle Pumps | CN: 抬高与踝泵运动</span>
+        </div>
+
+        <div id="action-allergy" class="action-box" style="border-top: 5px solid #e83e8c;">
+            <h3>🦐 การแพ้รุนแรง (Allergy)</h3>
+            <p>• สังเกตหน้าบวม ตาบวม ผื่นขึ้นฉับพลัน<br>• หากหายใจเสียงดัง "วี๊ด" หรือพูดไม่ออก ให้รีบส่ง รพ. ทันที</p>
+            <span class="lang-label">EN: Severe Allergy Check | CN: 严重过敏检查</span>
+        </div>
+
+        <div id="action-heat" class="action-box" style="border-top: 5px solid #ffc107;">
+            <h3>🌡️ วิธีลดตัวร้อนจัด (Heat Stroke)</h3>
+            <p>1. ย้ายเข้าที่ร่มและเย็น<br>
+               2. เช็ดตัวย้อนรูขุมขน เน้น <b>จุดชีพจร</b>: ซอกคอ, ขมับ, รักแร้, ขาหนีบ</p>
+            <span class="lang-label">EN: Pulse Point Cooling | CN: 脉搏点降温</span>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 50px; padding: 20px; background: #f1f2f6; border-radius: 10px;">
+        <a href="https://www.facebook.com/profile.php?id=61570530366624" style="color: #007bff; text-decoration: none; font-weight: bold;">
+            🏠 ดูสูตรน้ำสมุนไพรและเนื้อหาเพิ่มเติมใน Facebook
+        </a>
+    </div>
 
 </body>
 </html>
