@@ -1,69 +1,72 @@
-<div style="padding: 10px;">
-    <a href="sos.html" style="background-color: #dc3545; color: white; padding: 15px; display: block; text-align: center; text-decoration: none; border-radius: 10px; font-weight: bold; border: 2px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        🚨 EMERGENCY GUIDE (EN/CN/TH) <br>
-        <span style="font-size: 0.8rem; font-weight: normal;">Emergency Card & Hospital Finder</span>
-    </a>
-</div>
 <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caregiver Friend - Trilingual Emergency Guide</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
+    <title>SOS - เพื่อนดูแลผู้สูงวัย Caregiver Friends</title>
     <style>
-        body { font-family: 'Kanit', sans-serif; text-align: center; padding: 20px; background: #f0f4f8; color: #333; line-height: 1.5; }
-        .container { max-width: 550px; margin: auto; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        h2 { color: #d32f2f; margin-bottom: 5px; font-size: 22px; }
-        .mission-tag { background: #ffecb3; color: #856404; padding: 5px 15px; border-radius: 50px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
-        .btn-call { background: #ff5252; color: white; padding: 18px; border-radius: 15px; text-decoration: none; font-size: 20px; display: block; margin: 10px 0; font-weight: bold; box-shadow: 0 4px 10px rgba(255,82,82,0.3); }
-        .btn-secondary { background: #42a5f5; box-shadow: 0 4px 10px rgba(66,165,245,0.3); }
-        .status-box { text-align: left; margin-top: 15px; border-radius: 15px; overflow: hidden; border: 1px solid #ddd; }
-        .status-header { padding: 10px 15px; font-weight: bold; color: white; font-size: 16px; }
-        .status-body { padding: 12px 15px; background: #fff; font-size: 14px; border-bottom: 1px dashed #eee; }
-        .lang-label { font-weight: bold; color: #555; width: 35px; display: inline-block; }
-        .red { background: #d32f2f; }
-        .orange { background: #fb8c00; }
-        .herb-section { background: #e8f5e9; padding: 15px; border-radius: 15px; margin-top: 20px; text-align: left; border: 1px solid #c8e6c9; }
-        .herb-title { font-weight: bold; color: #2e7d32; display: block; margin-bottom: 8px; border-bottom: 1px solid #c8e6c9; padding-bottom: 5px; }
-        .warning-box { background: #ffebee; padding: 10px; border-radius: 10px; margin-top: 10px; border: 1px solid #ffcdd2; color: #c62828; font-size: 12px; }
-        .footer-note { font-size: 11px; color: #999; margin-top: 25px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; text-align: center; padding: 20px; background-color: #ffffff; color: #2d3436; }
+        
+        /* 🚨 เฉพาะส่วนฉุกเฉินที่ต้องเห็นทันที */
+        .critical-area { border: 2px solid #dc3545; border-radius: 20px; padding: 25px; margin-bottom: 20px; background: #fffcfc; }
+        .critical-title { color: #dc3545; font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; }
+        .symptom-list { text-align: left; display: inline-block; font-size: 1rem; margin-bottom: 20px; line-height: 1.6; }
+        
+        /* 📞 ปุ่มกดโทรและค้นหา */
+        .btn { border-radius: 50px; display: block; font-weight: bold; text-decoration: none; margin-bottom: 15px; padding: 20px; font-size: 1.4rem; transition: 0.2s; }
+        .btn-call { background-color: #dc3545; color: white; box-shadow: 0 4px 15px rgba(220,53,69,0.3); }
+        .btn-hospital { background-color: #007bff; color: white; font-size: 1.1rem; padding: 15px; box-shadow: 0 4px 12px rgba(0,123,255,0.2); }
+        
+        /* 📋 เมนูภารกิจ */
+        .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 30px; }
+        .mission-item { border: 1px solid #eee; border-radius: 12px; padding: 12px; text-decoration: none; color: inherit; font-size: 0.85rem; text-align: center; background: #fafafa; }
+        .mission-item b { display: block; font-size: 1rem; margin-bottom: 5px; }
+
+        .lang-hint { font-size: 0.75rem; color: #999; margin-top: 5px; }
+
+        /* 🌿 ส่วนรายละเอียดที่ต้องเลื่อนลงไปถึงจะเห็น */
+        .details-section { margin-top: 150vh; text-align: left; padding: 20px; border-top: 5px solid #eee; background: #fdfdfd; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="mission-tag">🚀 Mission: The Great Songkran Journey</div>
-        <h2>คู่มือฉุกเฉิน 3 ภาษา (Trilingual Guide)</h2>
-        <p style="font-size: 14px; margin-top: 0;">Caregiver Support & Emergency Hotlines</p>
-        <a href="tel:1669" class="btn-call">🚨 1669 (Medical / 急救)</a>
-        <a href="tel:1193" class="btn-call btn-secondary">🛣️ 1193 (Highway Police / 交警)</a>
-        <div class="status-box">
-            <div class="status-header red">🔴 Critical / วิกฤต / 紧急</div>
-            <div class="status-body"><span class="lang-label">TH:</span> หอบเหนื่อย นอนราบไม่ได้ (น้ำท่วมปอด)</div>
-            <div class="status-body"><span class="lang-label">EN:</span> Shortness of breath, cannot lie flat.</div>
-            <div class="status-body" style="border:none;"><span class="lang-label">CN:</span> 呼吸困难，无法平卧 (肺水肿)</div>
+
+    <div class="critical-area">
+        <div class="critical-title">🚨 วิกฤต? | CRITICAL</div>
+        <div class="symptom-list">
+            • หมดสติ (Unconscious / 昏迷)<br>
+            • สำลัก / เขียว (Choking / 窒息)<br>
+            • หายใจติดขัด / กระตุก (Gasping / 呼吸困难)<br>
+            • แพ้รุนแรง / หน้าบวม (Allergy / 过敏)
         </div>
-        <div class="status-box">
-            <div class="status-header orange">🟠 Heat Stroke / ฮีทสโตรก / 中暑</div>
-            <div class="status-body"><span class="lang-label">TH:</span> ตัวร้อนจัด ไม่มีเหงื่อ สับสน (เช็ดตัวด่วน)</div>
-            <div class="status-body"><span class="lang-label">EN:</span> High fever, no sweat, confusion.</div>
-            <div class="status-body" style="border:none;"><span class="lang-label">CN:</span> 高烧、无汗、意识模糊</div>
-        </div>
-        <div class="herb-section">
-            <span class="herb-title">🌿 พลังสมุนไพรสกัดเย็น (Cold Infusion Wisdom)</span>
-            <div style="font-size: 13px; line-height: 1.6;">
-                <strong>TH:</strong> พิมเสน/มะกรูด/มะลิ - บดลอยน้ำเย็น เช็ดชีพจรบำรุงหัวใจ<br>
-                <strong>EN:</strong> Jasmine/Rosemary - Cold infusion for heart & breathing.<br>
-                <strong>CN:</strong> 茉莉花/薄荷 - 捣碎飘在凉水中, 擦拭脉搏点以清热散风。
-            </div>
-            <div class="warning-box">
-                ⚠️ **Warning:** ล้างดอกมะลิให้สะอาดก่อนใช้ หรือใช้มะลิออร์แกนิก เพื่อเลี่ยงยาฆ่าแมลง / Wash flowers thoroughly to avoid pesticides / 彻底清洗花卉, 避免农药。
-            </div>
-        </div>
-        <p class="footer-note">
-            Caregiver Friend Hub | Data based on Thai Medical Standards<br>
-            *For initial guidance only. ไม่ใช่การวินิจฉัยทางการแพทย์
-        </p>
+        
+        <a href="tel:1669" class="btn btn-call">📞 โทร 1669</a>
+        <a href="https://www.google.com/maps/search/private+hospital+near+me" class="btn btn-hospital">🔍 ค้นหา รพ.เอกชน ใกล้ตัว</a>
     </div>
+
+    <p style="font-size: 0.9rem; font-weight: bold; margin-top: 25px; color: #636e72;">ภารกิจปฐมพยาบาล | FIRST AID</p>
+    
+    <div class="mission-grid">
+        <a href="#details-choking" class="mission-item"><b>🍞 สำลัก</b>Choking / 窒息</a>
+        <a href="#details-allergy" class="mission-item"><b>🦐 การแพ้</b>Allergy / 过敏</a>
+        <a href="#details-swelling" class="mission-item"><b>🦶 บวม/หอบ</b>Leg & Breath</a>
+        <a href="#details-heat" class="mission-item"><b>🌡️ ตัวร้อนจัด</b>Heat Relief</a>
+    </div>
+
+    <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #f1f1f1;">
+        <a href="https://www.facebook.com/profile.php?id=61570530366624" style="color: #007bff; text-decoration: none; font-size: 0.85rem; font-weight: bold;">
+            🏠 เพื่อนดูแลผู้สูงวัย Caregiver Friends
+        </a>
+    </div>
+
+    <div class="details-section">
+        <h2 id="details-heat">🌡️ ภารกิจตัวร้อนจัด (Heat Relief)</h2>
+        <p><b>Action:</b> เช็ดตัวด้วยน้ำสมุนไพรฤทธิ์เย็น หรือน้ำอุณหภูมิห้อง</p>
+        <p><b>จุดสำคัญ:</b> เน้นจุดชีพจร ซอกคอ ขมับ รักแร้ ขาหนีบ เพื่อระบายความร้อน</p>
+        <hr>
+        <h2 id="details-choking">🍞 ภารกิจสำลัก (Choking)</h2>
+        <p><b>Action:</b> หากไอไม่ออก ให้ใช้การรัดท้อง (Heimlich Maneuver)</p>
+        <hr>
+        </div>
+
 </body>
 </html>
