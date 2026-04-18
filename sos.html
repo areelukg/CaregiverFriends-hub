@@ -3,100 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOS - เพื่อนดูแลผู้สูงวัย Caregiver Friends</title>
+    <title>SOS Medical Guide - เพื่อนดูแลผู้สูงวัย Caregiver Friends</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; text-align: center; padding: 15px; background: #fff; color: #2d3436; line-height: 1.4; }
+        body { font-family: -apple-system, sans-serif; text-align: center; padding: 15px; background: #fff; color: #2d3436; line-height: 1.4; }
         .critical-area { border: 2px solid #dc3545; border-radius: 20px; padding: 20px; margin-bottom: 20px; background: #fffcfc; }
         .btn { border-radius: 50px; display: block; font-weight: bold; text-decoration: none; margin-bottom: 12px; padding: 18px; font-size: 1.3rem; }
         .btn-call { background: #dc3545; color: #fff; box-shadow: 0 4px 10px rgba(220,35,69,0.3); }
-        .btn-hospital { background: #007bff; color: #fff; font-size: 1rem; padding: 12px; }
         
-        /* 4 กล่องภารกิจ */
         .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
-        .mission-card { border: 1px solid #eee; border-radius: 15px; padding: 12px; text-decoration: none; color: inherit; text-align: left; background: #fafafa; border-left: 6px solid #ddd; }
-        .mission-card b { display: block; font-size: 1rem; margin-bottom: 3px; }
-        .mission-card span { font-size: 0.75rem; color: #666; }
+        .mission-card { border: 1px solid #eee; border-radius: 12px; padding: 12px; text-decoration: none; color: inherit; text-align: left; background: #fafafa; border-left: 6px solid #ddd; }
+        .mission-card b { display: block; font-size: 0.9rem; margin-bottom: 3px; }
 
-        /* ส่วนวิธีปฏิบัติ (Action Section) 3 ภาษา */
-        .action-details { margin-top: 30px; text-align: left; padding: 15px; border-top: 5px solid #eee; }
-        .action-box { margin-bottom: 35px; padding: 15px; border-radius: 15px; background: #fdfdfd; border: 1px solid #f1f1f1; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .action-box h3 { margin-top: 0; font-size: 1.15rem; color: #333; display: flex; align-items: center; }
-        .step-txt { font-size: 1rem; margin-bottom: 12px; font-weight: 600; color: #d63031; }
-        .lang-sub { font-size: 0.85rem; color: #636e72; border-top: 1px dashed #ddd; padding-top: 10px; margin-top: 10px; line-height: 1.6; }
+        .action-details { margin-top: 20px; text-align: left; padding: 10px; }
+        .action-box { margin-bottom: 30px; padding: 15px; border-radius: 15px; background: #fdfdfd; border: 1px solid #eee; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .med-title { font-weight: bold; font-size: 1.1rem; color: #2d3436; margin-bottom: 10px; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        .self-care-list { font-size: 0.9rem; margin-bottom: 10px; list-style-type: none; padding-left: 0; }
+        .self-care-list li { margin-bottom: 5px; padding-left: 18px; position: relative; }
+        .self-care-list li::before { content: "•"; position: absolute; left: 0; color: #007bff; font-weight: bold; }
+        .lang-sub { font-size: 0.8rem; color: #636e72; border-top: 1px dashed #ddd; padding-top: 8px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <div class="critical-area">
-        <b style="color:#dc3545; font-size: 1.4rem;">🚨 CRITICAL? CALL 1669</b>
-        <p style="font-size: 0.95rem; margin: 10px 0;">หมดสติ | สำลัก | แพ้รุนแรง | หายใจขัด</p>
-        <a href="tel:1669" class="btn btn-call">📞 โทร 1669 (สายด่วน)</a>
-        <a href="https://www.google.com/maps/search/private+hospital+near+me" class="btn btn-hospital">🔍 ค้นหา รพ.เอกชน ใกล้ที่สุด</a>
+        <b style="color:#dc3545; font-size: 1.3rem;">🚨 EMERGENCY? CALL 1669</b>
+        <p style="font-size: 0.9rem; margin: 10px 0;">Unconscious | Severe Choking | Anaphylaxis | Dyspnea</p>
+        <a href="tel:1669" class="btn btn-call">📞 CALL 1669 (EMS)</a>
+        <a href="https://www.google.com/maps/search/private+hospital+near+me" style="color:#007bff; text-decoration:none; font-size:0.9rem;">🔍 Find Private Hospital Near Me</a>
     </div>
 
     <div class="mission-grid">
-        <a href="#choking" class="mission-card" style="border-left-color: #fd7e14;">
-            <b>🍞 การสำลัก</b><span>Action: รัดท้องด่วน</span>
-        </a>
-        <a href="#swelling" class="mission-card" style="border-left-color: #007bff;">
-            <b>🦶 บวม/หอบ</b><span>Action: หนุนสูง/ระบำเท้า</span>
-        </a>
-        <a href="#allergy" class="mission-card" style="border-left-color: #e83e8c;">
-            <b>🦐 การแพ้</b><span>Action: เช็กหน้าบวม/เสียงวี๊ด</span>
-        </a>
-        <a href="#heat" class="mission-card" style="border-left-color: #ffc107;">
-            <b>🌡️ ตัวร้อนจัด</b><span>Action: เช็ดจุดชีพจร</span>
-        </a>
+        <a href="#edema" class="mission-card" style="border-left-color: #007bff;"><b>🦶 Edema / Dyspnea</b><span>บวม / หอบเหนื่อย</span></a>
+        <a href="#choking" class="mission-card" style="border-left-color: #fd7e14;"><b>🍞 Choking / FBAO</b><span>การสำลัก</span></a>
+        <a href="#allergy" class="mission-card" style="border-left-color: #e83e8c;"><b>🦐 Anaphylaxis</b><span>แพ้รุนแรง</span></a>
+        <a href="#heat" class="mission-card" style="border-left-color: #ffc107;"><b>🌡️ Heat Stroke</b><span>ตัวร้อนจัด</span></a>
     </div>
 
     <div class="action-details">
         
-        <div id="choking" class="action-box" style="border-left: 6px solid #fd7e14;">
-            <h3>🍞 เมื่อมีการสำลัก (Choking)</h3>
-            <div class="step-txt">Action: "รัดใต้ลิ้นปี่ กระแทกขึ้นแรงๆ"</div>
-            <p style="font-size: 0.95rem;"><b>TH:</b> ยืนซ้อนหลัง โอบเอว กำปั้นวางเหนือสะดือ (ใต้ลิ้นปี่) กระแทกเข้าหาตัวและยกขึ้นแรงๆ จนสิ่งแปลกปลอมหลุด</p>
+        <div id="edema" class="action-box" style="border-left: 6px solid #007bff;">
+            <div class="med-title">🦶 Edema / Dyspnea | บวม / หอบเหนื่อย | 水肿 / 呼吸困难</div>
+            <p style="font-weight: bold; font-size: 0.85rem; color: #007bff;">Self-care / การดูแลเบื้องต้น:</p>
+            <ul class="self-care-list">
+                <li><b>Elevation:</b> ยกขา/แขนสูงกว่าระดับหัวใจ (抬高患肢)</li>
+                <li><b>Movement:</b> ระบำนิ้วเท้า/ขยับร่างกายลดน้ำคั่ง (踝泵运动)</li>
+                <li><b>Reduce Salt:</b> ลดเค็ม/โซเดียม (减少盐摄入)</li>
+                <li><b>Compression:</b> สวมถุงน่องพยุงหากบวมที่ขา (穿弹力袜)</li>
+            </ul>
             <div class="lang-sub">
-                <b>EN:</b> Wrap arms around waist from behind. Fist above navel, pull inward and upward firmly (Heimlich).<br>
-                <b>CN:</b> 站在身后环抱腰部。拳头置于脐上，向内向上用力冲击（海姆立克急救法）。
+                *หากนอนราบไม่ได้ หายใจเสียงดัง หรือบวมฉับพลัน รีบพบแพทย์ทันที
             </div>
         </div>
 
-        <div id="swelling" class="action-box" style="border-left: 6px solid #007bff;">
-            <h3>🦶 เมื่อขาบวม/หายใจหอบ (Leg & Breath)</h3>
-            <div class="step-txt">Action: "หนุนสูง ช่วยปอด ช่วยลดบวม"</div>
-            <p style="font-size: 0.95rem;"><b>TH:</b> หนุนหัวสูง 45 องศา + หนุนขาสูงกว่าระดับอก ทำระบำนิ้วเท้า (กระดก/หมุน) ต่อเนื่อง 15 นาที</p>
-            <div class="lang-sub">
-                <b>EN:</b> Sit up at 45°. Elevate legs above heart. Perform ankle pumps (flex/rotate) for 15 mins.<br>
-                <b>CN:</b> 头部半卧45度，双腿垫高。持续进行踝泵运动（上下摆动/转动脚踝）15分钟。
-            </div>
+        <div id="choking" class="action-box" style="border-left: 6px solid #fd7e14;">
+            <div class="med-title">🍞 Choking (FBAO) | การสำลัก | 窒息 (气道异物梗阻)</div>
+            <p style="font-weight: bold; font-size: 0.85rem; color: #fd7e14;">Emergency Action / การปฐมพยาบาล:</p>
+            <ul class="self-care-list">
+                <li><b>Encourage Cough:</b> หากยังพอไอได้ ให้ไอแรงๆ (鼓励咳嗽)</li>
+                <li><b>Heimlich Maneuver:</b> หากไอไม่ออก ให้รัดใต้ลิ้นปี่และกระทุ้งขึ้น (海姆立克急救法)</li>
+                <li><b>Oxygen:</b> ย้ายไปที่อากาศถ่ายเท (移至空气流通处)</li>
+            </ul>
         </div>
 
         <div id="allergy" class="action-box" style="border-left: 6px solid #e83e8c;">
-            <h3>🦐 เมื่อสงสัยอาการแพ้ (Allergy Check)</h3>
-            <div class="step-txt">Action: "สังเกตใบหน้า และเสียงหายใจ"</div>
-            <p style="font-size: 0.95rem;"><b>TH:</b> เช็กหน้าบวม ผื่นฉับพลัน หากหายใจมีเสียง "วี๊ด" หรือเริ่มพูดไม่ออก ให้ส่ง รพ. ทันที</p>
-            <div class="lang-sub">
-                <b>EN:</b> Check for facial swelling/rash. If wheezing or unable to speak, go to ER immediately.<br>
-                <b>CN:</b> 检查面部肿胀或皮疹。若呼吸有鸣音或无法说话，请立即就医。
-            </div>
+            <div class="med-title">🦐 Anaphylaxis | การแพ้รุนแรง | 严重过敏反应</div>
+            <p style="font-weight: bold; font-size: 0.85rem; color: #e83e8c;">Observation / การเฝ้าระวัง:</p>
+            <ul class="self-care-list">
+                <li><b>Remove Allergen:</b> หยุดสิ่งที่สงสัยว่าแพ้ทันที (远离过敏原)</li>
+                <li><b>Airway Check:</b> เช็กหน้าบวม/เสียงหายใจวี๊ด (检查呼吸道)</li>
+                <li><b>Positioning:</b> นอนหงายยกขาสูงหากมีอาการช็อก (平卧并抬高双腿)</li>
+            </ul>
         </div>
 
         <div id="heat" class="action-box" style="border-left: 6px solid #ffc107;">
-            <h3>🌡️ เมื่อตัวร้อนจัด (Heat Stroke)</h3>
-            <div class="step-txt">Action: "ระบายความร้อนที่จุดชีพจร"</div>
-            <p style="font-size: 0.95rem;"><b>TH:</b> ย้ายที่ร่ม เช็ดตัวย้อนรูขุมขน เน้นเช็ดซ้ำที่: ซอกคอ ขมับ รักแร้ ขาหนีบ</p>
-            <div class="lang-sub">
-                <b>EN:</b> Move to shade. Wipe against hair growth. Focus on: Neck, Temples, Armpits, and Groin.<br>
-                <b>CN:</b> 移至阴凉处。逆毛孔擦拭身体。重点：颈部、太阳穴、腋下、腹股沟。
-            </div>
+            <div class="med-title">🌡️ Heat Stroke | ลมแดด / ตัวร้อนจัด | 中暑 (热射病)</div>
+            <p style="font-weight: bold; font-size: 0.85rem; color: #f39c12;">Rapid Cooling / วิธีลดอุณหภูมิ:</p>
+            <ul class="self-care-list">
+                <li><b>Pulse Point Cooling:</b> เช็ดตัวเน้นซอกคอ รักแร้ ขาหนีบ (脉搏点降温)</li>
+                <li><b>Airflow:</b> ใช้พัดลมเป่าระบายความร้อน (增加空气流通)</li>
+                <li><b>Hydration:</b> จิบน้ำเปล่าหากยังรู้สึกตัว (若意识清醒可少量饮水)</li>
+            </ul>
         </div>
 
     </div>
 
-    <div style="margin-top: 40px; padding: 25px; background: #f0f7ff; border-radius: 15px; border: 1px solid #d0e7ff;">
-        <p style="margin-bottom: 15px; font-weight: bold; color: #007bff; font-size: 1.1rem;">🏠 ข้อมูลเพิ่มเติมสำหรับผู้ดูแล</p>
-        <a href="https://www.facebook.com/profile.php?id=61570530366624" target="_blank" style="text-decoration: none; display: inline-block; background: #1877f2; color: white; padding: 12px 25px; border-radius: 10px; font-weight: bold; font-size: 1rem;">
-            เพจ เพื่อนดูแลผู้สูงวัย Caregiver Friends
+    <div style="margin-top: 30px; padding: 20px; background: #f0f7ff; border-radius: 15px; border: 1px solid #d0e7ff;">
+        <a href="https://www.facebook.com/profile.php?id=61570530366624" target="_blank" style="text-decoration: none; color: #1a73e8; font-weight: bold; font-size: 1rem;">
+            🏠 เพจ เพื่อนดูแลผู้สูงวัยCaregiverFriends
         </a>
     </div>
 
