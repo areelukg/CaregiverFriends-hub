@@ -5,75 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOS - เพื่อนดูแลผู้สูงวัย Caregiver Friends</title>
     <style>
-        /* เน้นความสะอาดและสบายตา */
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; text-align: center; padding: 20px; background-color: #ffffff; color: #333; }
-        .emergency-header { color: #dc3545; font-size: 1.8rem; font-weight: bold; margin-bottom: 5px; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; text-align: center; padding: 15px; background-color: #ffffff; color: #333; line-height: 1.4; }
         
-        /* กล่องวิกฤต: เช็กแล้วโทรทันที */
-        .critical-box { border: 2px solid #dc3545; border-radius: 20px; padding: 20px; margin-bottom: 30px; background-color: #fffafa; }
-        .critical-list { text-align: left; display: inline-block; font-size: 1rem; line-height: 1.8; margin-bottom: 15px; }
+        /* ส่วนตัดสินใจวิกฤต */
+        .critical-card { border: 3px solid #dc3545; border-radius: 20px; padding: 20px; margin-bottom: 25px; background-color: #fffafa; }
+        .critical-title { color: #dc3545; font-size: 1.6rem; font-weight: bold; margin-bottom: 10px; }
+        .symptom-check { text-align: left; display: inline-block; font-size: 0.95rem; margin-bottom: 15px; }
         
-        /* ปุ่มโทร: ใหญ่ ชัด กดง่าย */
-        .call-btn { background-color: #dc3545; color: white; padding: 20px; text-decoration: none; border-radius: 50px; display: block; font-weight: bold; font-size: 1.8rem; box-shadow: 0 4px 15px rgba(220,53,69,0.3); }
+        /* ปุ่มโทรฉุกเฉิน */
+        .emergency-call { background-color: #dc3545; color: white; padding: 18px; text-decoration: none; border-radius: 50px; display: block; font-weight: bold; font-size: 1.6rem; box-shadow: 0 4px 12px rgba(220,53,69,0.3); }
         
-        /* กล่องภารกิจปฐมพยาบาล: แยกสีตามอาการ */
-        .mission-link { border: 1px solid #ddd; border-radius: 15px; padding: 15px; margin-bottom: 15px; display: block; text-decoration: none; color: inherit; text-align: left; transition: 0.3s; }
-        .mission-link:hover { background-color: #f8f9fa; border-color: #007bff; }
-        .mission-title { font-weight: bold; font-size: 1.1rem; display: block; }
-        .mission-desc { font-size: 0.85rem; color: #666; display: block; margin-top: 5px; }
+        /* กล่องภารกิจปฐมพยาบาล */
+        .mission-link { border: 1px solid #eee; border-radius: 15px; padding: 15px; margin-bottom: 12px; display: block; text-decoration: none; color: inherit; text-align: left; border-left: 8px solid #ddd; }
+        .mission-name { font-weight: bold; font-size: 1.1rem; display: block; color: #333; }
+        .lang-line { font-size: 0.8rem; color: #666; display: block; margin-top: 4px; }
         
-        .badge-th { color: #1a73e8; }
-        .badge-en { color: #5f6368; }
-        .badge-cn { color: #ea4335; }
+        /* สีประจำภารกิจ */
+        .color-choke { border-left-color: #fd7e14; }
+        .color-allergy { border-left-color: #e83e8c; }
+        .color-heart { border-left-color: #007bff; }
+        .color-heat { border-left-color: #ffc107; }
     </style>
 </head>
 <body>
 
-    <div class="critical-box">
-        <div class="emergency-header">🚨 CRITICAL?</div>
-        <div class="critical-list">
+    <div class="critical-card">
+        <div class="critical-title">🚨 วิกฤต? CALL 1669</div>
+        <div class="symptom-check">
             • <b>หมดสติ</b> ปลุกไม่ตื่น (Unconscious / 昏迷)<br>
-            • <b>หายใจติดขัด</b> กระตุก (Gasping / 呼吸困难)<br>
-            • <b>สำลัก</b> เขียว พูดไม่ได้ (Choking / 窒息)<br>
-            • <b>แพ้รุนแรง</b> หน้าบวม หายใจไม่ออก (Allergy / 过敏)<br>
+            • <b>สำลัก</b> เขียว พูดไม่ออก (Severe Choking / 窒息)<br>
+            • <b>แพ้รุนแรง</b> หน้าบวม หายใจไม่ออก (Anaphylaxis / 过敏)<br>
+            • <b>หายใจติดขัด</b> หอบกระตุก (Gasping / 呼吸困难)<br>
             • <b>ตัวร้อนจัด</b> เหงื่อไม่ออก (Heat Stroke / 中暑)
         </div>
-        <a href="tel:1669" class="call-btn">📞 CALL 1669</a>
+        <a href="tel:1669" class="emergency-call">📞 โทร 1669 ด่วน</a>
     </div>
 
-    <p style="font-weight: bold; margin-top: 30px;">📋 ภารกิจปฐมพยาบาล (First Aid Missions)</p>
+    <p style="font-size: 0.9rem; color: #777; font-weight: bold;">📋 ภารกิจปฐมพยาบาล (Action Guide)</p>
 
-    <a href="#choking" class="mission-link" style="border-left: 6px solid #fd7e14;">
-        <span class="mission-title">🍞 สำลัก (Choking)</span>
-        <span class="mission-desc">
-            <span class="badge-th">วิธีรัดท้อง (Heimlich)</span> | 
-            <span class="badge-en">Abdominal Thrusts</span> | 
-            <span class="badge-cn">海姆立克急救法</span>
-        </span>
+    <a href="#choking" class="mission-link color-choke">
+        <span class="mission-name">🍞 การสำลัก (Choking Mission)</span>
+        <span class="lang-line">TH: วิธีรัดท้อง (Heimlich) | EN: Abdominal Thrusts | CN: 海姆立克法</span>
     </a>
 
-    <a href="#swelling" class="mission-link" style="border-left: 6px solid #007bff;">
-        <span class="mission-title">🦶 ขาบวม / หอบ (Leg Swelling & Breath)</span>
-        <span class="mission-desc">
-            <span class="badge-th">ระบำนิ้วเท้า/หนุนสูง</span> | 
-            <span class="badge-en">Elevate & Ankle Pumps</span> | 
-            <span class="badge-cn">抬高与踝泵运动</span>
-        </span>
+    <a href="#allergy" class="mission-link color-allergy">
+        <span class="mission-name">🦐 การแพ้ (Allergy/Anaphylaxis)</span>
+        <span class="lang-line">TH: เช็กอาการ-ปฐมพยาบาล | EN: Allergy Response | CN: 过敏应急</span>
     </a>
 
-    <a href="#heat" class="mission-link" style="border-left: 6px solid #ffc107;">
-        <span class="mission-title">🌡️ ตัวร้อนจัด (Overheating)</span>
-        <span class="mission-desc">
-            <span class="badge-th">เช็ดจุดชีพจร</span> | 
-            <span class="badge-en">Pulse Point Cooling</span> | 
-            <span class="badge-cn">脉搏点降温</span>
-        </span>
+    <a href="#swelling" class="mission-link color-heart">
+        <span class="mission-name">🦶 ขาบวม / หอบ (Leg & Breath)</span>
+        <span class="lang-line">TH: ระบำนิ้วเท้า/หนุนสูง | EN: Ankle Pumps | CN: 抬高与踝泵</span>
     </a>
 
-    <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
-        <p style="font-size: 0.9rem; margin-bottom: 10px;"><b>เพื่อนดูแลผู้สูงวัย Caregiver Friends</b></p>
-        <a href="https://www.facebook.com/profile.php?id=61570530366624" style="color: #1a73e8; text-decoration: none; font-size: 0.85rem;">🏠 ไปที่หน้า Facebook Page</a>
-        <p style="font-size: 0.7rem; color: #999; margin-top: 15px;">ข้อมูลถูกต้อง 100% ตามหลักวิชาการ</p>
+    <a href="#heat" class="mission-link color-heat">
+        <span class="mission-name">🌡️ ตัวร้อนจัด (Heat Relief)</span>
+        <span class="lang-line">TH: เช็ดจุดชีพจร | EN: Pulse Point Cooling | CN: 脉搏点降温</span>
+    </a>
+
+    <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 15px;">
+        <p style="font-size: 0.85rem;"><b>เพื่อนดูแลผู้สูงวัย Caregiver Friends</b></p>
+        <a href="https://www.facebook.com/profile.php?id=61570530366624" style="color: #007bff; text-decoration: none; font-size: 0.8rem;">🏠 กลับสู่หน้า Facebook</a>
+        <p style="font-size: 0.65rem; color: #aaa; margin-top: 10px;">ข้อมูลเน้นความถูกต้อง 100% ตามหลักวิชาการ</p>
     </div>
 
 </body>
