@@ -17,79 +17,82 @@
         .mission-card b { display: block; font-size: 1rem; margin-bottom: 3px; }
         .mission-card span { font-size: 0.75rem; color: #666; }
 
-        /* ส่วนวิธีปฏิบัติ (Action Section) - จะแสดงเมื่อกดลิงก์ */
-        .action-details { margin-top: 50px; text-align: left; padding: 15px; border-top: 5px solid #eee; }
-        .action-box { margin-bottom: 40px; padding: 20px; border-radius: 15px; background: #f9f9f9; border: 1px solid #eee; }
-        .step-img-alt { background: #eee; padding: 10px; border-radius: 8px; font-weight: bold; color: #d63031; margin-bottom: 10px; display: block; text-align: center; }
-        .lang-label { font-size: 0.8rem; color: #7f8c8d; margin-top: 10px; display: block; border-top: 1px solid #ddd; padding-top: 5px; }
+        /* ส่วนวิธีปฏิบัติ (Action Section) 3 ภาษา */
+        .action-details { margin-top: 30px; text-align: left; padding: 15px; border-top: 5px solid #eee; }
+        .action-box { margin-bottom: 35px; padding: 15px; border-radius: 15px; background: #fdfdfd; border: 1px solid #f1f1f1; }
+        .action-box h3 { margin-top: 0; font-size: 1.1rem; color: #333; }
+        .step-txt { font-size: 0.95rem; margin-bottom: 10px; font-weight: 500; }
+        .lang-sub { font-size: 0.85rem; color: #636e72; border-top: 1px dashed #ddd; padding-top: 8px; margin-top: 10px; line-height: 1.5; }
     </style>
 </head>
 <body>
 
     <div class="critical-area">
-        <b style="color:#dc3545; font-size: 1.4rem;">🚨 วิกฤต? CALL 1669</b>
-        <div style="text-align: left; display: inline-block; font-size: 0.95rem; margin: 15px 0;">
-            • หมดสติ | สำลัก | แพ้รุนแรง | หายใจขัด
-        </div>
+        <b style="color:#dc3545; font-size: 1.4rem;">🚨 CRITICAL? CALL 1669</b>
+        <p style="font-size: 0.95rem; margin: 10px 0;">หมดสติ | สำลัก | แพ้รุนแรง | หายใจขัด</p>
         <a href="tel:1669" class="btn btn-call">📞 โทร 1669 ด่วน</a>
-        <a href="https://www.google.com/maps/search/private+hospital+near+me" class="btn btn-hospital">🔍 ค้นหา รพ.เอกชน ใกล้ตัว</a>
+        <a href="https://www.google.com/maps/search/โรงพยาบาลเอกชน" class="btn btn-hospital">🔍 ค้นหา รพ.เอกชน ใกล้ตัว</a>
     </div>
 
-    <p style="font-size: 0.85rem; font-weight: bold; color: #636e72;">📋 ภารกิจกู้ชีพ (กดเพื่อดูวิธีทำทันที)</p>
-    
     <div class="mission-grid">
-        <a href="#action-choking" class="mission-card" style="border-left-color: #fd7e14;">
+        <a href="#choking" class="mission-card" style="border-left-color: #fd7e14;">
             <b>🍞 การสำลัก</b><span>วิธีรัดท้อง (Heimlich)</span>
         </a>
-        <a href="#action-swelling" class="mission-card" style="border-left-color: #007bff;">
+        <a href="#swelling" class="mission-card" style="border-left-color: #007bff;">
             <b>🦶 บวม/หอบ</b><span>วิธีระบำเท้า/หนุนสูง</span>
         </a>
-        <a href="#action-allergy" class="mission-card" style="border-left-color: #e83e8c;">
-            <b>🦐 การแพ้</b><span>อาการและจุดสังเกต</span>
+        <a href="#allergy" class="mission-card" style="border-left-color: #e83e8c;">
+            <b>🦐 การแพ้</b><span>จุดสังเกตอันตราย</span>
         </a>
-        <a href="#action-heat" class="mission-card" style="border-left-color: #ffc107;">
+        <a href="#heat" class="mission-card" style="border-left-color: #ffc107;">
             <b>🌡️ ตัวร้อนจัด</b><span>จุดเช็ดตัวระบายร้อน</span>
         </a>
     </div>
 
     <div class="action-details">
         
-        <div id="action-choking" class="action-box" style="border-top: 5px solid #fd7e14;">
-            <h3 style="margin-top:0;">🍞 วิธีจัดการการสำลัก (Heimlich)</h3>
-            <span class="step-img-alt">กำปั้นวางเหนือสะดือ > ดึงเข้าหาตัวและยกขึ้นแรงๆ</span>
-            <p>1. ยืนซ้อนหลังผู้สูงอายุ โอบเอว<br>
-               2. กำปั้นวางเหนือสะดือ (ใต้กระดูกหน้าอก)<br>
-               3. กระแทกเข้าหาตัวและยกขึ้นด้านบน ทำซ้ำจนสิ่งแปลกปลอมหลุด</p>
-            <span class="lang-label">EN: Abdominal Thrusts | CN: 海姆立克急救法</span>
+        <div id="choking" class="action-box" style="border-left: 6px solid #fd7e14;">
+            <h3>🍞 ภารกิจสำลัก (Choking)</h3>
+            <div class="step-txt"><b>TH:</b> ยืนซ้อนหลัง โอบเอว กำปั้นวางเหนือสะดือ ดึงเข้าหาตัวและยกขึ้นแรงๆ จนสิ่งแปลกปลอมหลุด</div>
+            <div class="lang-sub">
+                <b>EN:</b> Stand behind, wrap arms around waist. Place fist above navel, pull inward and upward (Heimlich Maneuver).<br>
+                <b>CN:</b> 站在身后，双臂环抱腰部。拳头置于脐上，向内向上用力冲击（海姆立克急救法）。
+            </div>
         </div>
 
-        <div id="action-swelling" class="action-box" style="border-top: 5px solid #007bff;">
-            <h3 style="margin-top:0;">🦶 วิธีลดบวม/หอบ (Ankle Pumps)</h3>
-            <span class="step-img-alt">นอนหนุนหัวสูง + หนุนขา + ขยับข้อเท้า</span>
-            <p>1. หนุนศีรษะสูง 45 องศา (ช่วยให้หายใจง่าย)<br>
-               2. หนุนขาสองข้างให้สูงกว่าระดับอก<br>
-               3. <b>ระบำนิ้วเท้า:</b> กระดกและหมุนข้อเท้าต่อเนื่อง 15 นาที</p>
-            <span class="lang-label">EN: Elevate & Ankle Pumps | CN: 抬高与踝泵运动</span>
+        <div id="swelling" class="action-box" style="border-left: 6px solid #007bff;">
+            <h3>🦶 ลดบวม/หายใจหอบ (Leg & Breath)</h3>
+            <div class="step-txt"><b>TH:</b> หนุนหัวสูง 45° หนุนขาสูงกว่าอก ทำระบำนิ้วเท้า (กระดก/หมุนข้อเท้า) 15 นาที</div>
+            <div class="lang-sub">
+                <b>EN:</b> Elevate head 45° and legs above heart. Perform ankle pumps (flex/rotate) for 15 mins.<br>
+                <b>CN:</b> 头部抬高45度，双腿抬高至心脏以上。进行踝泵运动（上下摆动/转动脚踝）15分钟。
+            </div>
         </div>
 
-        <div id="action-allergy" class="action-box" style="border-top: 5px solid #e83e8c;">
-            <h3>🦐 การแพ้รุนแรง (Allergy)</h3>
-            <p>• สังเกตหน้าบวม ตาบวม ผื่นขึ้นฉับพลัน<br>• หากหายใจเสียงดัง "วี๊ด" หรือพูดไม่ออก ให้รีบส่ง รพ. ทันที</p>
-            <span class="lang-label">EN: Severe Allergy Check | CN: 严重过敏检查</span>
+        <div id="allergy" class="action-box" style="border-left: 6px solid #e83e8c;">
+            <h3>🦐 การแพ้รุนแรง (Allergy Check)</h3>
+            <div class="step-txt"><b>TH:</b> สังเกตหน้าบวม ผื่นฉับพลัน หากหายใจมีเสียง "วี๊ด" หรือพูดไม่ได้ ให้ส่ง รพ. ทันที</div>
+            <div class="lang-sub">
+                <b>EN:</b> Watch for facial swelling or sudden rash. If wheezing or unable to speak, seek ER immediately.<br>
+                <b>CN:</b> 观察面部是否有肿胀或突发皮疹。若呼吸有哮鸣音或无法说话，请立即送医。
+            </div>
         </div>
 
-        <div id="action-heat" class="action-box" style="border-top: 5px solid #ffc107;">
-            <h3>🌡️ วิธีลดตัวร้อนจัด (Heat Stroke)</h3>
-            <p>1. ย้ายเข้าที่ร่มและเย็น<br>
-               2. เช็ดตัวย้อนรูขุมขน เน้น <b>จุดชีพจร</b>: ซอกคอ, ขมับ, รักแร้, ขาหนีบ</p>
-            <span class="lang-label">EN: Pulse Point Cooling | CN: 脉搏点降温</span>
+        <div id="heat" class="action-box" style="border-left: 6px solid #ffc107;">
+            <h3>🌡️ ตัวร้อนจัด (Heat Stroke)</h3>
+            <div class="step-txt"><b>TH:</b> ย้ายเข้าที่ร่ม เช็ดตัวย้อนรูขุมขน เน้นจุดชีพจร: ซอกคอ ขมับ รักแร้ ขาหนีบ</div>
+            <div class="lang-sub">
+                <b>EN:</b> Move to shade. Wipe body against hair growth. Focus on: Neck, Temples, Armpits, and Groin.<br>
+                <b>CN:</b> 移至阴凉处。逆毛孔擦拭身体。重点：颈部、太阳穴、腋下、腹股沟。
+            </div>
         </div>
 
     </div>
 
-    <div style="margin-top: 50px; padding: 20px; background: #f1f2f6; border-radius: 10px;">
-        <a href="https://www.facebook.com/profile.php?id=61570530366624" style="color: #007bff; text-decoration: none; font-weight: bold;">
-            🏠 ดูสูตรน้ำสมุนไพรและเนื้อหาเพิ่มเติมใน Facebook
+    <div style="margin-top: 40px; padding: 20px; background: #f0f7ff; border-radius: 15px; border: 1px solid #d0e7ff;">
+        <p style="margin-bottom: 10px; font-weight: bold; color: #007bff;">🏠 ข้อมูลเพิ่มเติมสำหรับผู้ดูแล</p>
+        <a href="https://www.facebook.com/profile.php?id=61570530366624" style="text-decoration: none; color: #1a73e8; font-weight: bold; font-size: 1.1rem;">
+            เพจ เพื่อนดูแลผู้สูงวัย Caregiver Friends
         </a>
     </div>
 
