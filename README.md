@@ -1,44 +1,20 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOS - Caregiver Friends</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; padding: 15px; background: #fff; color: #222; }
-        .emergency-box { border: 3px solid #dc3545; border-radius: 20px; padding: 20px; margin-bottom: 20px; background: #fffafa; }
-        .btn { border-radius: 50px; display: block; font-weight: bold; text-decoration: none; margin-bottom: 12px; padding: 18px; font-size: 1.3rem; }
-        .btn-red { background: #dc3545; color: #fff; box-shadow: 0 4px 10px rgba(220,35,69,0.3); }
-        .btn-blue { background: #007bff; color: #fff; font-size: 1.1rem; }
-        .symptom-check { text-align: left; display: inline-block; font-size: 0.95rem; margin: 15px 0; line-height: 1.5; }
-        .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 25px; }
-        .mission-item { border: 1px solid #eee; border-radius: 12px; padding: 12px; text-decoration: none; color: #444; font-size: 0.85rem; background: #fafafa; }
-    </style>
-</head>
-<body>
-
-    <div class="emergency-box">
-        <b style="color:#dc3545; font-size: 1.4rem;">🚨 CRITICAL / วิกฤต</b>
-        <div class="symptom-check">
-            • <b>หมดสติ</b> (Unconscious / 昏迷)<br>
-            • <b>สำลัก/เขียว</b> (Choking / 窒息)<br>
-            • <b>แพ้รุนแรง/หน้าบวม</b> (Allergy / 过敏)<br>
-            • <b>หายใจติดขัด</b> (Gasping / 呼吸困难)
-        </div>
-        <a href="tel:1669" class="btn btn-red">📞 โทร 1669 ด่วน</a>
-        <a href="https://www.google.com/maps/search/Private+Hospital" class="btn btn-blue">🔍 ค้นหา รพ.เอกชน ใกล้ตัว</a>
-    </div>
-
-    <p style="font-size: 0.85rem; font-weight: bold; color: #666;">ภารกิจปฐมพยาบาล (First Aid)</p>
-    <div class="mission-grid">
-        <a href="#choking" class="mission-item"><b>🍞 สำลัก</b>Choking</a>
-        <a href="#allergy" class="mission-item"><b>🦐 การแพ้</b>Allergy</a>
-        <a href="#swelling" class="mission-item"><b>🦶 ขาบวม</b>Swelling</a>
-        <a href="#heat" class="mission-item"><b>🌡️ ตัวร้อน</b>Heat</a>
-    </div>
-
-    <div id="details" style="margin-top: 80px; text-align: left; border-top: 2px solid #eee; padding-top: 20px;">
-        </div>
-
-</body>
-</html>
+​🏠 เพื่อนดูแลผู้สูงวัย Caregiver Friends - SOS Hub
+​เครื่องมือช่วยเหลือฉุกเฉินและคลังความรู้สำหรับผู้ดูแล (3 ภาษา) Emergency Support & Knowledge Base for Caregivers (TH | EN | CN)
+​🇹🇭 สารบัญเมนู (Table of Contents)
+​🚨 วิกฤตฉุกเฉิน: ระบบเช็กอาการสำคัญ (หมดสติ, สำลัก, แพ้รุนแรง) และปุ่มโทรด่วน 1669
+​🏥 ค้นหาโรงพยาบาล: ปุ่มทางลัดค้นหาโรงพยาบาลเอกชนใกล้ตัวทันที
+​🦶 ภารกิจฟื้นฟู: วิธีปฐมพยาบาลเบื้องต้น (ระบำนิ้วเท้า, การรัดท้อง Heimlich, การเช็ดตัวจุดชีพจร)
+​🥣 โภชนาการ: อาหารช่วยระบบย่อยและคำเตือนเรื่องสารก่อภูมิแพ้ (Allergen Warning)
+​🇺🇸 English Menu
+​🚨 Critical Care: Emergency symptom checker (Unconscious, Choking, Anaphylaxis) and 1669 speed dial.
+​🏥 Hospital Finder: Instant shortcut to find nearby private hospitals via GPS.
+​🦶 Recovery Missions: First aid guides (Ankle Pumps, Heimlich Maneuver, Pulse Point Cooling).
+​🥣 Caregiver Nutrition: Digestive health and Important Allergen Warnings.
+​🇨🇳 中文目录
+​🚨 紧急护理: 紧急症状检查（昏迷、窒息、严重过敏）和 1669 快速拨号。
+​🏥 医院查询: 立即查找附近私立医院的快捷方式。
+​🦶 康复任务: 急救指南（踝泵运动、海姆立克急救法、脉搏点降温）。
+​🥣 护理营养: 助消化食谱和重要过敏警告。
+​🔗 Link to Webpage / ลิงก์เข้าสู่หน้าใช้งาน
+​👉 https://areelukg.github.io/CaregiverFriends-hub/
+​Guiding Principle: Accuracy 100% based on medical textbooks and expert research for the safety of our elderly loved ones
