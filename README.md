@@ -1,4 +1,6 @@
-​🏠 เพื่อนดูแลผู้สูงวัย Caregiver Friends - SOS Hub
+​## 🎢 รายการภารกิจในสวนสนุก (Mission List)
+* [Mission 01: ปริศนากะบังลมและทางเลือกที่สมดุล (The Gas & Edema Trap)](./missions/mission-01.md) - *สถานะ: สำเร็จแล้ว*
+🏠 เพื่อนดูแลผู้สูงวัย Caregiver Friends - SOS Hub
 ​เครื่องมือช่วยเหลือฉุกเฉินและคลังความรู้สำหรับผู้ดูแล (3 ภาษา) Emergency Support & Knowledge Base for Caregivers (TH | EN | CN)
 ​🇹🇭 สารบัญเมนู (Table of Contents)
 ​🚨 วิกฤตฉุกเฉิน: ระบบเช็กอาการสำคัญ (หมดสติ, สำลัก, แพ้รุนแรง) และปุ่มโทรด่วน 1669
