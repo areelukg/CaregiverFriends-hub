@@ -22,4 +22,4 @@
 
 ---
 💬 **ติดต่อเรา / Contact Us**
-[เพจเพื่อนดูแลผู้สูงวัย CaregiverFriends](https://www.facebook.com/CaregiverFriends)
+[เพจเพื่อนดูแลผู้สูงวัย CaregiverFriends](h[ttps://www.facebook.com/CaregiverFriends](https://www.facebook.com/share/1Cj44sZxaF/))
