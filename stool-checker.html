@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elder CGF - ตรวจเช็กสุขภาพลำไส้</title>
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Header & Logo */
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #ffffff;
+            border-bottom: 2px solid #e2e8f0;
+            border-radius: 8px 8px 0 0;
+        }
+        .header img {
+            max-width: 250px;
+            height: auto;
+        }
+        /* Warnings & Banners */
+        .banner-warning {
+            background-color: #fffbeb;
+            border-left: 5px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #92400e;
+        }
+        /* Grid for Stool Types */
+        .screening-section {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .grid-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .stool-btn {
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .stool-btn:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .stool-btn img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .stool-btn p {
+            margin: 8px 0 0 0;
+            font-size: 0.85em;
+            line-height: 1.2;
+        }
+        
+        /* Result Box Formatting */
+        #result-box {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        /* Dynamic Colors for Results */
+        .status-green { background-color: #f0fdf4; border-left: 6px solid #16a34a; }
+        .status-yellow { background-color: #fefce8; border-left: 6px solid #eab308; }
+        .status-red { background-color: #fef2f2; border-left: 6px solid #dc2626; }
+        
+        .food-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            background: rgba(255,255,255,0.6);
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .food-icon {
+            font-size: 1.5em;
+            margin-right: 12px;
+        }
+        .reason-text {
+            font-size: 0.9em;
+            color: #475569;
+            margin-top: 4px;
+            display: block;
+        }
+        
+        /* References Section */
+        .references {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            font-size: 0.8em;
+            color: #64748b;
+        }
+        .references h4 { margin-top: 0; color: #475569; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+        <img src="logoขึ้นทะเบียนbrand.jpg" alt="Elder CGF Logo">
+        <p style="color: #1e293b; font-weight: bold;">เครื่องมือประเมินสุขภาพลำไส้เบื้องต้น</p>
+    </div>
+
+    <!-- Medical Disclaimer -->
+    <div class="banner-warning">
+        <strong>⚠️ คำชี้แจงทางการแพทย์:</strong> ข้อมูลนี้ใช้หลักโภชนาการบำบัด (Medical Nutrition Therapy) เพื่อบรรเทาอาการเบื้องต้นเท่านั้น <strong>ไม่ใช่ยารักษาโรค</strong> หากผู้สูงอายุถ่ายเป็นเลือด ปวดท้องเกร็งรุนแรง หรือมีไข้ ต้องรีบไปพบแพทย์ทันที
+    </div>
+
+    <!-- Selection Area -->
+    <div class="screening-section">
+        <h2 style="text-align: center; color: #0f172a; margin-bottom: 5px;">วันนี้อุจจาระเป็นแบบไหนคะ?</h2>
+        <p style="text-align: center; color: #64748b; margin-top: 0;">(กดเลือกภาพที่ใกล้เคียงที่สุด 1 ภาพ)</p>
+        
+        <div class="grid-buttons">
+            <div class="stool-btn" onclick="showResult(1)">
+                <img src="Unji_Type1.jpg" alt="Type 1">
+                <p><strong>แบบที่ 1</strong><br>ก้อนแข็ง เล็กๆ</p>
+            </div>
+            <div class="stool-btn" onclick="showResult(2)">
+                <img src="Unji_Type2.jpg" alt="Type 2">
+                <p><strong>แบบที่ 2</strong><br>แท่ง ขรุขระ</p>
+            </div>
+            <div class="stool-btn" onclick="showResult(3)">
+                <img src="Unji_Type3.jpg" alt="Type 3">
+                <p><strong>แบบที่ 3</strong><br>แท่ง มีรอยแตก</p>
+            </div>
+            <div class="stool-btn" onclick="showResult(4)">
+                <img src="Unji_Type4.jpg" alt="Type 4">
+                <p><strong>แบบที่ 4</strong><br>ผิวเรียบ นุ่ม</p>
+            </div>
+            <div class="stool-btn" onclick="showResult(5)">
+                <img src="Unji_Type5.jpg" alt="Type 5">
+                <p><strong>แบบที่ 5</strong><br>ก้อนนุ่ม ขอบชัด</p>
+            </div>
+            <div class="stool-btn" onclick="showResult(6)">
+                <img src="Unji_Type6.jpg" alt="Type 6">
+                <p><strong>แบบที่ 6</strong><br>เหลว เละ</p>
+            </div>
+            <div class="stool-btn" onclick="showResult(7)">
+                <img src="Unji_Type7.jpg" alt="Type 7">
+                <p><strong>แบบที่ 7</strong><br>เป็นน้ำทั้งหมด</p>
+            </div>
+        </div>
+
+        <!-- Result Area -->
+        <div id="result-box">
+            <h3 id="result-title" style="margin-top: 0; font-size: 1.3em;"></h3>
+            <p id="result-status" style="font-weight: bold;"></p>
+            <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 15px 0;">
+            
+            <p><strong>🍽️ เมนูอาหาร/ผลไม้ที่ตลาดแนะนำ:</strong></p>
+            <div id="result-food"></div>
+            
+            <div id="red-flag-box" style="display: none; background: #fee2e2; padding: 15px; border-radius: 8px; margin-top: 20px; color: #991b1b; font-weight: bold;">
+                <!-- ข้อความแจ้งเตือนจะแสดงตรงนี้ -->
+            </div>
+        </div>
+    </div>
+
+    <!-- References Section -->
+    <div class="references">
+        <h4>📚 แหล่งอ้างอิงวิชาการ (Academic References):</h4>
+        <ol>
+            <li><strong>การจำแนกลักษณะอุจจาระ:</strong> อ้างอิงตามมาตรฐานสากล Bristol Stool Scale (Meyers, A., 2010).</li>
+            <li><strong>โภชนาการสำหรับภาวะท้องเสีย (BRAT Diet):</strong> สอดคล้องกับแนวทางการดูแลผู้ป่วยท้องร่วง (กล้วย ข้าว ซอสแอปเปิล ขนมปัง) และการใช้ผงน้ำตาลเกลือแร่ (ORS) เพื่อทดแทนสารน้ำ.</li>
+            <li><strong>โภชนาการสำหรับผู้สูงอายุ:</strong> อ้างอิงคำแนะนำแหล่งใยอาหาร พรีไบโอติก และโพรไบโอติก จากสมาคมนักกำหนดอาหารแห่งประเทศไทย (Thai Dietetic Association).</li>
+            <li>*การให้คำแนะนำเน้นการเลี่ยงผัก/ผลไม้ดิบที่อาจปนเปื้อนในบางภาวะ เพื่อป้องกันการติดเชื้อในผู้สูงวัยตามหลักความปลอดภัยทางอาหาร (Food Safety).</li>
+        </ol>
+    </div>
+
+</div>
+
+<script>
+    // ฐานข้อมูลโภชนาการแบบฝังในโค้ด ปรับใช้ผลไม้/อาหารไทยที่หาซื้อง่าย
+    const stoolData = {
+        1: {
+            title: "ผลประเมิน: แบบที่ 1 (ก้อนแข็ง เล็กเหมือนลูกกระสุน)",
+            status: "⚠️ ท้องผูกรุนแรง ขาดน้ำและกากใยและอาจทำให้เจ็บและความดันขึ้นเวลาขับถ่าย เน้นอาหารที่มีกากใยสูงและทำให้อุจจาระนุ่ม",
+            colorClass: "status-yellow",
+            food: [
+                { icon: "🍌", text: "กล้วยน้ำว้าสุกงอม (เปลือกมีจุดดำ)", reason: "มีเพกตินสูง ช่วยดูดน้ำกลับเข้าลำไส้ ทำให้อุจจาระนุ่มขึ้นขับถ่ายง่าย" },
+                { icon: "🥭", text: "มะละกอสุก", reason: "มีเอนไซม์ปาเปน ช่วยย่อยโปรตีน และมีใยอาหารชนิดละลายน้ำสูง" },
+                { icon: "🥣", text: "น้ำต้มมะขามเปียกเจือจางจิบอุ่นๆหรือแอปเปิ้ลไซเดอร์เจือจางระหว่างมืออาหาร", reason: "มะขามเป็นยาระบายอ่อนๆ, แอปเปิ้ลไซเดอร์ช่วยย่อย" },
+                { icon: "💧", text: "เพิ่มการจิบน้ำเปล่าระหว่างวัน(หากผู้สูงอายุไม่มีโรคที่ต้องจำกัดน้ำ)", reason: "อุจจาระที่ค้างในลำไส้ใหญ่ขาดน้ำจึงแข็ง" }
+            ],
+            alertMsg: "🚨 หากไม่ถ่ายเกิน 3 วัน หรือปวดท้องเกร็ง คลื่นไส้ ต้องไปพบแพทย์"
+        },
+        2: {
+            title: "ผลประเมิน: แบบที่ 2 (เป็นแท่ง ผิวขรุขระ ก้อนแข็ง)",
+            status: "⚠️ เริ่มมีภาวะท้องผูก อุจจาระอยู่ในลำไส้นานเกินไป เพิ่มผักใบเขียวสุกต้มเปื่อยในอาหาร ",
+            colorClass: "status-yellow",
+            food: [
+                { icon: "💧", text: "ดื่มน้ำอุ่นหลังตื่นนอน 1 แก้วกระตุ้นลำไส้"}
+                { icon: "🐉", text: "แก้วมังกร", reason: "เมล็ดเล็กๆ ของแก้วมังกรช่วยกระตุ้นการบีบตัวของลำไส้ได้ดี" },
+                { icon: "🥬", text: "ซุปใส หรือ แกงจืดตำลึง/ฟักเขียวต้มเปื่อย", reason: "ให้กากใยที่นิ่ม เคี้ยวง่าย และเพิ่มปริมาณน้ำในมื้ออาหาร" },
+                { icon: "🧅", text: "เพิ่มหอมแดง/กระเทียมบุบในแกงจืด", reason: "เป็นแหล่ง 'พรีไบโอติก' (อาหารของแบคทีเรียดี) ช่วยปรับสมดุลระยะยาว" }
+            ],
+            alertMsg: ""
+        },
+        3: {
+            title: "ผลประเมิน: แบบที่ 3 (เป็นแท่ง มีรอยแตกที่ผิว)",
+            status: "✅ สุขภาพลำไส้ปกติ (แต่ควรดื่มน้ำเพิ่มอีกนิด)",
+            colorClass: "status-green",
+            food: [
+                { icon: "🍎", text: "แอปเปิล หรือ ฝรั่ง", reason: "มีใยอาหารสูง ช่วยกวาดล้างสิ่งตกค้างในลำไส้ (ถ้าแข็งอาจปั่นหรือหั่นเล็กๆ)" },
+                { icon: "🍚", text: "เปลี่ยนจากข้าวขาว เป็นข้าวกล้องหุงนิ่ม", reason: "เพิ่มวิตามินบีและกากใยที่จำเป็นต่อระบบขับถ่าย" }
+            ],
+            alertMsg: ""
+        },
+        4: {
+            title: "ผลประเมิน: แบบที่ 4 (ทรงแท่งยาว ผิวเรียบเนียนนุ่ม)",
+            status: "🌟 สุขภาพลำไส้ดีเยี่ยม! (Perfect Stool)",
+            colorClass: "status-green",
+            food: [
+                { icon: "👍", text: "รักษากิจวัตรการกินแบบปัจจุบันไว้", reason: "ปริมาณน้ำ กากใย และจุลินทรีย์ในลำไส้สมดุลดีมาก" },
+                { icon: "🥛", text: "เสริม โยเกิร์ตรสธรรมชาติ หรือ เทมเป้นึ่ง", reason: "เป็น 'โพรไบโอติก' (แบคทีเรียดี) ที่ย่อยง่าย ปลอดภัยกว่าของหมักดองดิบ" }
+            ],
+            alertMsg: ""
+        },
+        5: {
+            title: "ผลประเมิน: แบบที่ 5 (ก้อนนุ่ม ขอบชัด แตกตัวง่าย)",
+            status: "⚠️ เริ่มถ่ายเหลว ลำไส้อาจระคายเคืองเล็กน้อย จากการทานกากใยเยอะเกินไป หรืออาหารเสียเป็นพิษอ่อนๆ",
+            colorClass: "status-yellow",
+            food: [
+                { icon: "🚫", text: "งดของมัน ของทอด นมวัว และอาหารรสจัด", reason: "เพื่อลดการทำงานหนักและลดการระคายเคืองของผนังลำไส้" },
+                { icon: "🥚", text: "เน้นอาหารอ่อน ย่อยง่าย เช่น ไข่ตุ๋น เนื้อปลาต้ม", reason: "โปรตีนย่อยง่าย ร่างกายดูดซึมไปซ่อมแซมได้ทันทีโดยไม่เกิดแก๊ส" }
+            ],
+            alertMsg: ""
+        },
+        6: {
+            title: "ผลประเมิน: แบบที่ 6 (เนื้อเหลวเละ ขอบไม่ชัดเจน)",
+            status: "🚨 มีภาวะท้องเสีย ลำไส้บีบตัวเร็วเกินไป ทำให้ร่างกายเสียน้ำ",
+            colorClass: "status-red",
+            food: [
+                { icon: "🍌", text: "กล้วยน้ำว้าห่าม (เปลือกเขียวอมเหลือง)", reason: "มี 'สารแทนนิน' สูง ช่วยฝาดสมานลำไส้ ลดการบีบตัว บรรเทาอาการท้องร่วง" },
+                { icon: "🥣", text: "โจ๊ก ข้าวต้ม หรือน้ำข้าวต้มใส่เกลือเล็กน้อย", reason: "แป้งที่ต้มเปื่อยช่วยดูดซับน้ำในลำไส้ (ตามหลัก BRAT Diet)" },
+                { icon: "🥤", text: "จิบน้ำเกลือแร่ (ORS) สำหรับท้องเสีย", reason: "ทดแทนเกลือแร่ที่สูญเสียไป ห้ามใช้น้ำอัดลมใส่เกลือเด็ดขาด" }
+            ],
+            alertMsg: "🚨 งดผักสด ผลไม้สด (ยกเว้นกล้วยห่าม/แอปเปิลต้ม) และอาหารหมักดองทุกชนิด"
+        },
+        7: {
+            title: "ผลประเมิน: แบบที่ 7 (เป็นน้ำทั้งหมด ไม่มีเนื้อผสม)",
+            status: "🚨 ท้องเสียรุนแรง! เสี่ยงช็อกจากการขาดน้ำและเกลือแร่",
+            colorClass: "status-red",
+            food: [
+                { icon: "🚫", text: "งดอาหารแข็งทุกชนิดชั่วคราว", reason: "ลำไส้อยู่ในภาวะอักเสบ ไม่สามารถย่อยและดูดซึมอาหารแข็งได้" },
+                { icon: "💧", text: "จิบน้ำเกลือแร่ (ORS) อย่างต่อเนื่องทีละน้อย", reason: "ป้องกันภาวะขาดน้ำและเกลือแร่อย่างเฉียบพลัน" }
+            ],
+            alertMsg: "🚨 สัญญาณอันตราย: หากถ่ายเป็นน้ำติดต่อกันเกิน 3 ครั้ง อ่อนเพลีย ปากแห้ง หรือมีไข้ ต้องพาไปโรงพยาบาลทันที!"
+        }
+    };
+
+    function showResult(type) {
+        const data = stoolData[type];
+        const resultBox = document.getElementById('result-box');
+        
+        // ล้างคลาสสีเดิม และใส่สีใหม่ตามสถานะ
+        resultBox.className = ''; 
+        resultBox.classList.add(data.colorClass);
+        
+        document.getElementById('result-title').innerText = data.title;
+        document.getElementById('result-status').innerText = data.status;
+        
+        // สร้างรายการอาหารแบบอ่านง่าย
+        const foodList = document.getElementById('result-food');
+        foodList.innerHTML = '';
+        data.food.forEach(item => {
+            let div = document.createElement('div');
+            div.className = 'food-item';
+            div.innerHTML = `
+                <div class="food-icon">${item.icon}</div>
+                <div>
+                    <strong>${item.text}</strong>
+                    <span class="reason-text">${item.reason}</span>
+                </div>
+            `;
+            foodList.appendChild(div);
+        });
+
+        // จัดการกล่องแจ้งเตือน (Red Flag)
+        const redFlagBox = document.getElementById('red-flag-box');
+        if (data.alertMsg) {
+            redFlagBox.style.display = 'block';
+            redFlagBox.innerHTML = data.alertMsg;
+        } else {
+            redFlagBox.style.display = 'none';
+        }
+
+        // แสดงผล
+        resultBox.style.display = 'block';
+        resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
