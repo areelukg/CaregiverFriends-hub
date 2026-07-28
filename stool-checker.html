@@ -204,22 +204,22 @@
     const stoolData = {
         1: {
             title: "ผลประเมิน: แบบที่ 1 (ก้อนแข็ง เล็กเหมือนลูกกระสุน)",
-            status: "⚠️ ท้องผูกรุนแรง ขาดน้ำและกากใยและอาจทำให้เจ็บและความดันขึ้นเวลาขับถ่าย เน้นอาหารที่มีกากใยสูงและทำให้อุจจาระนุ่ม",
+            status: "⚠️ ท้องผูกรุนแรง ขาดน้ำและกากใย และอาจทำให้เจ็บหรือความดันขึ้นเวลาขับถ่าย เน้นอาหารที่มีกากใยสูงและทำให้อุจจาระนุ่ม",
             colorClass: "status-yellow",
             food: [
                 { icon: "🍌", text: "กล้วยน้ำว้าสุกงอม (เปลือกมีจุดดำ)", reason: "มีเพกตินสูง ช่วยดูดน้ำกลับเข้าลำไส้ ทำให้อุจจาระนุ่มขึ้นขับถ่ายง่าย" },
                 { icon: "🥭", text: "มะละกอสุก", reason: "มีเอนไซม์ปาเปน ช่วยย่อยโปรตีน และมีใยอาหารชนิดละลายน้ำสูง" },
-                { icon: "🥣", text: "น้ำต้มมะขามเปียกเจือจางจิบอุ่นๆหรือแอปเปิ้ลไซเดอร์เจือจางระหว่างมืออาหาร", reason: "มะขามเป็นยาระบายอ่อนๆ, แอปเปิ้ลไซเดอร์ช่วยย่อย" },
-                { icon: "💧", text: "เพิ่มการจิบน้ำเปล่าระหว่างวัน(หากผู้สูงอายุไม่มีโรคที่ต้องจำกัดน้ำ)", reason: "อุจจาระที่ค้างในลำไส้ใหญ่ขาดน้ำจึงแข็ง" }
+                { icon: "🥣", text: "น้ำต้มมะขามเปียกเจือจางจิบอุ่นๆ หรือแอปเปิ้ลไซเดอร์เจือจางระหว่างมื้ออาหาร", reason: "มะขามเป็นยาระบายอ่อนๆ ตามธรรมชาติ, แอปเปิ้ลไซเดอร์ช่วยย่อย" },
+                { icon: "💧", text: "เพิ่มการจิบน้ำเปล่าระหว่างวัน (หากผู้สูงอายุไม่มีโรคที่ต้องจำกัดน้ำ)", reason: "อุจจาระที่ค้างในลำไส้ใหญ่ขาดน้ำจึงแข็ง" }
             ],
             alertMsg: "🚨 หากไม่ถ่ายเกิน 3 วัน หรือปวดท้องเกร็ง คลื่นไส้ ต้องไปพบแพทย์"
         },
         2: {
             title: "ผลประเมิน: แบบที่ 2 (เป็นแท่ง ผิวขรุขระ ก้อนแข็ง)",
-            status: "⚠️ เริ่มมีภาวะท้องผูก อุจจาระอยู่ในลำไส้นานเกินไป เพิ่มผักใบเขียวสุกต้มเปื่อยในอาหาร ",
+            status: "⚠️ เริ่มมีภาวะท้องผูก อุจจาระอยู่ในลำไส้นานเกินไป เพิ่มผักใบเขียวสุกต้มเปื่อยในอาหาร",
             colorClass: "status-yellow",
             food: [
-                { icon: "💧", text: "ดื่มน้ำอุ่นหลังตื่นนอน 1 แก้วกระตุ้นลำไส้"}
+                { icon: "💧", text: "ดื่มน้ำอุ่นหลังตื่นนอน 1 แก้ว", reason: "ช่วยเพิ่มปริมาณน้ำและกระตุ้นการบีบตัวของลำไส้ในตอนเช้า" },
                 { icon: "🐉", text: "แก้วมังกร", reason: "เมล็ดเล็กๆ ของแก้วมังกรช่วยกระตุ้นการบีบตัวของลำไส้ได้ดี" },
                 { icon: "🥬", text: "ซุปใส หรือ แกงจืดตำลึง/ฟักเขียวต้มเปื่อย", reason: "ให้กากใยที่นิ่ม เคี้ยวง่าย และเพิ่มปริมาณน้ำในมื้ออาหาร" },
                 { icon: "🧅", text: "เพิ่มหอมแดง/กระเทียมบุบในแกงจืด", reason: "เป็นแหล่ง 'พรีไบโอติก' (อาหารของแบคทีเรียดี) ช่วยปรับสมดุลระยะยาว" }
@@ -280,44 +280,54 @@
     };
 
     function showResult(type) {
-        const data = stoolData[type];
-        const resultBox = document.getElementById('result-box');
-        
-        // ล้างคลาสสีเดิม และใส่สีใหม่ตามสถานะ
-        resultBox.className = ''; 
-        resultBox.classList.add(data.colorClass);
-        
-        document.getElementById('result-title').innerText = data.title;
-        document.getElementById('result-status').innerText = data.status;
-        
-        // สร้างรายการอาหารแบบอ่านง่าย
-        const foodList = document.getElementById('result-food');
-        foodList.innerHTML = '';
-        data.food.forEach(item => {
-            let div = document.createElement('div');
-            div.className = 'food-item';
-            div.innerHTML = `
-                <div class="food-icon">${item.icon}</div>
-                <div>
-                    <strong>${item.text}</strong>
-                    <span class="reason-text">${item.reason}</span>
-                </div>
-            `;
-            foodList.appendChild(div);
-        });
+        try {
+            const data = stoolData[type];
+            const resultBox = document.getElementById('result-box');
+            
+            if (!resultBox || !data) return;
 
-        // จัดการกล่องแจ้งเตือน (Red Flag)
-        const redFlagBox = document.getElementById('red-flag-box');
-        if (data.alertMsg) {
-            redFlagBox.style.display = 'block';
-            redFlagBox.innerHTML = data.alertMsg;
-        } else {
-            redFlagBox.style.display = 'none';
+            // ล้างคลาสสีเดิม และใส่สีใหม่ตามสถานะ
+            resultBox.className = ''; 
+            resultBox.classList.add(data.colorClass);
+            
+            document.getElementById('result-title').innerText = data.title;
+            document.getElementById('result-status').innerText = data.status;
+            
+            // สร้างรายการอาหารแบบอ่านง่าย
+            const foodList = document.getElementById('result-food');
+            foodList.innerHTML = '';
+            data.food.forEach(item => {
+                let div = document.createElement('div');
+                div.className = 'food-item';
+                div.innerHTML = `
+                    <div class="food-icon">${item.icon}</div>
+                    <div>
+                        <strong>${item.text}</strong>
+                        ${item.reason ? `<span class="reason-text">${item.reason}</span>` : ''}
+                    </div>
+                `;
+                foodList.appendChild(div);
+            });
+
+            // จัดการกล่องแจ้งเตือน (Red Flag)
+            const redFlagBox = document.getElementById('red-flag-box');
+            if (data.alertMsg) {
+                redFlagBox.style.display = 'block';
+                redFlagBox.innerHTML = data.alertMsg;
+            } else {
+                redFlagBox.style.display = 'none';
+            }
+
+            // แสดงผล
+            resultBox.style.display = 'block';
+            
+            // เลื่อนหน้าจอลงมาให้เห็นผลลัพธ์
+            setTimeout(() => {
+                resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        } catch (error) {
+            console.error("Error in showResult:", error);
         }
-
-        // แสดงผล
-        resultBox.style.display = 'block';
-        resultBox.scrollIntoView({ behavior: 'smooth' });
     }
 </script>
 
