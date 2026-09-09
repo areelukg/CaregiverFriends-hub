@@ -3,38 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elder CGF - เพื่อนดูแลผู้สูงวัย | ผู้ช่วยฉุกเฉินและตรวจสุขภาพลำไส้</title>
+  <title>Elder CGF - SOS Hub | เพื่อนดูแลผู้สูงวัย</title>
 
-  <!-- Google Fonts: Sarabun, Prompt, Inter, Noto Sans SC (อ่านง่าย คมชัดพิเศษสำหรับผู้สูงวัย) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Noto+Sans+SC:wght@500;700&family=Prompt:wght@600;700;800&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Sarabun"', '"Noto Sans SC"', '"Inter"', 'sans-serif'],
-            display: ['"Prompt"', '"Noto Sans SC"', 'sans-serif'],
-          },
-          colors: {
-            emergencyRed: '#DC2626',
-            emergencyBg: '#FEF2F2',
-            hospitalBlue: '#1D4ED8',
-            hospitalBg: '#EFF6FF',
-            brandGreen: '#1E7B48',
-          }
-        }
-      }
-    }
-  </script>
 
   <style>
     body {
@@ -61,23 +37,22 @@
 <body class="flex flex-col min-h-screen py-3 px-3 sm:px-6 max-w-xl mx-auto">
 
   <!-- ======================================================== -->
-  <!-- 🌿 1. BRAND HEADER ด้านบนสุด: จำง่าย ไว้ใจได้ นึกถึงทันที -->
+  <!-- 🌿 1. BRAND HEADER ด้านบนสุด -->
   <!-- ======================================================== -->
   <header class="bg-white rounded-3xl p-4 shadow-sm border border-slate-200 mb-4 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <!-- โลโก้เพจ Elder CGF -->
-      <img src="logo.png" alt="Elder CGF Logo" class="h-13 w-13 sm:h-14 sm:w-14 object-contain rounded-2xl shadow-sm border border-slate-100" onerror="this.onerror=null; this.src='https://placehold.co/120x120/1E7B48/FFFFFF?text=Elder+CGF';">
+      <img src="logo.png" alt="Elder CGF Logo" class="h-12 w-12 sm:h-14 sm:w-14 object-contain rounded-2xl shadow-sm border border-slate-100" onerror="this.onerror=null; this.src='https://placehold.co/120x120/1E7B48/FFFFFF?text=Elder+CGF';">
       <div>
-        <h1 class="font-display font-extrabold text-lg sm:text-xl text-slate-800 leading-tight">
+        <h1 class="font-bold text-lg sm:text-xl text-slate-800 leading-tight">
           Elder CGF
         </h1>
-        <p class="text-xs text-brandGreen font-bold" data-i18n="brand_tagline">
+        <p class="text-xs text-emerald-700 font-bold" data-i18n="brand_sub">
           เพื่อนดูแลผู้สูงวัย Caregiver Friends
         </p>
       </div>
     </div>
 
-    <!-- ปุ่มสลับ 3 ภาษา (ใหญ่ แตะง่าย ไม่เบียด) -->
+    <!-- ปุ่มสลับ 3 ภาษา -->
     <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200 shadow-inner text-xs font-bold">
       <button onclick="setLanguage('th')" id="lang-btn-th" class="px-2.5 py-1.5 rounded-lg bg-red-600 text-white shadow-sm transition">ไทย</button>
       <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-black transition">EN</button>
@@ -86,263 +61,222 @@
   </header>
 
   <!-- ======================================================== -->
-  <!-- 🚨 2. EMERGENCY DECISION BOX (ปุ่มโทร 1669 ขนาดใหญ่พิเศษ) -->
+  <!-- 🚨 2. TRIAGE LEVEL 1: สีแดง (วิกฤต/เกินมือเรา ➔ โทร 1669) -->
   <!-- ======================================================== -->
-  <div class="bg-emergencyBg border-2 border-emergencyRed rounded-3xl p-5 text-center shadow-md mb-5">
-    <div class="flex items-center justify-center gap-2 text-emergencyRed font-display font-extrabold text-xl sm:text-2xl mb-1">
-      <span class="text-2xl animate-bounce">🚨</span>
-      <span data-i18n="top_em_title">วิกฤตฉุกเฉินถึงชีวิต?</span>
-    </div>
-    
-    <!-- อาการวิกฤต 4 ข้อ สั้น ชัดเจน -->
-    <div class="bg-white/80 rounded-2xl py-2 px-3 my-3 text-xs sm:text-sm font-bold text-slate-700 border border-red-100 leading-relaxed" data-i18n="top_em_symptoms">
-      หมดสติ • สำลักพูดไม่ได้ • แน่นหน้าอกเหงื่อแตก • ปากเบี้ยวอ่อนแรง
+  <div class="bg-red-50 border-2 border-red-500 rounded-3xl p-4 sm:p-5 shadow-sm mb-4">
+    <div class="flex items-center justify-between mb-2">
+      <span class="inline-flex items-center gap-1.5 bg-red-600 text-white text-xs font-extrabold px-3 py-1 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+        <span data-i18n="tag_red">ระดับ 1: วิกฤตถึงชีวิต / เกินมือเรา</span>
+      </span>
+      <span class="text-[11px] text-red-700 font-bold" data-i18n="ucep_badge">สิทธิฉุกเฉินวิกฤต UCEP</span>
     </div>
 
-    <!-- ปุ่มโทร 1669 (Full Width แตะง่ายแม้มือสั่น) -->
-    <a href="tel:1669" class="w-full flex items-center justify-center gap-3 bg-emergencyRed hover:bg-red-700 text-white font-display font-extrabold text-xl sm:text-2xl py-4 rounded-2xl shadow-lg transition active:scale-95 mb-3">
+    <div class="bg-white/90 rounded-2xl p-3 my-2 border border-red-200 text-xs sm:text-sm font-bold text-slate-800 leading-relaxed" data-i18n="red_symptoms">
+      ⚠️ ปลุกไม่ตื่น • สำลักเงียบ • แน่นหน้าอกเหงื่อแตก • ปากเบี้ยวแขนตก
+    </div>
+
+    <a href="tel:1669" class="w-full flex items-center justify-center gap-3 bg-red-600 hover:bg-red-700 text-white font-extrabold text-xl py-3.5 rounded-2xl shadow-md transition active:scale-95">
       <i class="fa-solid fa-phone-volume text-2xl animate-pulse"></i>
-      <span data-i18n="call_1669_btn">กดโทร 1669 ฟรีทันที</span>
-    </a>
-
-    <!-- ปุ่มค้นหา รพ. เอกชน 24 ชม. สำหรับกรณีไม่วิกฤต -->
-    <a href="https://www.google.com/maps/search/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B8%9E%E0%B8%88%E0%B8%B2%E0%B8%9A%E0%B8%B2%E0%B8%A5%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%87%E0%B8%99+24+%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%A7%E0%B9%82%E0%B8%A1%E0%B8%87+%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%89%E0%B8%B1%E0%B8%99/@" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-blue-50 text-hospitalBlue border border-blue-200 py-3 rounded-2xl text-sm font-bold shadow-sm transition">
-      <i class="fa-solid fa-hospital text-base"></i>
-      <span data-i18n="find_hosp_btn">อาการไม่วิกฤต: ค้นหา รพ. 24 ชั่วโมง ใกล้ฉัน</span>
+      <span data-i18n="btn_1669">กดโทร 1669 ฟรีทันที</span>
     </a>
   </div>
 
   <!-- ======================================================== -->
-  <!-- ⚡ 3. เมนูปฐมพยาบาลด่วน 4 อาการที่พบบ่อย (Fast Visual Cards) -->
+  <!-- 🏥 3. TRIAGE LEVEL 2: สีเหลือง (ก้ำกึ่ง/ต้องตรวจ ➔ รพ. 24 ชม.) -->
   <!-- ======================================================== -->
-  <div class="mb-2 flex items-center justify-between px-1">
-    <h2 class="font-display font-bold text-base text-slate-800 flex items-center gap-2">
-      <i class="fa-solid fa-kit-medical text-brandGreen"></i>
-      <span data-i18n="firstaid_menu_title">เลือกดูวิธีช่วยเหลือ 4 อาการเร่งด่วน:</span>
-    </h2>
+  <div class="bg-blue-50 border-2 border-blue-400 rounded-3xl p-4 sm:p-5 shadow-sm mb-5">
+    <div class="flex items-center justify-between mb-2">
+      <span class="inline-flex items-center gap-1.5 bg-blue-600 text-white text-xs font-extrabold px-3 py-1 rounded-full">
+        <span data-i18n="tag_yellow">ระดับ 2: ก้ำกึ่ง / ต้องตรวจ รพ.</span>
+      </span>
+      <span class="text-[11px] text-blue-700 font-bold" data-i18n="hosp_badge">รพ. 24 ชั่วโมง</span>
+    </div>
+
+    <p class="text-xs text-slate-600 mb-3" data-i18n="yellow_desc">
+      หกล้มลุกไม่ขึ้น • ไข้สูงหนาวสั่น • ซึมลงชัดเจน • ท้องร่วงน้ำเกิน 3 ครั้ง
+    </p>
+
+    <a href="https://www.google.com/maps/search/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B8%9E%E0%B8%88%E0%B8%B2%E0%B8%9A%E0%B8%B2%E0%B8%A5%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%87%E0%B8%99+24+%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%A7%E0%B9%82%E0%B8%A1%E0%B8%87+%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%89%E0%B8%B1%E0%B8%99/@" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-base py-3 rounded-2xl shadow transition">
+      <i class="fa-solid fa-location-dot"></i>
+      <span data-i18n="btn_hosp24">ค้นหา รพ. 24 ชม. ใกล้ฉัน (GPS)</span>
+    </a>
   </div>
 
+  <!-- ======================================================== -->
+  <!-- 🟢 4. TRIAGE LEVEL 3: สีเขียว (ดูแลเองที่บ้าน/ประหยัดเงิน 100%) -->
+  <!-- ======================================================== -->
+  <div class="mb-3 px-1 flex items-center justify-between">
+    <div class="flex items-center gap-1.5 text-emerald-800 font-extrabold text-sm sm:text-base">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+      <span data-i18n="tag_green">ระดับ 3: ดูแลเองที่บ้าน (ประหยัดค่าใช้จ่าย)</span>
+    </div>
+  </div>
+
+  <!-- การ์ดปฐมพยาบาลด่วน 4 อาการ -->
   <div class="grid grid-cols-2 gap-3 mb-6">
-    <a href="#card-edema" class="bg-white p-3.5 rounded-2xl border border-blue-200 border-l-4 border-l-blue-600 shadow-sm hover:shadow transition active:scale-95">
-      <div class="font-bold text-slate-800 text-sm">🦶 Edema / Dyspnea</div>
-      <div class="text-xs font-semibold text-blue-700" data-i18n="menu_edema">บวม / หอบเหนื่อย</div>
+    <a href="#card-edema" class="bg-white p-3.5 rounded-2xl border border-slate-200 border-l-4 border-l-blue-500 shadow-xs hover:shadow transition">
+      <div class="font-bold text-slate-800 text-xs sm:text-sm">🦶 Edema / Dyspnea</div>
+      <div class="text-[11px] font-semibold text-blue-600" data-i18n="m_edema">บวม / หอบเหนื่อย</div>
     </a>
-    <a href="#card-choking" class="bg-white p-3.5 rounded-2xl border border-amber-200 border-l-4 border-l-amber-500 shadow-sm hover:shadow transition active:scale-95">
-      <div class="font-bold text-slate-800 text-sm">🍞 Choking / FBAO</div>
-      <div class="text-xs font-semibold text-amber-700" data-i18n="menu_choking">การสำลักอาหาร</div>
+    <a href="#card-choking" class="bg-white p-3.5 rounded-2xl border border-slate-200 border-l-4 border-l-amber-500 shadow-xs hover:shadow transition">
+      <div class="font-bold text-slate-800 text-xs sm:text-sm">🍞 Choking (FBAO)</div>
+      <div class="text-[11px] font-semibold text-amber-600" data-i18n="m_choke">การสำลักอาหาร</div>
     </a>
-    <a href="#card-anaphylaxis" class="bg-white p-3.5 rounded-2xl border border-pink-200 border-l-4 border-l-pink-500 shadow-sm hover:shadow transition active:scale-95">
-      <div class="font-bold text-slate-800 text-sm">🦐 Anaphylaxis</div>
-      <div class="text-xs font-semibold text-pink-700" data-i18n="menu_ana">แพ้อาหารรุนแรง</div>
+    <a href="#card-anaphylaxis" class="bg-white p-3.5 rounded-2xl border border-slate-200 border-l-4 border-l-pink-500 shadow-xs hover:shadow transition">
+      <div class="font-bold text-slate-800 text-xs sm:text-sm">🦐 Anaphylaxis</div>
+      <div class="text-[11px] font-semibold text-pink-600" data-i18n="m_ana">แพ้อาหารรุนแรง</div>
     </a>
-    <a href="#card-heatstroke" class="bg-white p-3.5 rounded-2xl border border-yellow-200 border-l-4 border-l-amber-400 shadow-sm hover:shadow transition active:scale-95">
-      <div class="font-bold text-slate-800 text-sm">🌡️ Heat Stroke</div>
-      <div class="text-xs font-semibold text-amber-600" data-i18n="menu_heat">ตัวร้อนจัด / ลมแดด</div>
+    <a href="#card-heatstroke" class="bg-white p-3.5 rounded-2xl border border-slate-200 border-l-4 border-l-yellow-400 shadow-xs hover:shadow transition">
+      <div class="font-bold text-slate-800 text-xs sm:text-sm">🌡️ Heat Stroke</div>
+      <div class="text-[11px] font-semibold text-amber-600" data-i18n="m_heat">ตัวร้อนจัด / ลมแดด</div>
     </a>
   </div>
 
-  <!-- ======================================================== -->
-  <!-- 📋 4. การ์ดขั้นตอนปฐมพยาบาล (กระชับ เน้นตัวหนา ทำตามได้ทันที) -->
-  <!-- ======================================================== -->
-  <div class="space-y-4 mb-10">
-    
-    <!-- 1. Edema / Dyspnea -->
-    <div id="card-edema" class="bg-white rounded-3xl border border-slate-200 border-l-6 border-l-blue-600 p-5 shadow-sm">
-      <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2">
-        🦶 บวม / หอบเหนื่อย | Edema / Dyspnea | 水肿 / 呼吸困难
-      </h3>
-      <div class="text-blue-700 font-bold text-xs mb-2.5" data-i18n="c1_action_lbl">สิ่งที่ต้องทำทันที (Action Steps):</div>
-      <ul class="text-sm text-slate-700 space-y-2 list-disc list-inside mb-3 leading-relaxed">
-        <li data-i18n="c1_item1"><strong>ยกขาสูง:</strong> หนุนหมอนให้ปลายเท้าสูงกว่าระดับหัวใจ (抬高患肢)</li>
-        <li data-i18n="c1_item2"><strong>ระบำนิ้วเท้า:</strong> กระดกข้อเท้าขึ้น-ลง 20 ครั้ง ลดน้ำคั่ง (踝泵运动)</li>
-        <li data-i18n="c1_item3"><strong>ลดเค็ม:</strong> งดเติมน้ำปลา ซีอิ๊ว ผงชูรสเด็ดขาด (减少盐摄入)</li>
-        <li data-i18n="c1_item4"><strong>พยุงขา:</strong> สวมถุงน่องพยุงลดบวมหากแพทย์แนะนำ (穿弹力袜)</li>
+  <!-- ขั้นตอนปฐมพยาบาล 4 การ์ด -->
+  <div class="space-y-3 mb-8">
+    <div id="card-edema" class="bg-white rounded-2xl border border-slate-200 border-l-4 border-l-blue-500 p-4 shadow-xs">
+      <h3 class="font-bold text-slate-900 text-sm sm:text-base mb-1">🦶 บวม / หอบเหนื่อย | Edema | 水肿</h3>
+      <ul class="text-xs sm:text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+        <li><strong>ยกขาสูง:</strong> หนุนหมอนให้ปลายเท้าสูงกว่าระดับหัวใจ (抬高患肢)</li>
+        <li><strong>ระบำนิ้วเท้า:</strong> กระดกข้อเท้าขึ้น-ลง 20 ครั้ง ลดน้ำคั่ง (踝泵运动)</li>
+        <li><strong>งดเค็ม:</strong> งดเติมซีอิ๊ว น้ำปลา ผงชูรสทันที (减少盐摄入)</li>
       </ul>
-      <p class="text-xs text-red-600 font-bold pt-2 border-t border-slate-100" data-i18n="c1_note">
-        *หากนอนราบไม่ได้ หายใจหอบเหนื่อย หรือขาบวมกดบุ๋มฉับพลัน รีบไป รพ. ทันที
-      </p>
+      <p class="text-[11px] text-red-600 font-bold mt-2 pt-1 border-t border-slate-100">*หากนอนราบไม่ได้ หอบเหนื่อย หรือบวมบุ๋มเร็ว รีบไป รพ. ทันที</p>
     </div>
 
-    <!-- 2. Choking (FBAO) -->
-    <div id="card-choking" class="bg-white rounded-3xl border border-slate-200 border-l-6 border-l-amber-500 p-5 shadow-sm">
-      <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2">
-        🍞 สำลักอาหารติดคอ | Choking (FBAO) | 进食呛咳窒息
-      </h3>
-      <div class="text-amber-700 font-bold text-xs mb-2.5" data-i18n="c2_action_lbl">สิ่งที่ต้องทำทันที (Emergency Action):</div>
-      <ul class="text-sm text-slate-700 space-y-2 list-disc list-inside leading-relaxed">
-        <li data-i18n="c2_item1"><strong>ถ้ายังไอได้:</strong> เชียร์ให้ไอแรงๆ ห้ามเอานิ้วล้วงคอสุ่มสี่สุ่มห้า (鼓励咳嗽)</li>
-        <li data-i18n="c2_item2"><strong>ถ้าพูดไม่มีเสียง:</strong> รัดใต้ลิ้นปี่กระทุ้งขึ้นบนทันที (Heimlich Maneuver / 海姆立克急救法)</li>
-        <li data-i18n="c2_item3"><strong>เปิดทางเดินหายใจ:</strong> ย้ายไปที่อากาศถ่ายเทสะดวก (移至通风处)</li>
+    <div id="card-choking" class="bg-white rounded-2xl border border-slate-200 border-l-4 border-l-amber-500 p-4 shadow-xs">
+      <h3 class="font-bold text-slate-900 text-sm sm:text-base mb-1">🍞 สำลักอาหาร | Choking | 异物卡喉</h3>
+      <ul class="text-xs sm:text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+        <li><strong>ถ้ายังไอได้:</strong> เชียร์ให้ไอแรงๆ ห้ามเอานิ้วล้วงคอ (鼓励咳嗽)</li>
+        <li><strong>ถ้าพูดไม่มีเสียง:</strong> รัดใต้ลิ้นปี่กระทุ้งขึ้นบนทันที (Heimlich Maneuver / 海姆立克急救法)</li>
       </ul>
     </div>
 
-    <!-- 3. Anaphylaxis -->
-    <div id="card-anaphylaxis" class="bg-white rounded-3xl border border-slate-200 border-l-6 border-l-pink-500 p-5 shadow-sm">
-      <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2">
-        🦐 แพ้อาหารรุนแรง | Anaphylaxis | 严重过敏反应
-      </h3>
-      <div class="text-pink-700 font-bold text-xs mb-2.5" data-i18n="c3_action_lbl">สิ่งที่ต้องทำทันที (Observation & Action):</div>
-      <ul class="text-sm text-slate-700 space-y-2 list-disc list-inside leading-relaxed">
-        <li data-i18n="c3_item1"><strong>หยุดทันที:</strong> นำอาหารหรือสิ่งที่สงสัยว่าแพ้ออกทันที (远离过敏原)</li>
-        <li data-i18n="c3_item2"><strong>สังเกตอาการ:</strong> เช็กปากบวม เปลือกตาบวม หายใจวี้ด แน่นหน้าอก (检查呼吸道)</li>
-        <li data-i18n="c3_item3"><strong>จัดท่านอน:</strong> ให้นอนหงายแล้วยกขาสูง ป้องกันภาวะช็อก (平卧并抬高双腿)</li>
+    <div id="card-anaphylaxis" class="bg-white rounded-2xl border border-slate-200 border-l-4 border-l-pink-500 p-4 shadow-xs">
+      <h3 class="font-bold text-slate-900 text-sm sm:text-base mb-1">🦐 แพ้อาหารรุนแรง | Anaphylaxis | 严重过敏</h3>
+      <ul class="text-xs sm:text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+        <li><strong>หยุดอาหาร:</strong> เอาอาหารที่สงสัยว่าแพ้ออกทันที (远离过敏原)</li>
+        <li><strong>ท่านอน:</strong> นอนหงายยกขาสูง ป้องกันความดันตกและช็อก (平卧并抬高双腿)</li>
       </ul>
     </div>
 
-    <!-- 4. Heat Stroke -->
-    <div id="card-heatstroke" class="bg-white rounded-3xl border border-slate-200 border-l-6 border-l-yellow-400 p-5 shadow-sm">
-      <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg mb-2">
-        🌡️ ตัวร้อนจัด / ลมแดด | Heat Stroke | 中暑 (热射病)
-      </h3>
-      <div class="text-amber-600 font-bold text-xs mb-2.5" data-i18n="c4_action_lbl">สิ่งที่ต้องทำทันที (Rapid Cooling):</div>
-      <ul class="text-sm text-slate-700 space-y-2 list-disc list-inside leading-relaxed">
-        <li data-i18n="c4_item1"><strong>เช็ดจุดชีพจร:</strong> ใช้ผ้าชุบน้ำเช็ดเน้นซอกคอ รักแร้ ขาหนีบ (脉搏点降温)</li>
-        <li data-i18n="c4_item2"><strong>ระบายความร้อน:</strong> ใช้พัดลมเป่า คลายเสื้อผ้าให้หลวม (增加空气流通)</li>
-        <li data-i18n="c4_item3"><strong>จิบน้ำช้าๆ:</strong> ให้จิบน้ำเปล่าทีละนิดเฉพาะเมื่อยังรู้สึกตัวดี (若清醒可少量饮水)</li>
+    <div id="card-heatstroke" class="bg-white rounded-2xl border border-slate-200 border-l-4 border-l-yellow-400 p-4 shadow-xs">
+      <h3 class="font-bold text-slate-900 text-sm sm:text-base mb-1">🌡️ ตัวร้อนจัด / ลมแดด | Heat Stroke | 中暑</h3>
+      <ul class="text-xs sm:text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+        <li><strong>เช็ดจุดชีพจร:</strong> ใช้ผ้าชุบน้ำเช็ดเน้นซอกคอ รักแร้ ขาหนีบ (脉搏点降温)</li>
+        <li><strong>เปิดพัดลม:</strong> คลายเสื้อผ้าให้อากาศถ่ายเทสะดวก (增加空气流通)</li>
       </ul>
     </div>
-
   </div>
 
   <!-- ======================================================== -->
-  <!-- 🔬 5. เครื่องมือตรวจอุจจาระประจำวัน (Bristol Stool Scale) -->
+  <!-- 🔬 5. เครื่องมือตรวจภาพอุจจาระ 7 แบบ (Bristol Stool Scale) -->
   <!-- ======================================================== -->
-  <div class="border-t-2 border-dashed border-slate-300 pt-8 mb-6">
-    
-    <div class="text-center mb-4">
-      <h2 class="font-display font-extrabold text-xl text-slate-800" data-i18n="stool_tool_title">
+  <div class="border-t-2 border-dashed border-slate-300 pt-6 mb-6">
+    <div class="text-center mb-3">
+      <h2 class="font-bold text-lg sm:text-xl text-slate-800" data-i18n="stool_title">
         เครื่องมือประเมินสุขภาพลำไส้ประจำวัน
       </h2>
-      <p class="text-xs text-slate-500 font-medium mt-1">Bristol Stool Scale for Daily Care</p>
+      <p class="text-xs text-slate-500 font-medium">กดเลือกภาพที่ใกล้เคียงที่สุด 1 ภาพ</p>
     </div>
 
-    <!-- คำชี้แจงทางการแพทย์แบบสั้นกระชับ -->
-    <div class="bg-amber-50 border-l-4 border-amber-500 p-3.5 rounded-r-2xl text-xs text-slate-700 leading-relaxed mb-6">
-      <span class="font-bold text-amber-900" data-i18n="med_notice_title">⚠️ ข้อแนะนำ:</span>
-      <span data-i18n="med_notice_desc">
-        ใช้หลักโภชนาการบำบัดเพื่อดูแลเบื้องต้น ไม่ใช่ยารักษาโรค หากถ่ายเป็นเลือด ปวดเกร็งรุนแรง หรือมีไข้สูง ให้รีบพบแพทย์ทันที
-      </span>
+    <!-- กล่องคำชี้แจง -->
+    <div class="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-2xl text-xs text-slate-700 leading-relaxed mb-5">
+      <strong>⚠️ ข้อแนะนำ:</strong> ข้อมูลนี้ใช้หลักโภชนาการบำบัดเพื่อดูแลเบื้องต้น ไม่ใช่ยารักษาโรค หากถ่ายเป็นเลือด ปวดเกร็งรุนแรง หรือมีไข้สูง ให้รีบพบแพทย์ทันที
     </div>
 
-    <!-- คำถามเลือกภาพ -->
-    <div class="text-center mb-5">
-      <h3 class="font-display font-bold text-lg sm:text-xl text-slate-800" data-i18n="stool_question">วันนี้อุจจาระเป็นแบบไหนคะ?</h3>
-      <p class="text-xs text-slate-500 font-medium" data-i18n="stool_hint">(กดเลือกภาพที่ใกล้เคียงที่สุด 1 ภาพ)</p>
-    </div>
-
-    <!-- แผงการ์ดรูปภาพ 7 แบบ (ใช้ไฟล์ Unji_Type1 ถึง Unji_Type7 จาก GitHub) -->
+    <!-- แผงรูปภาพ 7 แบบ -->
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-      
-      <!-- แบบที่ 1 -->
-      <div onclick="showStoolResult(1)" id="box-1" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-sm">
+      <div onclick="showStoolResult(1)" id="box-1" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-xs">
         <div class="w-full h-24 rounded-2xl border border-amber-200 bg-amber-50/50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type1.jpg" alt="แบบที่ 1" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+1';">
         </div>
-        <div class="text-xs font-extrabold text-slate-800" data-i18n="btn_t1_title">แบบที่ 1</div>
-        <div class="text-[11px] text-slate-500 font-medium" data-i18n="btn_t1_sub">ก้อนแข็ง เล็กๆ</div>
+        <div class="text-xs font-bold text-slate-800">แบบที่ 1</div>
+        <div class="text-[11px] text-slate-500">ก้อนแข็ง เล็กๆ</div>
       </div>
 
-      <!-- แบบที่ 2 -->
-      <div onclick="showStoolResult(2)" id="box-2" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-sm">
+      <div onclick="showStoolResult(2)" id="box-2" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-xs">
         <div class="w-full h-24 rounded-2xl border border-amber-200 bg-amber-50/50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type2.jpg" alt="แบบที่ 2" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+2';">
         </div>
-        <div class="text-xs font-extrabold text-slate-800" data-i18n="btn_t2_title">แบบที่ 2</div>
-        <div class="text-[11px] text-slate-500 font-medium" data-i18n="btn_t2_sub">แท่ง ขรุขระ</div>
+        <div class="text-xs font-bold text-slate-800">แบบที่ 2</div>
+        <div class="text-[11px] text-slate-500">แท่ง ขรุขระ</div>
       </div>
 
-      <!-- แบบที่ 3 -->
-      <div onclick="showStoolResult(3)" id="box-3" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-sm">
+      <div onclick="showStoolResult(3)" id="box-3" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-xs">
         <div class="w-full h-24 rounded-2xl border border-emerald-200 bg-emerald-50/50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type3.jpg" alt="แบบที่ 3" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+3';">
         </div>
-        <div class="text-xs font-extrabold text-slate-800" data-i18n="btn_t3_title">แบบที่ 3</div>
-        <div class="text-[11px] text-slate-500 font-medium" data-i18n="btn_t3_sub">แท่ง มีรอยแตก</div>
+        <div class="text-xs font-bold text-slate-800">แบบที่ 3</div>
+        <div class="text-[11px] text-slate-500">แท่ง มีรอยแตก</div>
       </div>
 
-      <!-- แบบที่ 4 -->
-      <div onclick="showStoolResult(4)" id="box-4" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-sm">
+      <div onclick="showStoolResult(4)" id="box-4" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-xs">
         <div class="w-full h-24 rounded-2xl border border-emerald-300 bg-emerald-50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type4.jpg" alt="แบบที่ 4" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+4';">
         </div>
-        <div class="text-xs font-extrabold text-slate-800" data-i18n="btn_t4_title">แบบที่ 4</div>
-        <div class="text-[11px] text-slate-500 font-medium" data-i18n="btn_t4_sub">ผิวเรียบ นุ่ม</div>
+        <div class="text-xs font-bold text-slate-800">แบบที่ 4</div>
+        <div class="text-[11px] text-slate-500">ผิวเรียบ นุ่ม</div>
       </div>
 
-      <!-- แบบที่ 5 -->
-      <div onclick="showStoolResult(5)" id="box-5" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-sm">
+      <div onclick="showStoolResult(5)" id="box-5" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-xs">
         <div class="w-full h-24 rounded-2xl border border-amber-200 bg-amber-50/50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type5.jpg" alt="แบบที่ 5" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+5';">
         </div>
-        <div class="text-xs font-extrabold text-slate-800" data-i18n="btn_t5_title">แบบที่ 5</div>
-        <div class="text-[11px] text-slate-500 font-medium" data-i18n="btn_t5_sub">ก้อนนุ่ม ขอบชัด</div>
+        <div class="text-xs font-bold text-slate-800">แบบที่ 5</div>
+        <div class="text-[11px] text-slate-500">ก้อนนุ่ม ขอบชัด</div>
       </div>
 
-      <!-- แบบที่ 6 -->
-      <div onclick="showStoolResult(6)" id="box-6" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-sm">
+      <div onclick="showStoolResult(6)" id="box-6" class="stool-box bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400 shadow-xs">
         <div class="w-full h-24 rounded-2xl border border-red-200 bg-red-50/50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type6.jpg" alt="แบบที่ 6" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+6';">
         </div>
-        <div class="text-xs font-extrabold text-slate-800" data-i18n="btn_t6_title">แบบที่ 6</div>
-        <div class="text-[11px] text-slate-500 font-medium" data-i18n="btn_t6_sub">เหลว เละ</div>
+        <div class="text-xs font-bold text-slate-800">แบบที่ 6</div>
+        <div class="text-[11px] text-slate-500">เหลว เละ</div>
       </div>
 
-      <!-- แบบที่ 7 (ดึงไฟล์ Unji_Type7.jpg) -->
-      <div onclick="showStoolResult(7)" id="box-7" class="stool-box col-span-2 sm:col-span-1 bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-red-400 shadow-sm">
+      <div onclick="showStoolResult(7)" id="box-7" class="stool-box col-span-2 sm:col-span-1 bg-white border-2 border-slate-200 rounded-3xl p-3 flex flex-col items-center justify-between text-center hover:border-red-400 shadow-xs">
         <div class="w-full h-24 rounded-2xl border border-red-300 bg-red-50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type7.jpg" alt="แบบที่ 7" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='Unji_Type7.png'; this.onerror=function(){this.src='https://placehold.co/100x100?text=Type+7';}">
         </div>
-        <div class="text-xs font-extrabold text-slate-800" data-i18n="btn_t7_title">แบบที่ 7</div>
-        <div class="text-[11px] text-slate-500 font-medium" data-i18n="btn_t7_sub">เป็นน้ำทั้งหมด</div>
+        <div class="text-xs font-bold text-slate-800">แบบที่ 7</div>
+        <div class="text-[11px] text-slate-500">เป็นน้ำทั้งหมด</div>
       </div>
-
     </div>
 
-    <!-- ======================================================== -->
-    <!-- 🥗 6. กล่องผลลัพธ์และคำแนะนำอาหาร (Result Box) -->
-    <!-- ======================================================== -->
-    <div id="result-display-area" class="border-l-6 p-5 rounded-3xl mb-8 bg-amber-50/80 border-amber-500 shadow-sm transition-all">
-      
-      <h4 id="r-title" class="font-display font-extrabold text-base sm:text-lg text-slate-900 mb-2"></h4>
+    <!-- กล่องผลลัพธ์คำแนะนำอาหาร -->
+    <div id="result-display-area" class="border-l-6 p-5 rounded-3xl mb-8 bg-amber-50/80 border-amber-500 shadow-xs transition-all">
+      <h4 id="r-title" class="font-bold text-base sm:text-lg text-slate-900 mb-2"></h4>
       <p id="r-desc" class="text-sm text-slate-700 leading-relaxed mb-4"></p>
 
       <div class="border-t border-amber-200/80 pt-3">
         <div class="text-xs font-bold text-slate-700 mb-3 flex items-center gap-1.5">
           <span>🍽️</span>
-          <span data-i18n="menu_rec_lbl">เมนูอาหาร/ผลไม้ที่ตลาดแนะนำ:</span>
+          <span>เมนูอาหาร/ผลไม้ที่ตลาดแนะนำ:</span>
         </div>
-
-        <!-- รายการเมนูแนะนำ -->
         <div id="r-foods" class="space-y-2.5"></div>
-
-        <!-- กล่องเตือนสีแดง/ชมพู -->
         <div id="r-warn" class="mt-4 p-3 bg-red-100/90 rounded-2xl border border-red-200 text-xs text-red-800 font-semibold flex items-center gap-2"></div>
       </div>
-
     </div>
 
-    <!-- ======================================================== -->
-    <!-- 📚 7. แหล่งอ้างอิงวิชาการ (Academic References) -->
-    <!-- ======================================================== -->
-    <div class="bg-slate-50 border border-slate-200 rounded-3xl p-5 text-xs text-slate-600 leading-relaxed mb-6">
-      <div class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
+    <!-- แหล่งอ้างอิงวิชาการ -->
+    <div class="bg-slate-50 border border-slate-200 rounded-3xl p-4 sm:p-5 text-xs text-slate-600 leading-relaxed mb-6">
+      <div class="font-bold text-slate-800 text-sm mb-2 flex items-center gap-2">
         <span>📚</span>
-        <span data-i18n="ref_title">แหล่งอ้างอิงวิชาการ (Academic References):</span>
+        <span>แหล่งอ้างอิงวิชาการ (Academic References):</span>
       </div>
-      <ol class="list-decimal list-inside space-y-2 pl-1">
-        <li data-i18n="ref_1"><strong>การจำแนกลักษณะอุจจาระ:</strong> อ้างอิงตามมาตรฐานสากล Bristol Stool Scale (Meyers, A., 2010).</li>
-        <li data-i18n="ref_2"><strong>โภชนาการสำหรับภาวะท้องเสีย (BRAT Diet):</strong> สอดคล้องกับแนวทางการดูแลผู้ป่วยท้องร่วง (กล้วย ข้าว ซอสแอปเปิล ขนมปัง) และการใช้ผงน้ำตาลเกลือแร่ (ORS) เพื่อทดแทนสารน้ำ.</li>
-        <li data-i18n="ref_3"><strong>โภชนาการสำหรับผู้สูงอายุ:</strong> อ้างอิงคำแนะนำแหล่งใยอาหาร พรีไบโอติก และโพรไบโอติก จากสมาคมนักกำหนดอาหารแห่งประเทศไทย (Thai Dietetic Association).</li>
-        <li data-i18n="ref_4"><strong>*การให้คำแนะนำเน้นการเลี่ยงผัก/ผลไม้ดิบ</strong> ที่อาจปนเปื้อนในบางภาวะ เพื่อป้องกันการติดเชื้อในผู้สูงวัยตามหลักความปลอดภัยทางอาหาร (Food Safety).</li>
+      <ol class="list-decimal list-inside space-y-1.5 pl-1">
+        <li><strong>Bristol Stool Scale:</strong> มาตรฐานสากลจำแนกลักษณะอุจจาระ (Meyers, A., 2010).</li>
+        <li><strong>BRAT Diet:</strong> โภชนาการสำหรับภาวะท้องเสียและการใช้ผงเกลือแร่ (ORS) ทดแทนสารน้ำ.</li>
+        <li><strong>สมาคมนักกำหนดอาหารแห่งประเทศไทย:</strong> คำแนะนำใยอาหาร พรีไบโอติก และโพรไบโอติกในผู้สูงวัย.</li>
+        <li><strong>Food Safety:</strong> เลี่ยงผักผลไม้ดิบปนเปื้อนในภาวะลำไส้อักเสบเพื่อป้องกันการติดเชื้อ.</li>
       </ol>
     </div>
-
   </div>
 
-  <!-- ======================================================== -->
-  <!-- ⚖️ FOOTER: ลิขสิทธิ์และ Open Source License -->
-  <!-- ======================================================== -->
-  <footer class="text-center text-xs text-slate-500 py-6 mt-auto border-t border-slate-200 space-y-2">
+  <!-- Footer -->
+  <footer class="text-center text-xs text-slate-500 py-6 mt-auto border-t border-slate-200 space-y-1.5">
     <p class="font-semibold text-slate-700">
       © 2026 <strong>Elder CGF (Caregiver Friends)</strong>. Created by <strong>Areeluk G.</strong>
     </p>
@@ -351,9 +285,7 @@
     </p>
   </footer>
 
-  <!-- ======================================================== -->
-  <!-- 🧠 SCRIPT: การทำงานของระบบ 3 ภาษา และการคลิกเลือกรูปภาพ -->
-  <!-- ======================================================== -->
+  <!-- Script -->
   <script>
     let currentLang = 'th';
     let currentType = 1;
@@ -362,26 +294,26 @@
       th: {
         1: {
           title: "ผลประเมิน: แบบที่ 1 (ก้อนแข็ง เล็กเหมือนลูกกระสุน)",
-          desc: "⚠️ <strong>ท้องผูกรุนแรง ขาดน้ำและกากใย</strong> และอาจทำให้เจ็บหรือความดันขึ้นเวลาขับถ่าย เน้นอาหารที่มีกากใยสูงและทำให้อุจจาระนุ่ม",
+          desc: "⚠️ <strong>ท้องผูกรุนแรง ขาดน้ำและกากใย</strong> เน้นอาหารที่มีกากใยสูงและทำให้อุจจาระนุ่ม",
           warn: "🚨 <strong>หากไม่ถ่ายเกิน 3 วัน</strong> หรือปวดท้องเกร็ง คลื่นไส้ ต้องไปพบแพทย์",
           borderClass: "border-amber-500 bg-amber-50/80",
           foods: [
-            { icon: "🍌", name: "กล้วยน้ำว้าสุกงอม (เปลือกมีจุดดำ)", detail: "มีเพกทินสูง ช่วยดูดน้ำกลับเข้าลำไส้ ทำให้อุจจาระนุ่มขึ้นขับถ่ายง่าย" },
-            { icon: "🥭", name: "มะละกอสุก", detail: "มีเอนไซม์ปาเปน ช่วยย่อยโปรตีน และมีใยอาหารชนิดละลายน้ำสูง" },
-            { icon: "🥣", name: "น้ำต้มมะขามเปียกเจือจาง หรือแอปเปิ้ลไซเดอร์เจือจาง", detail: "จิบอุ่นๆ ระหว่างมื้ออาหาร ช่วยเป็นยาระบายธรรมชาติ" },
-            { icon: "💧", name: "เพิ่มการจิบน้ำเปล่าระหว่างวัน", detail: "(หากผู้สูงอายุไม่มีโรคที่ต้องจำกัดน้ำ) อุจจาระที่ค้างในลำไส้ใหญ่ขาดน้ำจึงแข็ง" }
+            { icon: "🍌", name: "กล้วยน้ำว้าสุกงอม (เปลือกมีจุดดำ)", detail: "เพกทินสูง ช่วยดูดน้ำกลับเข้าลำไส้ ทำให้อุจจาระนุ่มขึ้น" },
+            { icon: "🥭", name: "มะละกอสุก", detail: "มีเอนไซม์ปาเปนช่วยย่อยโปรตีน และใยอาหารละลายน้ำสูง" },
+            { icon: "🥣", name: "น้ำต้มมะขามเปียกเจือจาง หรือแอปเปิ้ลไซเดอร์เจือจาง", detail: "จิบอุ่นๆ ระหว่างมื้อ ช่วยระบายธรรมชาติ" },
+            { icon: "💧", name: "เพิ่มการจิบน้ำเปล่าระหว่างวัน", detail: "อุจจาระที่ค้างในลำไส้ใหญ่ขาดน้ำจึงแข็ง" }
           ]
         },
         2: {
           title: "ผลประเมิน: แบบที่ 2 (เป็นแท่ง ผิวขรุขระ ก้อนแข็ง)",
-          desc: "⚠️ <strong>เริ่มมีภาวะท้องผูก</strong> อุจจาระอยู่ในลำไส้นานเกินไป เพิ่มผักใบเขียวสุกต้มเปื่อยในอาหาร",
+          desc: "⚠️ <strong>เริ่มมีภาวะท้องผูก</strong> อุจจาระอยู่นานเกินไป เพิ่มผักใบเขียวสุกต้มเปื่อย",
           warn: "",
           borderClass: "border-amber-500 bg-amber-50/80",
           foods: [
-            { icon: "💧", name: "ดื่มน้ำอุ่นหลังตื่นนอน 1 แก้ว", detail: "ช่วยเพิ่มปริมาณน้ำและกระตุ้นการบีบตัวของลำไส้ในตอนเช้า" },
-            { icon: "🐉", name: "แก้วมังกร", detail: "เมล็ดเล็กๆ ของแก้วมังกรช่วยกระตุ้นการบีบตัวของลำไส้ได้ดี" },
-            { icon: "🥬", name: "ซุปใส หรือ แกงจืดตำลึง/ฟักเขียวต้มเปื่อย", detail: "ให้กากใยที่นิ่ม เคี้ยวง่าย และเพิ่มปริมาณน้ำในมื้ออาหาร" },
-            { icon: "🧅", name: "เพิ่มหอมแดง/กระเทียมบุบในแกงจืด", detail: "เป็นแหล่ง 'พรีไบโอติก' (อาหารของแบคทีเรียดี) ช่วยปรับสมดุลระยะยาว" }
+            { icon: "💧", name: "ดื่มน้ำอุ่นหลังตื่นนอน 1 แก้ว", detail: "กระตุ้นการบีบตัวของลำไส้ในตอนเช้า" },
+            { icon: "🐉", name: "แก้วมังกร", detail: "เมล็ดเล็กๆ ช่วยกระตุ้นการบีบตัวของลำไส้ได้ดี" },
+            { icon: "🥬", name: "แกงจืดตำลึง/ฟักเขียวต้มเปื่อย", detail: "ให้กากใยที่นิ่ม เคี้ยวง่าย และเพิ่มน้ำในมื้ออาหาร" },
+            { icon: "🧅", name: "เพิ่มหอมแดง/กระเทียมบุบ", detail: "แหล่งพรีไบโอติกปรับสมดุลแบคทีเรียดีระยะยาว" }
           ]
         },
         3: {
@@ -390,8 +322,8 @@
           warn: "",
           borderClass: "border-emerald-500 bg-emerald-50/80",
           foods: [
-            { icon: "🍎", name: "แอปเปิล หรือ ฝรั่ง", detail: "มีใยอาหารสูง ช่วยกวาดล้างสิ่งตกค้างในลำไส้ (ถ้าแข็งอาจปั่นหรือหั่นเล็กๆ)" },
-            { icon: "🍚", name: "เปลี่ยนจากข้าวขาวเป็นข้าวกล้องหุงนิ่ม", detail: "เพิ่มวิตามินบีและกากใยที่จำเป็นต่อระบบขับถ่าย" }
+            { icon: "🍎", name: "แอปเปิล หรือ ฝรั่ง", detail: "ใยอาหารสูง กวาดล้างสิ่งตกค้าง (หั่นชิ้นเล็กเคี้ยวง่าย)" },
+            { icon: "🍚", name: "ข้าวกล้องหุงนิ่ม", detail: "เพิ่มวิตามินบีและกากใยที่จำเป็นต่อระบบขับถ่าย" }
           ]
         },
         4: {
@@ -400,18 +332,18 @@
           warn: "",
           borderClass: "border-emerald-500 bg-emerald-50/80",
           foods: [
-            { icon: "👍", name: "รักษากิจวัตรการกินแบบปัจจุบันไว้", detail: "ปริมาณน้ำ กากใย และจุลินทรีย์ในลำไส้สมดุลดีมาก" },
-            { icon: "🥛", name: "เสริม โยเกิร์ตรสธรรมชาติ หรือ เทมเป้นึ่ง", detail: "เป็น 'โพรไบโอติก' (แบคทีเรียดี) ที่ย่อยง่าย ปลอดภัยกว่าของหมักดองดิบ" }
+            { icon: "👍", name: "รักษากิจวัตรการกินปัจจุบันไว้", detail: "น้ำ กากใย และจุลินทรีย์สมดุลดีมาก" },
+            { icon: "🥛", name: "โยเกิร์ตรสธรรมชาติ หรือ เทมเป้นึ่ง", detail: "โพรไบโอติกย่อยง่าย ปลอดภัยกว่าของหมักดองดิบ" }
           ]
         },
         5: {
           title: "ผลประเมิน: แบบที่ 5 (ก้อนนุ่ม ขอบชัด แตกตัวง่าย)",
-          desc: "⚠️ <strong>เริ่มถ่ายเหลว ลำไส้อาจระคายเคืองเล็กน้อย</strong> จากการทานกากใยเยอะเกินไป หรืออาหารเสียเป็นพิษอ่อนๆ",
+          desc: "⚠️ <strong>เริ่มถ่ายเหลว ลำไส้อาจระคายเคืองเล็กน้อย</strong> จากการทานกากใยเยอะเกินไปหรืออาหารไม่ย่อย",
           warn: "",
           borderClass: "border-amber-500 bg-amber-50/80",
           foods: [
-            { icon: "🚫", name: "งดของมัน ของทอด นมวัว และอาหารรสจัด", detail: "เพื่อลดการทำงานหนัก และลดการระคายเคืองของผนังลำไส้" },
-            { icon: "🥚", name: "เน้นอาหารอ่อน ย่อยง่าย เช่น ไข่ตุ๋น เนื้อปลาต้ม", detail: "โปรตีนย่อยง่าย ร่างกายดูดซึมไปซ่อมแซมได้ทันทีโดยไม่เกิดแก๊ส" }
+            { icon: "🚫", name: "งดของมัน ของทอด นมวัว และรสจัด", detail: "ลดการทำงานหนักและการระคายเคืองผนังลำไส้" },
+            { icon: "🥚", name: "อาหารอ่อนย่อยง่าย เช่น ไข่ตุ๋น ปลานึ่ง", detail: "โปรตีนดูดซึมไว ซ่อมแซมร่างกายโดยไม่เกิดแก๊ส" }
           ]
         },
         6: {
@@ -420,173 +352,169 @@
           warn: "🚨 <strong>งดผักสด ผลไม้สด</strong> (ยกเว้นกล้วยห่าม/แอปเปิลต้ม) และอาหารหมักดองทุกชนิด",
           borderClass: "border-red-500 bg-red-50/80",
           foods: [
-            { icon: "🍌", name: "กล้วยน้ำว้าห่าม (เปลือกเขียวอมเหลือง)", detail: "มี 'สารแทนนิน' สูง ช่วยฝาดสมานลำไส้ ลดการบีบตัว บรรเทาอาการท้องร่วง" },
-            { icon: "🥣", name: "โจ๊ก ข้าวต้ม หรือน้ำข้าวต้มใส่เกลือเล็กน้อย", detail: "แป้งที่ต้มเปื่อยช่วยดูดซับน้ำในลำไส้ (ตามหลัก BRAT Diet)" },
-            { icon: "🥤", name: "จิบน้ำเกลือแร่ (ORS) สำหรับท้องเสีย", detail: "ทดแทนเกลือแร่ที่สูญเสียไป ห้ามใช้น้ำอัดลมใส่เกลือเด็ดขาด" }
+            { icon: "🍌", name: "กล้วยน้ำว้าห่าม (เปลือกเขียวอมเหลือง)", detail: "แทนนินสูง ช่วยฝาดสมานลำไส้ ลดการบีบตัว" },
+            { icon: "🥣", name: "โจ๊ก ข้าวต้ม หรือน้ำข้าวต้มใส่เกลือ", detail: "แป้งต้มเปื่อยช่วยดูดซับน้ำในลำไส้ (BRAT Diet)" },
+            { icon: "🥤", name: "จิบน้ำเกลือแร่ (ORS) สำหรับท้องเสีย", detail: "ทดแทนเกลือแร่ที่สูญเสียไป ห้ามใช้น้ำอัดลมใส่เกลือ" }
           ]
         },
         7: {
           title: "ผลประเมิน: แบบที่ 7 (เป็นน้ำทั้งหมด ไม่มีเนื้อผสม)",
-          desc: "🚨 <strong>ท้องเสียรุนแรง! เสี่ยงช็อก</strong> จากการขาดน้ำและเกลือแร่",
-          warn: "🚨 <strong>สัญญาณอันตราย:</strong> หากถ่ายเป็นน้ำติดต่อกันเกิน 3 ครั้ง อ่อนเพลีย ปากแห้ง หรือมีไข้ ต้องพาไปโรงพยาบาลทันที!",
+          desc: "🚨 <strong>ท้องเสียรุนแรง! เสี่ยงช็อก</strong> จากการขาดน้ำและเกลือแร่เฉียบพลัน",
+          warn: "🚨 <strong>สัญญาณอันตราย:</strong> ถ่ายเป็นน้ำเกิน 3 ครั้ง ปากแห้ง อ่อนเพลีย มีไข้ รีบพาไป รพ. ทันที!",
           borderClass: "border-red-600 bg-red-50/90",
           foods: [
-            { icon: "🚫", name: "งดอาหารแข็งทุกชนิดชั่วคราว", detail: "ลำไส้อยู่ในภาวะอักเสบ ไม่สามารถย่อยและดูดซึมอาหารแข็งได้" },
-            { icon: "💧", name: "จิบน้ำเกลือแร่ (ORS) อย่างต่อเนื่องทีละน้อย", detail: "ป้องกันภาวะขาดน้ำและเกลือแร่อย่างเฉียบพลัน" }
+            { icon: "🚫", name: "งดอาหารแข็งทุกชนิดชั่วคราว", detail: "ลำไส้อักเสบ ไม่สามารถย่อยหรือดูดซึมอาหารแข็งได้" },
+            { icon: "💧", name: "จิบน้ำเกลือแร่ (ORS) ทีละน้อยต่อเนื่อง", detail: "ป้องกันภาวะความดันตกและช็อกจากการขาดน้ำ" }
           ]
         }
       },
       en: {
         1: {
-          title: "Assessment: Type 1 (Separate hard lumps, like nuts)",
-          desc: "⚠️ <strong>Severe Constipation:</strong> High transit time, severe dehydration. Straining may trigger acute hypertension.",
-          warn: "🚨 <strong>If no bowel movement > 3 days</strong>, severe cramps or nausea, seek medical evaluation.",
+          title: "Assessment: Type 1 (Hard separate lumps)",
+          desc: "⚠️ <strong>Severe Constipation:</strong> Severe lack of hydration and fiber.",
+          warn: "🚨 <strong>If no stool > 3 days</strong> or severe cramps, consult a doctor.",
           borderClass: "border-amber-500 bg-amber-50/80",
           foods: [
-            { icon: "🍌", name: "Ripe Bananas with brown specks", detail: "High pectin retains bowel moisture and softens hard stool." },
-            { icon: "🥭", name: "Ripe Papaya", detail: "Rich in papain enzyme and soluble prebiotic dietary fiber." },
-            { icon: "🥣", name: "Diluted Tamarind Extract or Apple Cider Vinegar", detail: "Sip warm with meals as gentle natural motility stimulant." },
-            { icon: "💧", name: "Increase plain water intake during the day", detail: "Stagnant stool in colon lacks hydration and hardens." }
+            { icon: "🍌", name: "Ripe Bananas with brown spots", detail: "High pectin softens stool texture." },
+            { icon: "🥭", name: "Ripe Papaya", detail: "Papain enzyme aids gentle protein digestion." },
+            { icon: "💧", name: "Sip water frequently", detail: "Restores bowel moisture balance." }
           ]
         },
         2: {
-          title: "Assessment: Type 2 (Sausage-shaped but lumpy)",
-          desc: "⚠️ <strong>Mild-to-Moderate Constipation:</strong> Stool remains too long in colon. Add soft-cooked leafy vegetables.",
+          title: "Assessment: Type 2 (Lumpy sausage-shaped)",
+          desc: "⚠️ <strong>Mild Constipation:</strong> Stool stays too long in bowel.",
           warn: "",
           borderClass: "border-amber-500 bg-amber-50/80",
           foods: [
-            { icon: "💧", name: "Warm water (1 glass upon waking)", detail: "Stimulates morning gastrocolic peristaltic reflex." },
-            { icon: "🐉", name: "Dragon Fruit", detail: "Small dietary seeds gently encourage intestinal transit." },
-            { icon: "🥬", name: "Clear Vegetable Broth with Gourd / Greens", detail: "Provides gentle non-irritating bulk and meal hydration." },
-            { icon: "🧅", name: "Crushed Shallots / Garlic in soup", detail: "Valuable inulin prebiotics supporting healthy gut microflora." }
+            { icon: "💧", name: "Warm water upon waking", detail: "Triggers morning gastrocolic reflex." },
+            { icon: "🐉", name: "Dragon Fruit", detail: "Gentle seeds stimulate intestinal transit." },
+            { icon: "🥬", name: "Soft boiled greens", detail: "Supplies soft, non-irritating dietary bulk." }
           ]
         },
         3: {
-          title: "Assessment: Type 3 (Like a sausage with cracks on surface)",
-          desc: "✅ <strong>Normal Gut Stool</strong> (Consider slightly more daily fluid intake).",
+          title: "Assessment: Type 3 (Sausage with cracked surface)",
+          desc: "✅ <strong>Normal Gut Function</strong> (Consider a little more water).",
           warn: "",
           borderClass: "border-emerald-500 bg-emerald-50/80",
           foods: [
-            { icon: "🍎", name: "Apples or Guavas", detail: "High pectin fiber gently cleanses intestinal residues." },
-            { icon: "🍚", name: "Soft-cooked Brown Rice", detail: "Supplies vitamin B complex and essential dietary roughage." }
+            { icon: "🍎", name: "Apples or Guavas", detail: "Rich soluble fiber sweeps colon waste." },
+            { icon: "🍚", name: "Soft brown rice", detail: "Supplies vitamin B and steady roughage." }
           ]
         },
         4: {
-          title: "Assessment: Type 4 (Smooth and soft, like a banana)",
-          desc: "🌟 <strong>Optimal Ideal Stool (Perfect Balance)</strong>",
+          title: "Assessment: Type 4 (Smooth & soft banana shape)",
+          desc: "🌟 <strong>Ideal Perfect Stool!</strong>",
           warn: "",
           borderClass: "border-emerald-500 bg-emerald-50/80",
           foods: [
-            { icon: "👍", name: "Maintain current dietary routine", detail: "Hydration, fiber bulk, and microbiome balance are excellent." },
-            { icon: "🥛", name: "Plain Yogurt or Steamed Tempeh", detail: "Easily digestible probiotics to maintain gut barrier function." }
+            { icon: "👍", name: "Maintain current diet", detail: "Optimal hydration and microbiome balance." },
+            { icon: "🥛", name: "Plain yogurt", detail: "Easy-to-digest probiotic replenishment." }
           ]
         },
         5: {
-          title: "Assessment: Type 5 (Soft blobs with clear-cut edges)",
-          desc: "⚠️ <strong>Lack of Dietary Fiber / Mild Irritation:</strong> Accelerated transit due to excess fiber or mild food intolerance.",
+          title: "Assessment: Type 5 (Soft blobs with clear edges)",
+          desc: "⚠️ <strong>Borderline Loose:</strong> Mild gut sensitivity or excess roughage.",
           warn: "",
           borderClass: "border-amber-500 bg-amber-50/80",
           foods: [
-            { icon: "🚫", name: "Avoid oily, fried foods, dairy milk, and chili", detail: "Reduces mucosal irritation and excessive pancreatic workload." },
-            { icon: "🥚", name: "Soft protein: Steamed eggs, boiled fish fillet", detail: "Non-gas producing protein for easy cellular absorption." }
+            { icon: "🚫", name: "Avoid oily & dairy foods", detail: "Reduces bowel mucosa workload." },
+            { icon: "🥚", name: "Steamed eggs or fish", detail: "Easily assimilated protein." }
           ]
         },
         6: {
-          title: "Assessment: Type 6 (Fluffy pieces with ragged edges, mushy)",
-          desc: "🚨 <strong>Mild Diarrhea / Rapid Transit:</strong> Bowel hypermotility causing rapid fluid loss.",
-          warn: "🚨 <strong>Avoid all raw vegetables, unpeeled fresh fruits</strong>, and fermented items.",
+          title: "Assessment: Type 6 (Mushy, fluffy pieces)",
+          desc: "🚨 <strong>Mild Diarrhea:</strong> Rapid transit causing hydration loss.",
+          warn: "🚨 <strong>Avoid raw produce</strong> and fermented items.",
           borderClass: "border-red-500 bg-red-50/80",
           foods: [
-            { icon: "🍌", name: "Slightly unripe green-tipped bananas", detail: "Rich in astringent tannins to calm hyperactive peristalsis." },
-            { icon: "🥣", name: "Rice Congee with a pinch of salt (BRAT Diet)", detail: "Easily digested starch absorbing excess bowel fluids." },
-            { icon: "🥤", name: "Oral Rehydration Salts (ORS)", detail: "Replenishes critical potassium and sodium electrolytes." }
+            { icon: "🍌", name: "Green-tipped bananas", detail: "Tannins act as natural bowel astringent." },
+            { icon: "🥣", name: "Rice porridge with salt", detail: "BRAT diet principle absorbs excess water." },
+            { icon: "🥤", name: "Oral Rehydration Salts (ORS)", detail: "Replenishes electrolyte loss." }
           ]
         },
         7: {
-          title: "Assessment: Type 7 (Entirely liquid, watery)",
-          desc: "🚨 <strong>Severe Diarrhea / Dehydration & Hypovolemic Shock Risk:</strong> Impaired fluid absorption in colon.",
-          warn: "🚨 <strong>Danger Sign:</strong> Watery stools > 3 times, dry mouth, lethargy, or fever -> Seek 24h Hospital immediately!",
+          title: "Assessment: Type 7 (Entirely liquid)",
+          desc: "🚨 <strong>Severe Diarrhea / High Dehydration Risk!</strong>",
+          warn: "🚨 <strong>Danger Sign:</strong> Watery stools > 3 times, fever or weakness -> Seek 24h Hospital immediately!",
           borderClass: "border-red-600 bg-red-50/90",
           foods: [
-            { icon: "🚫", name: "Withhold all solid foods temporarily", detail: "Inflamed bowel epithelium cannot digest solid matter." },
-            { icon: "💧", name: "Sip ORS solution continuously in small amounts", detail: "Maintains intravascular blood volume and prevents cardiac collapse." }
+            { icon: "🚫", name: "Hold solid foods temporarily", detail: "Inflamed bowel cannot digest solid matter." },
+            { icon: "💧", name: "Sip ORS continuously", detail: "Prevents acute dehydration shock." }
           ]
         }
       },
       zh: {
         1: {
-          title: "评估结果：第 1 型（坚硬分散的球状果仁便，如羊粪）",
-          desc: "⚠️ <strong>重度便秘，肠道极度缺水</strong>。排便用力过度易诱发急性高血压，宜重水溶性膳食纤维软化大便。",
-          warn: "🚨 <strong>若超过 3 天未排便</strong> 或伴腹痛绞痛、恶心，须立即就诊。",
+          title: "评估结果：第 1 型（坚硬分散球状便）",
+          desc: "⚠️ <strong>重度便秘，极度缺水</strong>。注重水溶性膳食纤维软化大便。",
+          warn: "🚨 <strong>若超过 3 天未排便</strong> 或剧烈腹痛，须立即就医。",
           borderClass: "border-amber-500 bg-amber-50/80",
           foods: [
-            { icon: "🍌", name: "熟透带黑斑的芭蕉/香蕉", detail: "富含果胶胶质，回吸水分软化粪块，使排便顺畅。" },
-            { icon: "🥭", name: "成熟木瓜", detail: "含木瓜蛋白酶促进消化，提供丰富水溶性膳食纤维。" },
-            { icon: "🥣", name: "温稀释罗望子茶或苹果醋", detail: "两餐之间温热慢饮，起温和天然滑肠作用。" },
-            { icon: "💧", name: "全天增加温开水少量多次慢饮", detail: "（若长者无需限水）结肠停滞过久导致水分被过度吸收。" }
+            { icon: "🍌", name: "熟透带黑斑的芭蕉/香蕉", detail: "富含果胶回吸水分，软化粪块。" },
+            { icon: "🥭", name: "熟木瓜", detail: "木瓜蛋白酶促进消化与排泄。" },
+            { icon: "💧", name: "全天多次小口慢饮温水", detail: "补充结肠流失水分。" }
           ]
         },
         2: {
-          title: "评估结果：第 2 型（香肠状但表面凹凸结块）",
-          desc: "⚠️ <strong>初具轻中度便秘倾向</strong>。大便停留过久，需在餐食中增添煮烂的绿叶蔬菜。",
+          title: "评估结果：第 2 型（凹凸结块香肠状）",
+          desc: "⚠️ <strong>轻度便秘</strong>。大便停留过久，增加煮烂蔬菜。",
           warn: "",
           borderClass: "border-amber-500 bg-amber-50/80",
           foods: [
-            { icon: "💧", name: "晨起空腹饮用 1 杯温水", detail: "增加体液容量并温和唤醒胃结肠排便反射。" },
-            { icon: "🐉", name: "红心或白心火龙果", detail: "细密的水果籽温和刺激肠道肌肉平稳收缩。" },
-            { icon: "🥬", name: "清汤或煮软的冬瓜/绿叶菜", detail: "提供细腻柔软的植物纤维，兼具补水作用。" },
-            { icon: "🧅", name: "蔬菜汤中加入拍碎的红葱头/大蒜", detail: "富含天然益生元低聚糖，长期维护肠道微生态。" }
+            { icon: "💧", name: "晨起 1 杯温开水", detail: "温和唤醒胃结肠排便反射。" },
+            { icon: "🐉", name: "火龙果", detail: "细密水果籽温和刺激肠道蠕动。" },
+            { icon: "🥬", name: "冬瓜蔬菜清汤", detail: "软烂植物纤维与温和补水。" }
           ]
         },
         3: {
-          title: "评估结果：第 3 型（香肠状但表面带有微细裂纹）",
-          desc: "✅ <strong>肠道健康良好</strong>（建议日常略微多饮一些水）。",
+          title: "评估结果：第 3 型（表面带裂纹香肠状）",
+          desc: "✅ <strong>肠道健康良好</strong>（建议日常略多饮水）。",
           warn: "",
           borderClass: "border-emerald-500 bg-emerald-50/80",
           foods: [
-            { icon: "🍎", name: "苹果或芭乐（番石榴）", detail: "丰富果胶吸附肠道废物（质硬时长者宜蒸软或打泥）。" },
-            { icon: "🍚", name: "白米中混合煮软烂的糙米", detail: "补充 B 族维生素与促进规律排便的谷物纤维。" }
+            { icon: "🍎", name: "苹果或番石榴", detail: "果胶纤维吸附肠道废物。" },
+            { icon: "🍚", name: "煮软烂的糙米", detail: "补充 B 族维生素与植物纤维。" }
           ]
         },
         4: {
-          title: "评估结果：第 4 型（表面光滑柔软如香蕉状）",
-          desc: "🌟 <strong>理想健康的黄金便便！(Perfect Stool)</strong>",
+          title: "评估结果：第 4 型（表面光滑柔软香蕉状）",
+          desc: "🌟 <strong>理想黄金便便！</strong>",
           warn: "",
           borderClass: "border-emerald-500 bg-emerald-50/80",
           foods: [
-            { icon: "👍", name: "继续保持当前的良好饮食习惯", detail: "水分、膳食纤维与肠道益生菌群处于最佳平衡状态。" },
-            { icon: "🥛", name: "原味酸奶或清蒸天贝（丹贝）", detail: "易于消化的安全益生菌来源，优于高盐生腌发酵品。" }
+            { icon: "👍", name: "保持当前健康饮食", detail: "水分与膳食纤维配比均衡。" },
+            { icon: "🥛", name: "原味纯酸奶", detail: "易消化的安全益生菌来源。" }
           ]
         },
         5: {
-          title: "评估结果：第 5 型（质地柔软、边缘清晰的块状）",
-          desc: "⚠️ <strong>轻度偏稀，肠道微受刺激</strong>。常因单次粗纤维过多或轻度食物不耐受引起。",
+          title: "评估结果：第 5 型（软块边缘清晰）",
+          desc: "⚠️ <strong>轻度偏稀</strong>。粗纤维过多或肠道轻微敏感。",
           warn: "",
           borderClass: "border-amber-500 bg-amber-50/80",
           foods: [
-            { icon: "🚫", name: "暂停油腻油炸、牛奶及辛辣重口味", detail: "减轻消化腺负担，减少对充血肠道黏膜的机械刺激。" },
-            { icon: "🥚", name: "温和易消化软食：蒸蛋羹、清蒸鱼肉", detail: "优质蛋白质极易吸收利用，且不产生肠道胀气。" }
+            { icon: "🚫", name: "暂停油腻与辛辣乳品", detail: "减少对肠黏膜的充血刺激。" },
+            { icon: "🥚", name: "蒸蛋羹或清蒸鱼", detail: "优质蛋白易吸收不胀气。" }
           ]
         },
         6: {
-          title: "评估结果：第 6 型（边缘蓬松毛糙的糊状稀便）",
-          desc: "🚨 <strong>出现腹泻</strong>。肠蠕动亢进导致体液过度流失。",
-          warn: "🚨 <strong>禁食生冷蔬菜、生水果</strong>（煮熟苹果/稍带青皮香蕉除外）及所有生腌制品。",
+          title: "评估结果：第 6 型（毛糙糊状稀便）",
+          desc: "🚨 <strong>出现腹泻</strong>。肠蠕动过快导致水分流失。",
+          warn: "🚨 <strong>禁食生冷瓜果与生腌品</strong>。",
           borderClass: "border-red-500 bg-red-50/80",
           foods: [
-            { icon: "🍌", name: "青黄未全熟芭蕉（香蕉）", detail: "富含天然鞣酸（单宁），具收敛肠道黏膜、减轻水泻作用。" },
-            { icon: "🥣", name: "稀白粥或加少许盐的米汤 (BRAT 饮食原则)", detail: "熟淀粉保护受损肠壁黏膜，吸附多余肠道水分。" },
-            { icon: "🥤", name: "口服补液盐 (ORS) 少量多次饮用", detail: "精准补充随腹泻丢失的钾、钠离子，切勿喝汽水加盐。" }
+            { icon: "🍌", name: "稍青带涩味生香蕉", detail: "鞣酸收敛肠黏膜减缓腹泻。" },
+            { icon: "🥣", name: "加少许食盐的白米稀粥", detail: "熟淀粉吸附肠道过多水分。" },
+            { icon: "🥤", name: "口服补液盐 (ORS)", detail: "弥补随腹泻丢失的电解质。" }
           ]
         },
         7: {
-          title: "评估结果：第 7 型（完全水样，无任何固体成形物）",
-          desc: "🚨 <strong>重度水样腹泻！脱水及休克高危状态</strong>",
-          warn: "🚨 <strong>危急信号：</strong> 若水便连续超 3 次，伴精神萎靡、口干眼陷或发热，必须立即送医！",
+          title: "评估结果：第 7 型（完全水样无固体）",
+          desc: "🚨 <strong>重度水样腹泻！脱水休克高危状态</strong>",
+          warn: "🚨 <strong>危急信号：</strong> 水便超 3 次、精神萎靡口干，立即就医！",
           borderClass: "border-red-600 bg-red-50/90",
           foods: [
-            { icon: "🚫", name: "暂时停止摄入所有固体硬质食物", detail: "急性水肿炎症期的肠黏膜完全无法消化吸收固体食物。" },
-            { icon: "💧", name: "持续小口缓慢补充口服补液盐 (ORS)", detail: "维持有效微循环血量，预防低血容量性休克。" }
+            { icon: "🚫", name: "暂时停食所有硬质固体食物", detail: "急性期肠道无法吸收固体。" },
+            { icon: "💧", name: "持续小口补充补液盐 (ORS)", detail: "维持血容量，防止循环衰竭。" }
           ]
         }
       }
@@ -594,148 +522,55 @@
 
     const uiTranslations = {
       th: {
-        brand_tagline: "เพื่อนดูแลผู้สูงวัย Caregiver Friends",
-        top_em_title: "วิกฤตฉุกเฉินถึงชีวิต?",
-        top_em_symptoms: "หมดสติ • สำลักพูดไม่ได้ • แน่นหน้าอกเหงื่อแตก • ปากเบี้ยวอ่อนแรง",
-        call_1669_btn: "กดโทร 1669 ฟรีทันที",
-        find_hosp_btn: "อาการไม่วิกฤต: ค้นหา รพ. 24 ชั่วโมง ใกล้ฉัน",
-        firstaid_menu_title: "เลือกดูวิธีช่วยเหลือ 4 อาการเร่งด่วน:",
-        menu_edema: "บวม / หอบเหนื่อย",
-        menu_choking: "การสำลักอาหาร",
-        menu_ana: "แพ้อาหารรุนแรง",
-        menu_heat: "ตัวร้อนจัด / ลมแดด",
-        c1_action_lbl: "สิ่งที่ต้องทำทันที (Action Steps):",
-        c1_item1: "<strong>ยกขาสูง:</strong> หนุนหมอนให้ปลายเท้าสูงกว่าระดับหัวใจ (抬高患肢)",
-        c1_item2: "<strong>ระบำนิ้วเท้า:</strong> กระดกข้อเท้าขึ้น-ลง 20 ครั้ง ลดน้ำคั่ง (踝泵运动)",
-        c1_item3: "<strong>ลดเค็ม:</strong> งดเติมน้ำปลา ซีอิ๊ว ผงชูรสเด็ดขาด (减少盐摄入)",
-        c1_item4: "<strong>พยุงขา:</strong> สวมถุงน่องพยุงลดบวมหากแพทย์แนะนำ (穿弹力袜)",
-        c1_note: "*หากนอนราบไม่ได้ หายใจหอบเหนื่อย หรือขาบวมกดบุ๋มฉับพลัน รีบไป รพ. ทันที",
-        c2_action_lbl: "สิ่งที่ต้องทำทันที (Emergency Action):",
-        c2_item1: "<strong>ถ้ายังไอได้:</strong> เชียร์ให้ไอแรงๆ ห้ามเอานิ้วล้วงคอสุ่มสี่สุ่มห้า (鼓励咳嗽)",
-        c2_item2: "<strong>ถ้าพูดไม่มีเสียง:</strong> รัดใต้ลิ้นปี่กระทุ้งขึ้นบนทันที (Heimlich Maneuver / 海姆立克急救法)",
-        c2_item3: "<strong>เปิดทางเดินหายใจ:</strong> ย้ายไปที่อากาศถ่ายเทสะดวก (移至通风处)",
-        c3_action_lbl: "สิ่งที่ต้องทำทันที (Observation & Action):",
-        c3_item1: "<strong>หยุดทันที:</strong> นำอาหารหรือสิ่งที่สงสัยว่าแพ้ออกทันที (远离过敏原)",
-        c3_item2: "<strong>สังเกตอาการ:</strong> เช็กปากบวม เปลือกตาบวม หายใจวี้ด แน่นหน้าอก (检查呼吸道)",
-        c3_item3: "<strong>จัดท่านอน:</strong> ให้นอนหงายแล้วยกขาสูง ป้องกันภาวะช็อก (平卧并抬高双腿)",
-        c4_action_lbl: "สิ่งที่ต้องทำทันที (Rapid Cooling):",
-        c4_item1: "<strong>เช็ดจุดชีพจร:</strong> ใช้ผ้าชุบน้ำเช็ดเน้นซอกคอ รักแร้ ขาหนีบ (脉搏点降温)",
-        c4_item2: "<strong>ระบายความร้อน:</strong> ใช้พัดลมเป่า คลายเสื้อผ้าให้หลวม (增加空气流通)",
-        c4_item3: "<strong>จิบน้ำช้าๆ:</strong> ให้จิบน้ำเปล่าทีละนิดเฉพาะเมื่อยังรู้สึกตัวดี (若清醒可少量饮水)",
-        stool_tool_title: "เครื่องมือประเมินสุขภาพลำไส้ประจำวัน",
-        med_notice_title: "⚠️ ข้อแนะนำ:",
-        med_notice_desc: "ใช้หลักโภชนาการบำบัดเพื่อดูแลเบื้องต้น ไม่ใช่ยารักษาโรค หากถ่ายเป็นเลือด ปวดเกร็งรุนแรง หรือมีไข้สูง ให้รีบพบแพทย์ทันที",
-        stool_question: "วันนี้อุจจาระเป็นแบบไหนคะ?",
-        stool_hint: "(กดเลือกภาพที่ใกล้เคียงที่สุด 1 ภาพ)",
-        btn_t1_title: "แบบที่ 1", btn_t1_sub: "ก้อนแข็ง เล็กๆ",
-        btn_t2_title: "แบบที่ 2", btn_t2_sub: "แท่ง ขรุขระ",
-        btn_t3_title: "แบบที่ 3", btn_t3_sub: "แท่ง มีรอยแตก",
-        btn_t4_title: "แบบที่ 4", btn_t4_sub: "ผิวเรียบ นุ่ม",
-        btn_t5_title: "แบบที่ 5", btn_t5_sub: "ก้อนนุ่ม ขอบชัด",
-        btn_t6_title: "แบบที่ 6", btn_t6_sub: "เหลว เละ",
-        btn_t7_title: "แบบที่ 7", btn_t7_sub: "เป็นน้ำทั้งหมด",
-        menu_rec_lbl: "เมนูอาหาร/ผลไม้ที่ตลาดแนะนำ:",
-        ref_title: "แหล่งอ้างอิงวิชาการ (Academic References):",
-        ref_1: "<strong>การจำแนกลักษณะอุจจาระ:</strong> อ้างอิงตามมาตรฐานสากล Bristol Stool Scale (Meyers, A., 2010).",
-        ref_2: "<strong>โภชนาการสำหรับภาวะท้องเสีย (BRAT Diet):</strong> สอดคล้องกับแนวทางการดูแลผู้ป่วยท้องร่วง (กล้วย ข้าว ซอสแอปเปิล ขนมปัง) และการใช้ผงน้ำตาลเกลือแร่ (ORS) เพื่อทดแทนสารน้ำ.",
-        ref_3: "<strong>โภชนาการสำหรับผู้สูงอายุ:</strong> อ้างอิงคำแนะนำแหล่งใยอาหาร พรีไบโอติก และโพรไบโอติก จากสมาคมนักกำหนดอาหารแห่งประเทศไทย (Thai Dietetic Association).",
-        ref_4: "<strong>*การให้คำแนะนำเน้นการเลี่ยงผัก/ผลไม้ดิบ</strong> ที่อาจปนเปื้อนในบางภาวะ เพื่อป้องกันการติดเชื้อในผู้สูงวัยตามหลักความปลอดภัยทางอาหาร (Food Safety)."
+        brand_sub: "เพื่อนดูแลผู้สูงวัย Caregiver Friends",
+        tag_red: "ระดับ 1: วิกฤตถึงชีวิต / เกินมือเรา",
+        ucep_badge: "สิทธิฉุกเฉินวิกฤต UCEP",
+        red_symptoms: "⚠️ ปลุกไม่ตื่น • สำลักเงียบ • แน่นหน้าอกเหงื่อแตก • ปากเบี้ยวแขนตก",
+        btn_1669: "กดโทร 1669 ฟรีทันที",
+        tag_yellow: "ระดับ 2: ก้ำกึ่ง / ต้องตรวจ รพ.",
+        hosp_badge: "รพ. 24 ชั่วโมง",
+        yellow_desc: "หกล้มลุกไม่ขึ้น • ไข้สูงหนาวสั่น • ซึมลงชัดเจน • ท้องร่วงน้ำเกิน 3 ครั้ง",
+        btn_hosp24: "ค้นหา รพ. 24 ชม. ใกล้ฉัน (GPS)",
+        tag_green: "ระดับ 3: ดูแลเองที่บ้าน (ประหยัดค่าใช้จ่าย)",
+        m_edema: "บวม / หอบเหนื่อย",
+        m_choke: "การสำลักอาหาร",
+        m_ana: "แพ้อาหารรุนแรง",
+        m_heat: "ตัวร้อนจัด / ลมแดด",
+        stool_title: "เครื่องมือประเมินสุขภาพลำไส้ประจำวัน"
       },
       en: {
-        brand_tagline: "Elder Caregiver Friends Support Hub",
-        top_em_title: "Life-Threatening Emergency?",
-        top_em_symptoms: "Unresponsive • Silent Choking • Crushing Chest Pain • Sudden Facial Droop",
-        call_1669_btn: "Call 1669 (EMS) Now",
-        find_hosp_btn: "Non-Critical: Find Nearby 24h Hospital",
-        firstaid_menu_title: "Immediate Action for 4 Urgent Situations:",
-        menu_edema: "Edema / Dyspnea",
-        menu_choking: "Choking (FBAO)",
-        menu_ana: "Severe Allergy",
-        menu_heat: "Heat Stroke / Fever",
-        c1_action_lbl: "Immediate Action Steps:",
-        c1_item1: "<strong>Elevation:</strong> Elevate limbs above heart level on cushions.",
-        c1_item2: "<strong>Ankle Pumps:</strong> Pump feet up and down 20 times to promote venous return.",
-        c1_item3: "<strong>Zero Added Salt:</strong> Avoid fish sauce, MSG, and salty broth.",
-        c1_item4: "<strong>Compression:</strong> Wear medical compression stockings if indicated.",
-        c1_note: "*Orthopnea, stridor, or sudden edema requires urgent medical check.",
-        c2_action_lbl: "Emergency Action Steps:",
-        c2_item1: "<strong>If able to cough:</strong> Encourage strong coughs. Never blind sweep mouth.",
-        c2_item2: "<strong>If silent choking:</strong> Perform Heimlich Maneuver with sharp upward thrusts.",
-        c2_item3: "<strong>Airway check:</strong> Move to well-ventilated open area.",
-        c3_action_lbl: "Observation & Action Steps:",
-        c3_item1: "<strong>Stop exposure:</strong> Remove suspected allergen source immediately.",
-        c3_item2: "<strong>Check airway:</strong> Look for swollen lips, wheezing, and hoarseness.",
-        c3_item3: "<strong>Positioning:</strong> Lie flat with legs elevated to prevent shock.",
-        c4_action_lbl: "Rapid Cooling Steps:",
-        c4_item1: "<strong>Pulse point cooling:</strong> Sponge neck, armpits, and groin with lukewarm cloth.",
-        c4_item2: "<strong>Ventilation:</strong> Use fan and loosen constrictive clothing.",
-        c4_item3: "<strong>Slow sips:</strong> Offer small water sips only if fully conscious.",
-        stool_tool_title: "Daily Digestive Health & Stool Assessment",
-        med_notice_title: "⚠️ Guidance Note:",
-        med_notice_desc: "Based on Medical Nutrition Therapy principles for preliminary comfort, not medication. Bloody stool, severe cramping, or high fever require urgent emergency care.",
-        stool_question: "Which form matches today's stool?",
-        stool_hint: "(Select the closest 1 image below)",
-        btn_t1_title: "Type 1", btn_t1_sub: "Hard lumps",
-        btn_t2_title: "Type 2", btn_t2_sub: "Sausage, lumpy",
-        btn_t3_title: "Type 3", btn_t3_sub: "Cracked surface",
-        btn_t4_title: "Type 4", btn_t4_sub: "Smooth & soft",
-        btn_t5_title: "Type 5", btn_t5_sub: "Soft blobs",
-        btn_t6_title: "Type 6", btn_t6_sub: "Mushy, ragged",
-        btn_t7_title: "Type 7", btn_t7_sub: "Entirely liquid",
-        menu_rec_lbl: "Recommended Diet & Market Produce:",
-        ref_title: "Academic References:",
-        ref_1: "<strong>Stool Classification:</strong> Bristol Stool Form Scale standard (Meyers, A., 2010).",
-        ref_2: "<strong>Diarrheal Nutrition (BRAT Diet):</strong> Concordant with diarrheal guidance (Banana, Rice, Applesauce, Toast) & Oral Rehydration Salts (ORS).",
-        ref_3: "<strong>Geriatric Nutrition:</strong> Soluble fiber, prebiotic, and probiotic guidelines from Thai Dietetic Association.",
-        ref_4: "<strong>*Food Safety Caution:</strong> Raw unwashed produce should be avoided during acute symptoms to prevent opportunistic infections in the elderly."
+        brand_sub: "Elder Caregiver Friends Support Hub",
+        tag_red: "Level 1: Life-Threatening Crisis",
+        ucep_badge: "Emergency EMS 1669",
+        red_symptoms: "⚠️ Unresponsive • Silent Choking • Crushing Chest Pain • Facial Droop",
+        btn_1669: "Call 1669 (EMS) Now",
+        tag_yellow: "Level 2: Urgent / Hospital Check",
+        hosp_badge: "24h Hospital",
+        yellow_desc: "Fall trauma • High fever with chills • Severe lethargy • Watery diarrhea > 3 times",
+        btn_hosp24: "Find Nearby 24h Hospital (GPS)",
+        tag_green: "Level 3: Home Self-Care (Save Hospital Costs)",
+        m_edema: "Edema / Swelling",
+        m_choke: "Choking (FBAO)",
+        m_ana: "Severe Allergy",
+        m_heat: "Heat Stroke / Fever",
+        stool_title: "Daily Stool Form & Gut Assessment"
       },
       zh: {
-        brand_tagline: "长者居家照护之友 Elder Caregiver Friends",
-        top_em_title: "危及生命的紧急险情？",
-        top_em_symptoms: "昏迷无反应 • 严重卡喉无法出声 • 心前区剧痛大汗 • 突发面瘫肢瘫",
-        call_1669_btn: "立即拨打 1669 (急救热线)",
-        find_hosp_btn: "非危重症状：搜索附近 24小时 私立医院",
-        firstaid_menu_title: "4大突发紧急状况现场处置：",
-        menu_edema: "水肿 / 气促",
-        menu_choking: "进食呛咳卡喉",
-        menu_ana: "急性严重过敏",
-        menu_heat: "中暑 / 高热不退",
-        c1_action_lbl: "现场急救护理步骤：",
-        c1_item1: "<strong>抬高患肢:</strong> 垫枕头使下肢略高于心脏水平 (抬高患肢)",
-        c1_item2: "<strong>踝泵运动:</strong> 双足上下勾脚绷脚20次促进回流 (踝泵运动)",
-        c1_item3: "<strong>严格限盐:</strong> 严控菜肴食盐调料，减轻体液潴留 (减少盐摄入)",
-        c1_item4: "<strong>医用弹力袜:</strong> 遵医嘱穿着下肢静脉曲张袜 (穿弹力袜)",
-        c1_note: "*若无法平躺、喘憋喉鸣或突发凹陷性水肿，须立即就医。",
-        c2_action_lbl: "现场急救护理步骤：",
-        c2_item1: "<strong>尚能发声:</strong> 鼓励用力猛咳，切勿盲目手指抠喉 (鼓励咳嗽)",
-        c2_item2: "<strong>完全失声:</strong> 立即实施海姆立克急救法向内向上冲击 (海姆立克急救法)",
-        c2_item3: "<strong>保持通风:</strong> 迅速移至开阔通风处解开衣领 (移至通风处)",
-        c3_action_lbl: "现场急救护理步骤：",
-        c3_item1: "<strong>隔离过敏原:</strong> 立即停用任何疑似致敏食物或药物 (远离过敏原)",
-        c3_item2: "<strong>喉头水肿监测:</strong> 观察唇舌肿胀及有无吸气性哮鸣音 (检查呼吸道)",
-        c3_item3: "<strong>防休克体位:</strong> 血压骤降平卧并抬高双腿约30度 (平卧并抬高双腿)",
-        c4_action_lbl: "现场急救护理步骤：",
-        c4_item1: "<strong>大动脉冷敷:</strong> 温水毛巾敷颈动脉、双侧腋窝及腹股沟 (脉搏点降温)",
-        c4_item2: "<strong>加速空气对流:</strong> 开启风扇，解开过厚衣物散热 (增加空气流通)",
-        c4_item3: "<strong>少量慢饮:</strong> 仅在长者神志完全清醒时小口慢饮温凉水 (若清醒可少量饮水)",
-        stool_tool_title: "居家日常肠道排便自检工具",
-        med_notice_title: "⚠️ 照护提示：",
-        med_notice_desc: "基于医学营养疗法提供日常舒缓建议，非治疗药物。若出现便血、剧烈板状腹痛或高热，须立即送医急诊。",
-        stool_question: "长者今天的便便最接近哪一种形状？",
-        stool_hint: "(点击下方最相符的 1 张照片)",
-        btn_t1_title: "第 1 型", btn_t1_sub: "坚硬分散球状",
-        btn_t2_title: "第 2 型", btn_t2_sub: "凹凸结块香肠",
-        btn_t3_title: "第 3 型", btn_t3_sub: "表面带裂纹",
-        btn_t4_title: "第 4 型", btn_t4_sub: "表面光滑柔软",
-        btn_t5_title: "第 5 型", btn_t5_sub: "软块边缘分明",
-        btn_t6_title: "第 6 型", btn_t6_sub: "毛糙糊状稀便",
-        btn_t7_title: "第 7 型", btn_t7_sub: "完全水样无固体",
-        menu_rec_lbl: "市集常见助消化建议食材：",
-        ref_title: "学术参考文献 (Academic References)：",
-        ref_1: "<strong>大便性状分类标准：</strong> 遵循布里斯托大便分类国际标准 Bristol Stool Form Scale (Meyers, A., 2010)。",
-        ref_2: "<strong>腹泻营养学管理 (BRAT Diet)：</strong> 符合世界通行的肠炎腹泻期 BRAT 饮食原则（香蕉、米汤白粥、蒸苹果、面包吐司）及口服补液盐（ORS）应用规范。",
-        ref_3: "<strong>老年肠道营养规范：</strong> 参考泰国营养医师学会（Thai Dietetic Association）老年膳食纤维、益生元与益生菌补充指南。",
-        ref_4: "<strong>*食品安全提示：</strong> 腹泻肠炎急性期应杜绝生食生冷瓜果与生腌品，杜绝老年人群因消化道黏膜破损发生机会性重症感染。"
+        brand_sub: "长者居家照护之友 Elder Caregiver Friends",
+        tag_red: "级别 1：危及生命 / 立即急救",
+        ucep_badge: "泰国急救热线 1669",
+        red_symptoms: "⚠️ 呼之不应 • 卡喉失声 • 心前区剧痛大汗 • 突发口角歪斜",
+        btn_1669: "立即拨打 1669 热线",
+        tag_yellow: "级别 2：非危急急诊 / 送院检查",
+        hosp_badge: "24小时医院",
+        yellow_desc: "跌倒卧床不起 • 高热寒战 • 严重精神萎靡 • 水样腹泻超 3 次",
+        btn_hosp24: "搜索附近 24小时 医院 (GPS)",
+        tag_green: "级别 3：居家照护 (减少不必要就医开支)",
+        m_edema: "水肿 / 气促",
+        m_choke: "进食呛咳卡喉",
+        m_ana: "急性过敏反应",
+        m_heat: "中暑 / 高热降温",
+        stool_title: "日常肠道排便自检工具 (Bristol Scale)"
       }
     };
 
@@ -762,7 +597,7 @@
       const foodsEl = document.getElementById('r-foods');
       const container = document.getElementById('result-display-area');
 
-      container.className = "border-l-6 p-5 rounded-3xl mb-8 shadow-sm transition-all " + data.borderClass;
+      container.className = "border-l-6 p-5 rounded-3xl mb-8 shadow-xs transition-all " + data.borderClass;
       titleEl.innerHTML = data.title;
       descEl.innerHTML = data.desc;
 
@@ -777,7 +612,7 @@
       let foodsHtml = "";
       data.foods.forEach(function(item) {
         foodsHtml += `
-          <div class="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs flex items-start gap-3">
+          <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-xs flex items-start gap-3">
             <span class="text-2xl shrink-0">${item.icon}</span>
             <div class="text-xs sm:text-sm">
               <strong class="text-slate-900 block font-bold mb-0.5">${item.name}</strong>
