@@ -1,11 +1,11 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elder CGF - SOS Medical Guide | เพื่อนดูแลผู้สูงวัย Caregiver Friends</title>
 
-  <!-- Google Fonts รองรับ 3 ภาษา (Sarabun, Inter, Noto Sans SC) -->
+  <!-- Google Fonts: Sarabun, Inter, Noto Sans SC -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Prompt:wght@600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,25 +16,6 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Sarabun"', '"Noto Sans SC"', '"Inter"', 'sans-serif'],
-            display: ['"Prompt"', '"Noto Sans SC"', 'sans-serif'],
-          },
-          colors: {
-            emergency: '#E11D48',
-            brandGreen: '#1E7B48',
-            brandOrange: '#EA580C',
-            brandBlue: '#2563EB',
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
     body {
       font-family: 'Sarabun', 'Noto Sans SC', 'Inter', sans-serif;
@@ -42,21 +23,27 @@
       color: #1E293B;
       -webkit-font-smoothing: antialiased;
     }
-    .stool-card.active {
+    .stool-box {
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+    .stool-box:active {
+      transform: scale(0.96);
+    }
+    .stool-selected {
       border-color: #EA580C !important;
       background-color: #FFF7ED !important;
-      box-shadow: 0 4px 14px 0 rgba(234, 88, 12, 0.25);
-      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
     }
   </style>
 </head>
 <body class="flex flex-col min-h-screen py-4 px-3 sm:px-6 max-w-2xl mx-auto">
 
   <!-- ======================================================== -->
-  <!-- 🚨 TOP CARD: EMERGENCY? CALL 1669 (ตามภาพ Screenshot 1) -->
+  <!-- 🚨 CARD 1: EMERGENCY? CALL 1669 -->
   <!-- ======================================================== -->
   <div class="bg-white border-2 border-red-500 rounded-3xl p-5 text-center shadow-lg mb-6">
-    <div class="flex items-center justify-center gap-2 text-red-600 font-display font-bold text-xl sm:text-2xl mb-1">
+    <div class="flex items-center justify-center gap-2 text-red-600 font-bold text-xl sm:text-2xl mb-1">
       <span class="text-2xl">🚨</span>
       <span>EMERGENCY? CALL 1669</span>
     </div>
@@ -64,20 +51,20 @@
       Unconscious | Severe Choking | Anaphylaxis | Dyspnea
     </p>
 
-    <!-- ปุ่ม CALL 1669 (EMS) สีแดงปุ่มใหญ่ -->
-    <a href="tel:1669" class="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-display font-bold text-lg sm:text-xl py-3.5 rounded-full shadow-md transition active:scale-95 mb-3">
+    <!-- ปุ่มโทร 1669 -->
+    <a href="tel:1669" class="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold text-lg sm:text-xl py-3.5 rounded-full shadow-md transition active:scale-95 mb-3">
       <i class="fa-solid fa-phone"></i>
       <span>CALL 1669 (EMS)</span>
     </a>
 
-    <!-- ปุ่ม Find Private Hospital Near Me -->
+    <!-- ปุ่ม Find Private Hospital Near Me (24 ชม.) -->
     <a href="https://www.google.com/maps/search/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B8%9E%E0%B8%88%E0%B8%B2%E0%B8%9A%E0%B8%B2%E0%B8%A5%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%87%E0%B8%99+24+%E0%B8%8A%E0%B8%B1%E0%B9%88%E0%B8%A7%E0%B9%82%E0%B8%A1%E0%B8%87+%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%89%E0%B8%B1%E0%B8%99/@" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 text-blue-600 hover:text-blue-800 text-sm font-semibold transition">
       <span>🔍 Find Private Hospital Near Me</span>
     </a>
   </div>
 
   <!-- ======================================================== -->
-  <!-- 🧭 เมนู 4 หมวดอาการแบบ Grid (ตามภาพ Screenshot 1) -->
+  <!-- 🧭 เมนู 4 หมวดอาการแบบ Grid -->
   <!-- ======================================================== -->
   <div class="grid grid-cols-2 gap-3 mb-6">
     <a href="#card-edema" class="bg-white p-3.5 rounded-2xl border border-blue-200 border-l-4 border-l-blue-600 shadow-sm hover:shadow transition">
@@ -99,10 +86,9 @@
   </div>
 
   <!-- ======================================================== -->
-  <!-- 📋 รายละเอียดการดูแล 4 การ์ด (ตามภาพ Screenshot 1, 2, 3) -->
+  <!-- 📋 รายละเอียดการดูแล 4 การ์ด -->
   <!-- ======================================================== -->
   <div class="space-y-4 mb-10">
-    
     <!-- 1. Edema / Dyspnea -->
     <div id="card-edema" class="bg-white rounded-2xl border border-neutral-200 border-l-4 border-l-blue-600 p-5 shadow-sm">
       <h3 class="font-bold text-neutral-900 text-base sm:text-lg mb-2">
@@ -158,115 +144,118 @@
         <li><strong>Hydration:</strong> จิบน้ำเปล่าหากยังรู้สึกตัว (若意识清醒可少量饮水)</li>
       </ul>
     </div>
-
   </div>
 
   <!-- ======================================================== -->
-  <!-- 🔬 ส่วนที่ 2: เครื่องมือประเมินสุขภาพลำไส้เบื้องต้น (ตามภาพ 4-9) -->
+  <!-- 🔬 ส่วนที่ 2: เครื่องมือประเมินสุขภาพลำไส้เบื้องต้น -->
   <!-- ======================================================== -->
   <div class="border-t-2 border-dashed border-neutral-300 pt-8 mb-6">
     
-    <!-- โลโก้แบรนด์ Elder CGF หัวข้อตรวจลำไส้ -->
+    <!-- โลโก้แบรนด์ Elder CGF -->
     <div class="text-center mb-4">
       <img src="logo.png" alt="Elder CGF Logo" class="h-14 w-auto mx-auto mb-1" onerror="this.onerror=null; this.src='https://placehold.co/120x120/1E7B48/FFFFFF?text=Elder+CGF';">
-      <h2 class="font-display font-bold text-lg sm:text-xl text-neutral-800">
+      <h2 class="font-bold text-lg sm:text-xl text-neutral-800">
         Elder CGF <span class="text-xs block text-neutral-500 font-normal">Caregiver Friends เพื่อนดูแลผู้สูงวัย</span>
       </h2>
-      <p class="text-sm font-semibold text-emerald-800 mt-1">📊 ตรวจประเมินสุขภาพลำไส้เบื้องต้น (Daily Stool Check)</p>
+      <p class="text-sm font-semibold text-emerald-800 mt-1">เครื่องมือประเมินสุขภาพลำไส้เบื้องต้น</p>
     </div>
 
-    <!-- กล่องคำชี้แจงทางการแพทย์ (ตามภาพ Screenshot 4) -->
+    <!-- กล่องคำชี้แจงทางการแพทย์ -->
     <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl text-xs text-neutral-700 leading-relaxed mb-6">
       <div class="font-bold text-amber-900 mb-1">⚠️ คำชี้แจงทางการแพทย์:</div>
       ข้อมูลนี้ใช้หลักโภชนาการบำบัด (Medical Nutrition Therapy) เพื่อบรรเทาอาการเบื้องต้นเท่านั้น <strong>ไม่ใช่ยารักษาโรค</strong> หากผู้สูงอายุถ่ายเป็นเลือด ปวดท้องเกร็งรุนแรง หรือมีไข้ ต้องรีบไปพบแพทย์ทันที
     </div>
 
-    <!-- หัวข้อคำถามเลือกรูปภาพ -->
+    <!-- หัวข้อคำถามเลือกภาพ -->
     <div class="text-center mb-5">
-      <h3 class="font-display font-bold text-xl text-neutral-800">วันนี้อุจจาระเป็นแบบไหนคะ?</h3>
-      <p class="text-xs text-neutral-500">(กดเลือกภาพที่ใกล้เคียงที่สุด 1 ภาพ เพื่อดูคำแนะนำ)</p>
+      <h3 class="font-bold text-xl text-neutral-800">วันนี้อุจจาระเป็นแบบไหนคะ?</h3>
+      <p class="text-xs text-neutral-500">(กดเลือกภาพที่ใกล้เคียงที่สุด 1 ภาพ)</p>
     </div>
 
-    <!-- การ์ดภาพอุจจาระ 7 แบบ (Bristol Scale Grid) -->
+    <!-- ======================================================== -->
+    <!-- การ์ดรูปภาพ 7 แบบ (คลิกแสดงผลได้ทันที) -->
+    <!-- ======================================================== -->
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
       
       <!-- แบบที่ 1 -->
-      <button onclick="selectStool(1)" id="stool-btn-1" class="stool-card bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center transition hover:border-amber-400">
+      <div onclick="showStoolResult(1)" id="box-1" class="stool-box bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400">
         <div class="w-full h-24 rounded-xl border border-amber-200 bg-amber-50/50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type1.jpg" alt="แบบที่ 1" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+1';">
         </div>
         <div class="text-xs font-bold text-neutral-800">แบบที่ 1</div>
         <div class="text-[11px] text-neutral-500">ก้อนแข็ง เล็กๆ</div>
-      </button>
+      </div>
 
       <!-- แบบที่ 2 -->
-      <button onclick="selectStool(2)" id="stool-btn-2" class="stool-card bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center transition hover:border-amber-400">
+      <div onclick="showStoolResult(2)" id="box-2" class="stool-box bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400">
         <div class="w-full h-24 rounded-xl border border-amber-200 bg-amber-50/50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type2.jpg" alt="แบบที่ 2" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+2';">
         </div>
         <div class="text-xs font-bold text-neutral-800">แบบที่ 2</div>
         <div class="text-[11px] text-neutral-500">แท่ง ขรุขระ</div>
-      </button>
+      </div>
 
       <!-- แบบที่ 3 -->
-      <button onclick="selectStool(3)" id="stool-btn-3" class="stool-card bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center transition hover:border-amber-400">
+      <div onclick="showStoolResult(3)" id="box-3" class="stool-box bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400">
         <div class="w-full h-24 rounded-xl border border-emerald-200 bg-emerald-50/50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type3.jpg" alt="แบบที่ 3" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+3';">
         </div>
         <div class="text-xs font-bold text-neutral-800">แบบที่ 3</div>
         <div class="text-[11px] text-neutral-500">แท่ง มีรอยแตก</div>
-      </button>
+      </div>
 
       <!-- แบบที่ 4 -->
-      <button onclick="selectStool(4)" id="stool-btn-4" class="stool-card bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center transition hover:border-amber-400">
+      <div onclick="showStoolResult(4)" id="box-4" class="stool-box bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400">
         <div class="w-full h-24 rounded-xl border border-emerald-300 bg-emerald-50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type4.jpg" alt="แบบที่ 4" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+4';">
         </div>
         <div class="text-xs font-bold text-neutral-800">แบบที่ 4</div>
         <div class="text-[11px] text-neutral-500">ผิวเรียบ นุ่ม</div>
-      </button>
+      </div>
 
       <!-- แบบที่ 5 -->
-      <button onclick="selectStool(5)" id="stool-btn-5" class="stool-card bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center transition hover:border-amber-400">
+      <div onclick="showStoolResult(5)" id="box-5" class="stool-box bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400">
         <div class="w-full h-24 rounded-xl border border-amber-200 bg-amber-50/50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type5.jpg" alt="แบบที่ 5" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+5';">
         </div>
         <div class="text-xs font-bold text-neutral-800">แบบที่ 5</div>
         <div class="text-[11px] text-neutral-500">ก้อนนุ่ม ขอบชัด</div>
-      </button>
+      </div>
 
       <!-- แบบที่ 6 -->
-      <button onclick="selectStool(6)" id="stool-btn-6" class="stool-card bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center transition hover:border-amber-400">
+      <div onclick="showStoolResult(6)" id="box-6" class="stool-box bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center hover:border-amber-400">
         <div class="w-full h-24 rounded-xl border border-red-200 bg-red-50/50 flex items-center justify-center p-2 mb-2">
           <img src="Unji_Type6.jpg" alt="แบบที่ 6" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Type+6';">
         </div>
         <div class="text-xs font-bold text-neutral-800">แบบที่ 6</div>
         <div class="text-[11px] text-neutral-500">เหลว เละ</div>
-      </button>
+      </div>
 
       <!-- แบบที่ 7 -->
-      <button onclick="selectStool(7)" id="stool-btn-7" class="stool-card col-span-2 sm:col-span-1 bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center transition hover:border-red-400">
+      <div onclick="showStoolResult(7)" id="box-7" class="stool-box col-span-2 sm:col-span-1 bg-white border-2 border-neutral-200 rounded-2xl p-3 flex flex-col items-center justify-between text-center hover:border-red-400">
         <div class="w-full h-24 rounded-xl border border-red-300 bg-red-50 flex items-center justify-center p-2 mb-2">
-          <i class="fa-solid fa-water text-3xl text-amber-800"></i>
+          <div class="w-16 h-12 rounded-full bg-amber-800/80 shadow-inner flex items-center justify-center">
+            <i class="fa-solid fa-water text-white text-xl"></i>
+          </div>
         </div>
         <div class="text-xs font-bold text-neutral-800">แบบที่ 7</div>
         <div class="text-[11px] text-neutral-500">เป็นน้ำทั้งหมด</div>
-      </button>
+      </div>
 
     </div>
 
     <!-- ======================================================== -->
-    <!-- 🥗 ผลการประเมิน & เมนูอาหารที่ตลาดแนะนำ (ตามภาพ 6, 7, 8) -->
+    <!-- 🥗 กล่องผลการประเมิน (เปลี่ยนเนื้อหาตามภาพที่คลิกทันที) -->
     <!-- ======================================================== -->
-    <div id="stool-result-container" class="bg-amber-50/70 border-l-4 border-amber-500 p-5 rounded-r-2xl mb-8">
+    <div id="result-display-area" class="border-l-4 p-5 rounded-r-2xl mb-8 bg-amber-50/70 border-amber-500 transition-all">
       
-      <!-- หัวข้อผลประเมิน Dynamic -->
-      <h4 id="result-title" class="font-display font-bold text-base sm:text-lg text-neutral-900 mb-2">
+      <!-- หัวข้อผลประเมิน -->
+      <h4 id="r-title" class="font-bold text-base sm:text-lg text-neutral-900 mb-2">
         ผลประเมิน: แบบที่ 1 (ก้อนแข็ง เล็กเหมือนลูกกระสุน)
       </h4>
 
-      <!-- คำอธิบายอาการ Dynamic -->
-      <p id="result-desc" class="text-xs sm:text-sm text-neutral-700 leading-relaxed mb-4">
+      <!-- คำอธิบายอาการ -->
+      <p id="r-desc" class="text-xs sm:text-sm text-neutral-700 leading-relaxed mb-4">
         ⚠️ <strong>ท้องผูกรุนแรง ขาดน้ำและกากใย</strong> และอาจทำให้เจ็บหรือความดันขึ้นเวลาขับถ่าย เน้นอาหารที่มีกากใยสูงและทำให้อุจจาระนุ่ม
       </p>
 
@@ -276,56 +265,17 @@
           <span>เมนูอาหาร/ผลไม้ที่ตลาดแนะนำ:</span>
         </div>
 
-        <!-- รายการเมนูแนะนำ Dynamic -->
-        <div id="result-food-list" class="space-y-3">
-          <!-- Item 1 -->
-          <div class="bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex items-start gap-3">
-            <span class="text-2xl">🍌</span>
-            <div class="text-xs sm:text-sm">
-              <strong class="text-neutral-900 block font-bold mb-0.5">กล้วยน้ำว้าสุกงอม (เปลือกมีจุดดำ)</strong>
-              <span class="text-neutral-600">มีเพกทินสูง ช่วยดูดน้ำกลับเข้าลำไส้ ทำให้อุจจาระนุ่มขึ้นขับถ่ายง่าย</span>
-            </div>
-          </div>
+        <!-- รายการเมนูแนะนำ -->
+        <div id="r-foods" class="space-y-3"></div>
 
-          <!-- Item 2 -->
-          <div class="bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex items-start gap-3">
-            <span class="text-2xl">🥭</span>
-            <div class="text-xs sm:text-sm">
-              <strong class="text-neutral-900 block font-bold mb-0.5">มะละกอสุก</strong>
-              <span class="text-neutral-600">มีเอนไซม์ปาเปน ช่วยย่อยโปรตีน และมีใยอาหารชนิดละลายน้ำสูง</span>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex items-start gap-3">
-            <span class="text-2xl">🥣</span>
-            <div class="text-xs sm:text-sm">
-              <strong class="text-neutral-900 block font-bold mb-0.5">น้ำต้มมะขามเปียกเจือจาง หรือแอปเปิ้ลไซเดอร์เจือจาง</strong>
-              <span class="text-neutral-600">จิบอุ่นๆ ระหว่างมื้ออาหาร ช่วยเป็นยาระบายธรรมชาติ</span>
-            </div>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex items-start gap-3">
-            <span class="text-2xl">💧</span>
-            <div class="text-xs sm:text-sm">
-              <strong class="text-neutral-900 block font-bold mb-0.5">เพิ่มการจิบน้ำเปล่าระหว่างวัน</strong>
-              <span class="text-neutral-600">(หากผู้สูงอายุไม่มีโรคที่ต้องจำกัดน้ำ) อุจจาระที่ค้างในลำไส้ใหญ่ขาดน้ำจึงแข็ง</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- กล่องเตือนสีชมพู (ตามภาพ 7) -->
-        <div id="result-warning-box" class="mt-4 p-3 bg-red-100/70 rounded-xl border border-red-200 text-xs text-red-800 flex items-center gap-2">
-          <span>🚨</span>
-          <span><strong>หากไม่ถ่ายเกิน 3 วัน</strong> หรือปวดท้องเกร็ง คลื่นไส้ ต้องไปพบแพทย์</span>
-        </div>
+        <!-- กล่องเตือนสีแดง/ชมพู -->
+        <div id="r-warn" class="mt-4 p-3 bg-red-100/80 rounded-xl border border-red-200 text-xs text-red-800 flex items-center gap-2"></div>
       </div>
 
     </div>
 
     <!-- ======================================================== -->
-    <!-- 📚 แหล่งอ้างอิงวิชาการ (Academic References - ตามภาพ 5, 7, 9) -->
+    <!-- 📚 แหล่งอ้างอิงวิชาการ (Academic References) -->
     <!-- ======================================================== -->
     <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-xs text-slate-600 leading-relaxed mb-6">
       <div class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
@@ -340,28 +290,30 @@
       </ol>
     </div>
 
-    <!-- ⚖️ ข้อความกำกับ License & Disclaimer ป้องกันกฎหมายแบบสั้น -->
-    <div class="p-3.5 rounded-xl bg-neutral-100 border border-neutral-300 text-[11px] text-neutral-500 text-center leading-normal">
-      <i class="fa-solid fa-scale-balanced mr-1 text-neutral-600"></i>
-      ข้อมูลและเครื่องมือนี้จัดทำขึ้นเพื่อการแลกเปลี่ยนความรู้และการดูแลเบื้องต้นเท่านั้น ไม่ใช่การวินิจฉัยทางการแพทย์ หากมีอาการวิกฤตกรุณาโทร 1669 หรือนำส่งโรงพยาบาลทันที
-    </div>
-
   </div>
 
-  <!-- Footer ท้ายหน้า -->
-  <footer class="text-center text-xs text-neutral-400 py-4 mt-auto">
-    <p>© 2026 Elder CGF | เพื่อนดูแลผู้สูงวัย Caregiver Friends. Open Community Resource.</p>
+  <!-- ======================================================== -->
+  <!-- ⚖️ COPYRIGHT & MIT LICENSE FOOTER (ตามภาพ Screenshot 5) -->
+  <!-- ======================================================== -->
+  <footer class="text-center text-xs text-neutral-500 py-6 mt-auto border-t border-neutral-200 space-y-2">
+    <p class="font-medium text-neutral-700">
+      © 2026 <strong>Elder CGF (Caregiver Friends)</strong>. Created by <strong>Areeluk G.</strong>
+    </p>
+    <p class="text-neutral-400">
+      Released as Open Source under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-600">MIT License</a>.
+    </p>
   </footer>
 
   <!-- ======================================================== -->
-  <!-- 🧠 JAVASCRIPT: ระบบประเมินและสลับข้อมูลตามภาพกดเลือก 7 แบบ -->
+  <!-- 🧠 SCRIPT ประเมินผล 7 แบบ -->
   <!-- ======================================================== -->
   <script>
-    const stoolData = {
+    const stoolDetails = {
       1: {
         title: "ผลประเมิน: แบบที่ 1 (ก้อนแข็ง เล็กเหมือนลูกกระสุน)",
         desc: "⚠️ <strong>ท้องผูกรุนแรง ขาดน้ำและกากใย</strong> และอาจทำให้เจ็บหรือความดันขึ้นเวลาขับถ่าย เน้นอาหารที่มีกากใยสูงและทำให้อุจจาระนุ่ม",
         warn: "🚨 <strong>หากไม่ถ่ายเกิน 3 วัน</strong> หรือปวดท้องเกร็ง คลื่นไส้ ต้องไปพบแพทย์",
+        borderClass: "border-amber-500 bg-amber-50/70",
         foods: [
           { icon: "🍌", name: "กล้วยน้ำว้าสุกงอม (เปลือกมีจุดดำ)", detail: "มีเพกทินสูง ช่วยดูดน้ำกลับเข้าลำไส้ ทำให้อุจจาระนุ่มขึ้นขับถ่ายง่าย" },
           { icon: "🥭", name: "มะละกอสุก", detail: "มีเอนไซม์ปาเปน ช่วยย่อยโปรตีน และมีใยอาหารชนิดละลายน้ำสูง" },
@@ -372,7 +324,8 @@
       2: {
         title: "ผลประเมิน: แบบที่ 2 (เป็นแท่ง ผิวขรุขระ ก้อนแข็ง)",
         desc: "⚠️ <strong>เริ่มมีภาวะท้องผูก</strong> อุจจาระอยู่ในลำไส้นานเกินไป เพิ่มผักใบเขียวสุกต้มเปื่อยในอาหาร",
-        warn: "🚨 หากต้องเบ่งถ่ายจนหน้ามืดหรือเจ็บทวารหนัก ควรปรึกษาแพทย์",
+        warn: "",
+        borderClass: "border-amber-500 bg-amber-50/70",
         foods: [
           { icon: "💧", name: "ดื่มน้ำอุ่นหลังตื่นนอน 1 แก้ว", detail: "ช่วยเพิ่มปริมาณน้ำและกระตุ้นการบีบตัวของลำไส้ในตอนเช้า" },
           { icon: "🐉", name: "แก้วมังกร", detail: "เมล็ดเล็กๆ ของแก้วมังกรช่วยกระตุ้นการบีบตัวของลำไส้ได้ดี" },
@@ -381,94 +334,113 @@
         ]
       },
       3: {
-        title: "ผลประเมิน: แบบที่ 3 (แท่ง มีรอยแยกที่ผิว)",
-        desc: "✅ <strong>อุจจาระปกติ อยู่ในเกณฑ์ดี</strong> ขับถ่ายได้สะดวก ลำไส้มีความชุ่มชื้นและกากใยพอเหมาะ",
-        warn: "💡 ทานอาหารครบ 5 หมู่และดื่มน้ำสม่ำเสมอเพื่อรักษาสมดุลที่ดีต่อไป",
+        title: "ผลประเมิน: แบบที่ 3 (เป็นแท่ง มีรอยแตกที่ผิว)",
+        desc: "✅ <strong>สุขภาพลำไส้ปกติ</strong> (แต่ควรดื่มน้ำเพิ่มอีกนิด)",
+        warn: "",
+        borderClass: "border-emerald-500 bg-emerald-50/60",
         foods: [
-          { icon: "🥗", name: "ผักต้มสุกหลากหลายสี", detail: "รักษาสมดุลกากใยอาหารและวิตามินบำรุงลำไส้" },
-          { icon: "🥣", name: "ข้าวกล้องต้ม หรือ ข้าวโอ๊ต", detail: "ให้คาร์โบไฮเดรตเชิงซ้อนและเส้นใยอาหารสม่ำเสมอ" },
-          { icon: "🥛", name: "โยเกิร์ตธรรมชาติรสจืด", detail: "เติมโพรไบโอติกช่วยรักษาสมดุลจุลินทรีย์ในลำไส้" }
+          { icon: "🍎", name: "แอปเปิล หรือ ฝรั่ง", detail: "มีใยอาหารสูง ช่วยกวาดล้างสิ่งตกค้างในลำไส้ (ถ้าแข็งอาจปั่นหรือหั่นเล็กๆ)" },
+          { icon: "🍚", name: "เปลี่ยนจากข้าวขาวเป็นข้าวกล้องหุงนิ่ม", detail: "เพิ่มวิตามินบีและกากใยที่จำเป็นต่อระบบขับถ่าย" }
         ]
       },
       4: {
-        title: "ผลประเมิน: แบบที่ 4 (ผิวเรียบ นุ่ม คล้ายกล้วยหอม)",
-        desc: "🌟 <strong>อุจจาระสมบูรณ์แบบ (Ideal)</strong> ระบบย่อยอาหารและการดูดซึมสารอาหารทำงานได้อย่างยอดเยี่ยมที่สุด",
-        warn: "💡 รักษารูปแบบการรับประทานอาหารและการดื่มน้ำในระดับนี้ไว้",
+        title: "ผลประเมิน: แบบที่ 4 (ทรงแท่งยาว ผิวเรียบเนียนนุ่ม)",
+        desc: "🌟 <strong>สุขภาพลำไส้ดีเยี่ยม!</strong> (Perfect Stool)",
+        warn: "",
+        borderClass: "border-emerald-500 bg-emerald-50/60",
         foods: [
-          { icon: "🍲", name: "รับประทานอาหารตามปกติที่ถูกสุขลักษณะ", detail: "เน้นอาหารปรุงสุกใหม่ สะอาด และเคี้ยวง่าย" },
-          { icon: "💧", name: "จิบน้ำสะอาดวันละ 6-8 แก้ว", detail: "ช่วยคงความชุ่มชื้นและระบบไหลเวียนโลหิตที่ดี" }
+          { icon: "👍", name: "รักษากิจวัตรการกินแบบปัจจุบันไว้", detail: "ปริมาณน้ำ กากใย และจุลินทรีย์ในลำไส้สมดุลดีมาก" },
+          { icon: "🥛", name: "เสริม โยเกิร์ตรสธรรมชาติ หรือ เทมเป้นึ่ง", detail: "เป็น 'โพรไบโอติก' (แบคทีเรียดี) ที่ย่อยง่าย ปลอดภัยกว่าของหมักดองดิบ" }
         ]
       },
       5: {
-        title: "ผลประเมิน: แบบที่ 5 (ก้อนนุ่ม ขอบตัดชัด ถ่ายง่าย)",
-        desc: "⚠️ <strong>ค่อนข้างเหลว</strong> ลำไส้บีบตัวเร็วไปเล็กน้อย มักพบเมื่อทานอาหารที่มีกากใยมากหรือทานมื้อใหญ่",
-        warn: "💡 สังเกตว่ามีอาการปวดมวนท้องหรือไม่ หากถ่ายบ่อยขึ้นให้ลดอาหารมันและรสจัด",
+        title: "ผลประเมิน: แบบที่ 5 (ก้อนนุ่ม ขอบชัด แตกตัวง่าย)",
+        desc: "⚠️ <strong>เริ่มถ่ายเหลว ลำไส้อาจระคายเคืองเล็กน้อย</strong> จากการทานกากใยเยอะเกินไป หรืออาหารเสียเป็นพิษอ่อนๆ",
+        warn: "",
+        borderClass: "border-amber-500 bg-amber-50/70",
         foods: [
-          { icon: "🍚", name: "ข้าวขาวต้ม หรือ โจ๊กนุ่มๆ", detail: "ย่อยง่าย ดูดซึมไว ช่วยให้ลำไส้ได้พักผ่อน" },
-          { icon: "🍎", name: "ซอสแอปเปิล หรือ แอปเปิลนึ่ง", detail: "มีเพกทินช่วยเพิ่มความข้นให้อุจจาระจับตัวดีขึ้น" }
+          { icon: "🚫", name: "งดของมัน ของทอด นมวัว และอาหารรสจัด", detail: "เพื่อลดการทำงานหนัก และลดการระคายเคืองของผนังลำไส้" },
+          { icon: "🥚", name: "เน้นอาหารอ่อน ย่อยง่าย เช่น ไข่ตุ๋น เนื้อปลาต้ม", detail: "โปรตีนย่อยง่าย ร่างกายดูดซึมไปซ่อมแซมได้ทันทีโดยไม่เกิดแก๊ส" }
         ]
       },
       6: {
-        title: "ผลประเมิน: แบบที่ 6 (เหลว เละ ขอบขุยยุ่ย)",
-        desc: "🚨 <strong>เริ่มมีภาวะท้องเสีย (Mild Diarrhea)</strong> ลำไส้เกิดการระคายเคืองหรือติดเชื้อเล็กน้อย ขาดการดูดซึมน้ำ",
-        warn: "🚨 หากถ่ายเกิน 3 ครั้งใน 1 วัน หรือเริ่มอ่อนเพลีย ต้องพาไปพบแพทย์",
+        title: "ผลประเมิน: แบบที่ 6 (เนื้อเหลวเละ ขอบไม่ชัดเจน)",
+        desc: "🚨 <strong>มีภาวะท้องเสีย</strong> ลำไส้บีบตัวเร็วเกินไป ทำให้ร่างกายเสียน้ำ",
+        warn: "🚨 <strong>งดผักสด ผลไม้สด</strong> (ยกเว้นกล้วยห่าม/แอปเปิลต้ม) และอาหารหมักดองทุกชนิด",
+        borderClass: "border-red-500 bg-red-50/70",
         foods: [
-          { icon: "⚡", name: "จิบสารละลายเกลือแร่ (ORS) ทีละนิด", detail: "ชดเชยน้ำและเกลือแร่ที่สูญเสียไป ห้ามดื่มเกลือแร่นักกีฬา" },
-          { icon: "🍞", name: "ขนมปังปิ้ง หรือ ซุปข้าวขาวใส่เกลือเล็กน้อย (BRAT Diet)", detail: "อาหารที่ย่อยง่ายที่สุด ไม่ระคายเคืองกระเพาะอาหาร" }
+          { icon: "🍌", name: "กล้วยน้ำว้าห่าม (เปลือกเขียวอมเหลือง)", detail: "มี 'สารแทนนิน' สูง ช่วยฝาดสมานลำไส้ ลดการบีบตัว บรรเทาอาการท้องร่วง" },
+          { icon: "🥣", name: "โจ๊ก ข้าวต้ม หรือน้ำข้าวต้มใส่เกลือเล็กน้อย", detail: "แป้งที่ต้มเปื่อยช่วยดูดซับน้ำในลำไส้ (ตามหลัก BRAT Diet)" },
+          { icon: "🥤", name: "จิบน้ำเกลือแร่ (ORS) สำหรับท้องเสีย", detail: "ทดแทนเกลือแร่ที่สูญเสียไป ห้ามใช้น้ำอัดลมใส่เกลือเด็ดขาด" }
         ]
       },
       7: {
-        title: "ผลประเมิน: แบบที่ 7 (เป็นน้ำทั้งหมด ไม่มีเนื้อปน)",
-        desc: "🚨 <strong>ท้องร่วงรุนแรง (Severe Diarrhea)</strong> ลำไส้ไม่สามารถดูดซึมสารน้ำได้ เสี่ยงต่อภาวะขาดน้ำและความดันตกอย่างรวดเร็ว",
-        warn: "🚨 เสี่ยงต่อภาวะช็อก! กรุณาพาไปโรงพยาบาล 24 ชม. หรือโทร 1669 ทันที",
+        title: "ผลประเมิน: แบบที่ 7 (เป็นน้ำทั้งหมด ไม่มีเนื้อผสม)",
+        desc: "🚨 <strong>ท้องเสียรุนแรง! เสี่ยงช็อก</strong> จากการขาดน้ำและเกลือแร่",
+        warn: "🚨 <strong>สัญญาณอันตราย:</strong> หากถ่ายเป็นน้ำติดต่อกันเกิน 3 ครั้ง อ่อนเพลีย ปากแห้ง หรือมีไข้ ต้องพาไปโรงพยาบาลทันที!",
+        borderClass: "border-red-600 bg-red-50/80",
         foods: [
-          { icon: "⚡", name: "จิบน้ำเกลือแร่ ORS ทันที", detail: "ป้องกันภาวะหัวใจเต้นผิดจังหวะจากเกลือแร่ในเลือดต่ำ" },
-          { icon: "🚫", name: "งดนม น้ำผลไม้ และอาหารไขมันสูงทุกชนิด", detail: "เพราะจะกระตุ้นให้ลำไส้บีบตัวรุนแรงขึ้น" }
+          { icon: "🚫", name: "งดอาหารแข็งทุกชนิดชั่วคราว", detail: "ลำไส้อยู่ในภาวะอักเสบ ไม่สามารถย่อยและดูดซึมอาหารแข็งได้" },
+          { icon: "💧", name: "จิบน้ำเกลือแร่ (ORS) อย่างต่อเนื่องทีละน้อย", detail: "ป้องกันภาวะขาดน้ำและเกลือแร่อย่างเฉียบพลัน" }
         ]
       }
     };
 
-    function selectStool(type) {
-      // ปลด Active การ์ดเดิม
-      document.querySelectorAll('.stool-card').forEach(card => card.classList.remove('active'));
-      
-      // ใส่ Active ให้การ์ดที่ถูกเลือก
-      const activeBtn = document.getElementById('stool-btn-' + type);
-      if (activeBtn) activeBtn.classList.add('active');
+    function showStoolResult(type) {
+      for (let i = 1; i <= 7; i++) {
+        const box = document.getElementById('box-' + i);
+        if (box) {
+          if (i === type) {
+            box.classList.add('stool-selected');
+          } else {
+            box.classList.remove('stool-selected');
+          }
+        }
+      }
 
-      // อัปเดตข้อมูลผลลัพธ์
-      const data = stoolData[type];
-      if (data) {
-        document.getElementById('result-title').innerHTML = data.title;
-        document.getElementById('result-desc').innerHTML = data.desc;
-        document.getElementById('result-warning-box').innerHTML = data.warn;
+      const data = stoolDetails[type];
+      if (!data) return;
 
-        const foodContainer = document.getElementById('result-food-list');
-        foodContainer.innerHTML = '';
-        data.foods.forEach(item => {
-          const itemDiv = document.createElement('div');
-          itemDiv.className = "bg-white p-3.5 rounded-xl border border-amber-200 shadow-sm flex items-start gap-3";
-          itemDiv.innerHTML = `
+      const titleEl = document.getElementById('r-title');
+      const descEl = document.getElementById('r-desc');
+      const warnEl = document.getElementById('r-warn');
+      const foodsEl = document.getElementById('r-foods');
+      const container = document.getElementById('result-display-area');
+
+      container.className = "border-l-4 p-5 rounded-r-2xl mb-8 transition-all " + data.borderClass;
+      titleEl.innerHTML = data.title;
+      descEl.innerHTML = data.desc;
+
+      if (data.warn && data.warn !== "") {
+        warnEl.innerHTML = "<span>" + data.warn + "</span>";
+        warnEl.style.display = "flex";
+      } else {
+        warnEl.innerHTML = "";
+        warnEl.style.display = "none";
+      }
+
+      let foodsHtml = "";
+      data.foods.forEach(function(item) {
+        foodsHtml += `
+          <div class="bg-white p-3.5 rounded-xl border border-neutral-200 shadow-sm flex items-start gap-3">
             <span class="text-2xl">${item.icon}</span>
             <div class="text-xs sm:text-sm">
               <strong class="text-neutral-900 block font-bold mb-0.5">${item.name}</strong>
               <span class="text-neutral-600">${item.detail}</span>
             </div>
-          `;
-          foodContainer.appendChild(itemDiv);
-        });
+          </div>
+        `;
+      });
+      foodsEl.innerHTML = foodsHtml;
 
-        // เลื่อนหน้าจอลงมาดูผลประเมิน
-        document.getElementById('stool-result-container').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
+      container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    // กำหนดค่าเริ่มต้นให้เลือกแบบที่ 1 ไว้ตามหน้าจอเดิม
-    document.addEventListener('DOMContentLoaded', () => {
-      selectStool(1);
+    window.addEventListener('DOMContentLoaded', function() {
+      showStoolResult(1);
     });
   </script>
 
 </body>
 </html>
-                   
+        
