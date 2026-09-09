@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CaregiverFriends-hub | ช่วยเหลือฉุกเฉิน & คลังความรู้ผู้สูงอายุ</title>
+  <title>ElderCGF | เพื่อนดูแลผู้สูงวัย CaregiverFriends</title>
 
-  <!-- Google Fonts: Sarabun, Prompt, Inter, Noto Sans SC (3 ภาษา อ่านง่ายสำหรับผู้สูงอายุ) -->
+  <!-- Google Fonts: 3 ภาษา Sarabun, Prompt, Inter, Noto Sans SC อ่านง่ายสำหรับผู้สูงอายุ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Prompt:wght@600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -27,9 +27,11 @@
           colors: {
             emergency: '#DC2626',
             emergencyBg: '#FEF2F2',
+            brandGreen: '#1E7B48',
+            brandGold: '#C59A52',
             knowledge: {
               bg: '#FDFBF7',
-              primary: '#2D5A43',
+              primary: '#1E7B48',
               accent: '#8C5E3C',
               border: '#EAE4D9',
             }
@@ -47,7 +49,7 @@
       -webkit-font-smoothing: antialiased;
     }
     .article-text p {
-      font-size: 1.15rem; /* ~18.5px ชัดเจนสำหรับผู้สูงอายุ */
+      font-size: 1.15rem; /* ~18.5px คมชัด อ่านสบายตา */
       line-height: 1.85;
       margin-bottom: 1.25rem;
     }
@@ -56,12 +58,11 @@
 <body class="flex flex-col min-h-screen">
 
   <!-- ======================================================== -->
-  <!-- 🚨 TIER 1: EMERGENCY ACTION ZONE (ด่วนที่สุด ติดบนสุดของจอ) -->
+  <!-- 🚨 TIER 1: โซนฉุกเฉินวิกฤต (แจ้งเตือนชัดเจน + โทร 1669) -->
   <!-- ======================================================== -->
   <section class="bg-emergencyBg border-b-2 border-red-200 sticky top-0 z-50 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
       
-      <!-- ข้อความแจ้งเตือน 3 ภาษา -->
       <div class="flex items-center gap-2.5">
         <span class="flex h-9 w-9 items-center justify-center rounded-full bg-emergency text-white animate-pulse">
           <i class="fa-solid fa-truck-medical text-sm"></i>
@@ -75,7 +76,6 @@
         </div>
       </div>
 
-      <!-- ปุ่มโทร 1669 + เช็กอาการปฐมพยาบาล -->
       <div class="flex items-center gap-2 w-full sm:w-auto">
         <button onclick="document.getElementById('triage-modal').classList.remove('hidden')" class="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-3.5 py-2 rounded-xl transition shadow">
           <i class="fa-solid fa-clipboard-check"></i>
@@ -92,40 +92,46 @@
   </section>
 
   <!-- ======================================================== -->
-  <!-- 🏥 TIER 2: QUICK TOOLS (ค้นหารพ.เอกชนใกล้ฉัน & ตรวจอุจจาระ) -->
+  <!-- 🌿 HEADER: โลโก้เพจ Elder CGF & Quick Tools -->
   <!-- ======================================================== -->
-  <section class="bg-white border-b border-neutral-200 py-3">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+  <header class="bg-white border-b border-neutral-200 py-3 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
       
-      <div class="flex items-center gap-2">
-        <i class="fa-solid fa-hand-holding-heart text-knowledge-primary text-xl"></i>
-        <span class="font-display font-bold text-lg text-neutral-800">CaregiverFriends-hub</span>
-        <span class="text-xs text-neutral-400">| เครื่องมือดูแลประจำวัน</span>
+      <!-- โลโก้เพจ Elder CGF -->
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="Elder CGF Logo" class="h-12 w-auto object-contain rounded-full shadow-sm border border-neutral-100" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1E7B48/FFFFFF?text=Elder+CGF';">
+        <div>
+          <h1 class="font-display font-bold text-lg sm:text-xl text-neutral-800 leading-tight">
+            Elder CGF <span class="text-xs font-normal text-neutral-500 block sm:inline">| เพื่อนดูแลผู้สูงวัย CaregiverFriends</span>
+          </h1>
+          <p class="text-xs text-neutral-400">พื้นที่แบ่งปันความรู้และเครื่องมือสำหรับผู้ดูแล</p>
+        </div>
       </div>
 
-      <div class="flex items-center gap-3 w-full sm:w-auto">
-        <!-- ปุ่มค้นหา รพ. เอกชนใกล้ฉัน (GPS Direct ผ่าน Google Maps) -->
-        <a href="https://www.google.com/maps/search/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B8%9E%E0%B8%88%E0%B8%B2%E0%B8%9A%E0%B8%B2%E0%B8%A5%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%87%E0%B8%99/@" target="_blank" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 px-4 py-2 rounded-xl text-sm font-semibold transition">
+      <!-- ปุ่มเครื่องมือดูแลประจำวัน -->
+      <div class="flex items-center gap-2 w-full sm:w-auto">
+        <!-- ค้นหา รพ. เอกชนใกล้ฉัน -->
+        <a href="https://www.google.com/maps/search/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B8%9E%E0%B8%88%E0%B8%B2%E0%B8%9A%E0%B8%B2%E0%B8%A5%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%87%E0%B8%99/@" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 px-3.5 py-2 rounded-xl text-sm font-medium transition">
           <i class="fa-solid fa-location-dot text-blue-600"></i>
           <span>ค้นหา รพ.เอกชนใกล้ฉัน</span>
         </a>
 
-        <!-- ปุ่มตรวจเช็กภาพอุจจาระ -->
-        <button onclick="document.getElementById('stool-modal').classList.remove('hidden')" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-xl text-sm font-semibold transition">
+        <!-- ตรวจภาพอุจจาระ Type 1-6 -->
+        <button onclick="document.getElementById('stool-modal').classList.remove('hidden')" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-3.5 py-2 rounded-xl text-sm font-medium transition">
           <i class="fa-solid fa-poop text-emerald-600"></i>
           <span>ตรวจภาพอุจจาระ (Type 1-6)</span>
         </button>
       </div>
 
     </div>
-  </section>
+  </header>
 
   <!-- ======================================================== -->
-  <!-- 📚 TIER 3: KNOWLEDGE BASE (สารบัญด้านซ้าย + บทความอ่านสบายตา) -->
+  <!-- 📚 TIER 3: KNOWLEDGE BASE (สารบัญซ้าย + เนื้อหาอ่านสบายตา) -->
   <!-- ======================================================== -->
   <div class="max-w-7xl mx-auto px-4 py-8 flex-grow flex flex-col md:flex-row gap-8 w-full">
 
-    <!-- TOOLBAR ด้านซ้าย: สารบัญหัวข้อเนื้อหา -->
+    <!-- TOOLBAR ด้านซ้าย: สารบัญบทความ -->
     <aside class="w-full md:w-80 shrink-0">
       <div class="sticky top-28 bg-white p-5 rounded-2xl border border-knowledge-border shadow-sm">
         
@@ -137,7 +143,7 @@
         </div>
 
         <nav class="space-y-2 text-base font-medium">
-          <a href="#section-triage" class="flex items-start gap-2.5 p-3 rounded-xl bg-knowledge-bg text-knowledge-primary border-l-4 border-knowledge-primary font-bold">
+          <a href="#section-triage" class="flex items-start gap-2.5 p-3 rounded-xl bg-knowledge-bg text-brandGreen border-l-4 border-brandGreen font-bold">
             <span>1.</span>
             <span>เกณฑ์ตรวจเช็กอาการฉุกเฉิน & ปฐมพยาบาล</span>
           </a>
@@ -149,61 +155,62 @@
             <span>3.</span>
             <span>คู่มือแปลผลภาพอุจจาระ 6 รูปแบบ</span>
           </a>
-          <a href="#section-caregiver" class="flex items-start gap-2.5 p-3 rounded-xl text-neutral-600 hover:bg-neutral-50 hover:text-black transition">
+          <a href="#section-disclaimer" class="flex items-start gap-2.5 p-3 rounded-xl text-neutral-600 hover:bg-neutral-50 hover:text-black transition">
             <span>4.</span>
-            <span>การดูแลสุขภาวะและกำลังใจของผู้ดูแล</span>
+            <span>ข้อสงวนสิทธิ์และการคุ้มครองทางกฎหมาย</span>
           </a>
         </nav>
 
-        <div class="mt-6 p-3.5 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-800 leading-relaxed">
-          <i class="fa-solid fa-shield-heart text-amber-600 mr-1"></i>
-          ข้อมูลอ้างอิงจากหลักเกณฑ์ทางการแพทย์ หากผู้สูงอายุมีอาการทรุดลงเฉียบพลันให้กดโทร 1669 ทันที
+        <!-- ข้อความเตือนความปลอดภัยย่อ -->
+        <div class="mt-6 p-3 bg-neutral-50 rounded-xl border border-neutral-200 text-xs text-neutral-600 leading-relaxed">
+          <i class="fa-solid fa-circle-info text-brandGreen mr-1"></i>
+          รวบรวมเพื่อสนับสนุนข้อมูลแก่ผู้ดูแลทั่วไป หากมีภาวะฉุกเฉินให้โทร 1669 ทันที
         </div>
       </div>
     </aside>
 
-    <!-- CONTENT ขวา: เนื้อหาบทความอ่านง่าย สบายตา -->
+    <!-- CONTENT ขวา: เนื้อหาหลัก -->
     <main class="flex-1 bg-white p-6 sm:p-10 rounded-2xl border border-knowledge-border shadow-sm min-w-0">
       
       <div class="flex items-center justify-between gap-2 text-xs sm:text-sm text-neutral-400 mb-3 pb-3 border-b border-neutral-100">
         <div class="flex items-center gap-2">
-          <span class="bg-red-50 text-red-700 px-2.5 py-0.5 rounded font-medium">คู่มือประจำบ้าน</span>
-          <span>• สำหรับผู้ดูแลและครอบครัว</span>
+          <span class="bg-emerald-50 text-emerald-800 px-2.5 py-0.5 rounded font-medium">ความรู้สำหรับผู้ดูแล</span>
+          <span>• อัปเดตล่าสุด</span>
         </div>
         <div class="text-xs text-neutral-500 font-medium">
           ไทย | EN | 中文
         </div>
       </div>
 
-      <!-- หัวข้อสีน้ำตาลอบอุ่น อ่านสบายตา -->
-      <h1 id="section-triage" class="font-display font-bold text-2xl sm:text-3xl text-knowledge-accent leading-snug mb-4">
+      <!-- หัวข้อบทความโทนสีน้ำตาลนุ่มนวล -->
+      <h2 id="section-triage" class="font-display font-bold text-2xl sm:text-3xl text-knowledge-accent leading-snug mb-4">
         วิธีตรวจเช็กอาการว่า “ฉุกเฉินจริงหรือไม่” และขั้นตอนปฐมพยาบาลเบื้องต้น
-      </h1>
+      </h2>
 
       <div class="article-text text-neutral-800">
         <p>
-          เมื่อเกิดเหตุการณ์ไม่คาดคิด สิ่งสำคัญที่สุดคือ <strong>“การตั้งสติ”</strong> เพื่อแยกแยะระดับความรุนแรงของอาการ การประเมินที่ถูกต้องจะช่วยให้ผู้สูงอายุได้รับการรักษาที่ตรงจุดและทันเวลา
+          เมื่อเกิดเหตุการณ์ผิดปกติกับผู้สูงวัย สิ่งสำคัญที่สุดคือ <strong>“การตั้งสติ”</strong> เพื่อแยกแยะระดับความรุนแรงของอาการ การประเมินที่ถูกต้องจะช่วยให้ผู้สูงอายุได้รับการดูแลรักษาอย่างปลอดภัยและเหมาะสม
         </p>
 
-        <!-- การ์ดเปรียบเทียบระดับอาการ -->
+        <!-- กล่องเปรียบเทียบระดับอาการ -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
           <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-xl">
-            <h4 class="font-display font-bold text-red-900 text-base mb-1">🚨 อาการฉุกเฉินวิกฤต (โทร 1669 ทันที)</h4>
+            <h3 class="font-display font-bold text-red-900 text-base mb-1">🚨 อาการฉุกเฉินวิกฤต (โทร 1669 ทันที)</h3>
             <ul class="text-sm text-red-800 space-y-1 list-disc list-inside">
               <li>หมดสติ ปลุกไม่ตื่น ไม่มีการตอบสนอง</li>
-              <li>เจ็บแน่นกลางหน้าอก หายใจไม่ออก เหงื่อแตก</li>
-              <li>ปากเบี้ยว แขนขาอ่อนแรง พูดไม่ชัด (FAST)</li>
+              <li>เจ็บแน่นกลางหน้าอกรุนแรง หายใจไม่ออก</li>
+              <li>ปากเบี้ยว แขนขาอ่อนแรงครึ่งซีก พูดไม่ชัด (FAST)</li>
               <li>สำลักอาหาร ทางเดินหายใจอุดกั้น ชักเกร็ง</li>
             </ul>
           </div>
 
           <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl">
-            <h4 class="font-display font-bold text-blue-900 text-base mb-1">🏥 อาการไม่วิกฤต (ไป รพ. เอกชนใกล้บ้าน)</h4>
+            <h3 class="font-display font-bold text-blue-900 text-base mb-1">🏥 อาการไม่วิกฤต (ไป รพ. เอกชนใกล้ฉัน)</h3>
             <ul class="text-sm text-blue-800 space-y-1 list-disc list-inside">
-              <li>มีไข้สูง หนาวสั่น แต่ยังรู้ตัว พูดคุยรู้เรื่อง</li>
-              <li>หกล้มมีแผลฟกช้ำ แต่ขยับแขนขาได้ ไม่มีกระดูกผิดรูป</li>
-              <li>ถ่ายเหลวเล็กน้อย ปัสสาวะยังออก ไม่มีมูกเลือดปน</li>
-              <li>เวียนศีรษะ บ้านหมุน จากการเปลี่ยนท่า</li>
+              <li>มีไข้สูง หนาวสั่น แต่ยังรู้ตัวดี พูดคุยรู้เรื่อง</li>
+              <li>หกล้มมีแผลถลอก แต่ขยับแขนขาได้ ไม่มีกระดูกผิดรูป</li>
+              <li>ถ่ายเหลวเล็กน้อย ปัสสาวะยังออก ไม่มีมูกเลือด</li>
+              <li>เวียนศีรษะจากการเปลี่ยนอิริยาบถ</li>
             </ul>
           </div>
         </div>
@@ -213,62 +220,81 @@
         </h3>
 
         <div class="mb-5 p-4 rounded-xl bg-knowledge-bg border border-knowledge-border">
-          <h4 class="font-bold text-knowledge-primary text-lg mb-1">1. กรณีผู้สูงอายุหกล้ม (Falls)</h4>
+          <h4 class="font-bold text-brandGreen text-lg mb-1">1. กรณีผู้สูงอายุหกล้ม (Falls)</h4>
           <p class="text-base text-neutral-700 mb-0">
-            <strong>ห้ามดึงให้ลุกขึ้นทันที</strong> ให้ประเมินการบาดเจ็บบริเวณศีรษะ คอ และสะโพก ตรวจดูว่ามีการขยับนิ้วมือและเท้าได้ตามปกติหรือไม่ หากมีอาการปวดรุนแรงให้ประคองให้อยู่นิ่งที่สุด
+            <strong>ห้ามดึงให้ลุกขึ้นทันที</strong> ให้ประเมินการบาดเจ็บบริเวณศีรษะ คอ และสะโพก สังเกตการขยับของนิ้วมือและเท้า หากบ่นปวดสะโพกหรือหลังรุนแรง ให้ประคองให้อยู่นิ่งและโทรขอความช่วยเหลือ
           </p>
         </div>
 
         <div class="mb-5 p-4 rounded-xl bg-knowledge-bg border border-knowledge-border">
-          <h4 class="font-bold text-knowledge-primary text-lg mb-1">2. กรณีสิ่งแปลกปลอมอุดกั้นทางเดินหายใจ (Choking)</h4>
+          <h4 class="font-bold text-brandGreen text-lg mb-1">2. กรณีสำลัก / สิ่งแปลกปลอมอุดกั้นทางเดินหายใจ (Choking)</h4>
           <p class="text-base text-neutral-700 mb-0">
-            หากยังไอได้ ให้กระตุ้นให้ไอแรงๆ ห้ามใช้นิ้วล้วงในลำคอหากมองไม่เห็นสิ่งแปลกปลอม หากหายใจไม่ได้และไม่มีเสียง ให้ยืนด้านหลังแล้วทำท่ารัดกระตุกหน้าท้อง (Heimlich Maneuver)
+            หากยังไอได้ ให้กระตุ้นให้ไอแรงๆ ห้ามใช้นิ้วล้วงในลำคอหากมองไม่เห็นสิ่งแปลกปลอม หากหายใจไม่ได้และส่งเสียงไม่ออก ให้ยืนด้านหลังแล้วทำท่ารัดกระตุกหน้าท้อง (Heimlich Maneuver) ทันที
           </p>
         </div>
 
-        <!-- กล่องแนะนำตรวจอุจจาระ -->
+        <!-- กล่องตรวจเช็กอุจจาระ -->
         <div id="section-stool" class="mt-8 p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200">
           <div class="flex items-center justify-between mb-2">
-            <h4 class="font-display font-bold text-emerald-900 text-lg flex items-center gap-2">
-              <i class="fa-solid fa-notes-medical text-emerald-700"></i>
-              การตรวจเช็กอุจจาระประจำวัน (Bristol Scale)
-            </h4>
-            <button onclick="document.getElementById('stool-modal').classList.remove('hidden')" class="text-xs bg-emerald-700 text-white px-3 py-1.5 rounded-lg hover:bg-emerald-800 transition font-semibold">
+            <h3 class="font-display font-bold text-emerald-900 text-lg flex items-center gap-2">
+              <i class="fa-solid fa-notes-medical text-brandGreen"></i>
+              การสังเกตรูปทรงและสีของอุจจาระ (Bristol Scale)
+            </h3>
+            <button onclick="document.getElementById('stool-modal').classList.remove('hidden')" class="text-xs bg-brandGreen text-white px-3 py-1.5 rounded-lg hover:bg-emerald-800 transition font-semibold">
               ดูรูปภาพ Type 1-6
             </button>
           </div>
           <p class="text-sm text-emerald-900 mb-0 leading-relaxed">
-            ลักษณะอุจจาระสะท้อนถึงระดับน้ำในร่างกาย ภาวะการดูดซึม และสุขภาพของทางเดินอาหาร การสังเกตรูปแบบเป็นประจำจะช่วยป้องกันภาวะลำไส้อุดตันและตรวจพบความผิดปกติได้ตั้งแต่ระยะแรก
+            ลักษณะอุจจาระสะท้อนถึงการดื่มน้ำ การดูดซึมสารอาหาร และการทำงานของระบบลำไส้ การหมั่นสังเกตเป็นประจำจะช่วยป้องกันภาวะท้องผูกรุนแรงและสังเกตความผิดปกติได้ล่วงหน้า
           </p>
         </div>
-      </div>
 
-      <!-- FOOTER ติดต่อสอบถามและแชร์ (FB, TikTok, X, LINE, Copy Link) -->
-      <div id="section-caregiver" class="mt-12 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-5">
-        <div>
-          <span class="block font-display font-semibold text-neutral-700 text-sm">ติดตามและติดต่อสอบถาม Elder CG:</span>
-          <span class="text-xs text-neutral-400">关注我们 / Connect with our caregiver community</span>
+        <!-- ======================================================== -->
+        <!-- ⚖️ ข้อความป้องกันทางกฎหมาย (Medical Disclaimer) -->
+        <!-- ======================================================== -->
+        <div id="section-disclaimer" class="mt-10 p-5 rounded-2xl bg-neutral-100 border border-neutral-300 text-xs text-neutral-600 leading-relaxed">
+          <div class="flex items-center gap-2 mb-1.5 text-neutral-800 font-bold text-sm">
+            <i class="fa-solid fa-scale-balanced text-amber-700"></i>
+            <span>ข้อสงวนสิทธิ์ทางการแพทย์และการใช้งาน (Medical Disclaimer)</span>
+          </div>
+          <p class="mb-1">
+            เว็บไซต์และหน้าเพจ <strong>ElderCGF (เพื่อนดูแลผู้สูงวัย CaregiverFriends)</strong> จัดทำขึ้นเพื่อวัตถุประสงค์ในการแบ่งปันประสบการณ์และรวบรวมองค์ความรู้เบื้องต้นสำหรับผู้ดูแลเท่านั้น ผู้จัดทำ<strong>มิใช่แพทย์ ผู้ประกอบวิชาชีพเวชกรรม หรือสถานพยาบาล</strong>
+          </p>
+          <p class="mb-0">
+            ข้อมูลทั้งหมดไม่สามารถนำไปใช้ทดแทนการวินิจฉัย การรักษา หรือคำแนะนำจากแพทย์ผู้เชี่ยวชาญได้ หากผู้สูงอายุมีอาการเจ็บป่วยหรือเหตุฉุกเฉิน โปรดโทรแจ้งสายด่วน 1669 หรือนำส่งโรงพยาบาลเพื่อรับการตรวจรักษาจากแพทย์โดยตรงทันที
+          </p>
         </div>
 
-        <div class="flex items-center gap-4 text-neutral-600">
-          <!-- Facebook -->
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition shadow-sm" title="Facebook">
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- 🌐 FOOTER ช่องทางติดต่อตรง: FB, IG, TikTok, X, Copy Link -->
+      <!-- ======================================================== -->
+      <div class="mt-10 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <div>
+          <span class="block font-display font-semibold text-neutral-800 text-sm">ติดตามและพูดคุยกับเราได้ที่:</span>
+          <span class="text-xs text-neutral-400">ElderCGF | เพื่อนดูแลผู้สูงวัย CaregiverFriends</span>
+        </div>
+
+        <div class="flex items-center gap-3 text-neutral-600">
+          <!-- Facebook Page (เพื่อนดูแลผู้สูงวัยCaregiver Friends) -->
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition shadow-sm" title="Facebook">
             <i class="fa-brands fa-facebook-f text-base"></i>
           </a>
-          <!-- TikTok -->
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-black hover:text-white flex items-center justify-center transition shadow-sm" title="TikTok">
+          <!-- Instagram (@eldercgf) -->
+          <a href="https://www.instagram.com/eldercgf" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-pink-600 hover:text-white flex items-center justify-center transition shadow-sm" title="Instagram @eldercgf">
+            <i class="fa-brands fa-instagram text-lg"></i>
+          </a>
+          <!-- TikTok (@eldercgf) -->
+          <a href="https://www.tiktok.com/@eldercgf" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-black hover:text-white flex items-center justify-center transition shadow-sm" title="TikTok @eldercgf">
             <i class="fa-brands fa-tiktok text-base"></i>
           </a>
-          <!-- X (Twitter) -->
-          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-900 hover:text-white flex items-center justify-center transition shadow-sm" title="X">
+          <!-- X (Twitter @ElderCGF) -->
+          <a href="https://x.com/ElderCGF" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-900 hover:text-white flex items-center justify-center transition shadow-sm" title="X @ElderCGF">
             <i class="fa-brands fa-x-twitter text-base"></i>
           </a>
-          <!-- LINE Official -->
-          <a href="https://line.me" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-emerald-500 hover:text-white flex items-center justify-center transition shadow-sm" title="LINE">
-            <i class="fa-brands fa-line text-lg"></i>
-          </a>
-          <!-- ปุ่ม Copy Link -->
-          <button onclick="navigator.clipboard.writeText(window.location.href); alert('คัดลอกลิงก์เรียบร้อยแล้วค่ะ');" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-knowledge-accent hover:text-white flex items-center justify-center transition shadow-sm" title="คัดลอกลิงก์">
+          <!-- คัดลอกลิงก์หน้าเว็บ -->
+          <button onclick="navigator.clipboard.writeText(window.location.href); alert('คัดลอกลิงก์เรียบร้อยแล้วค่ะ');" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-brandGreen hover:text-white flex items-center justify-center transition shadow-sm" title="คัดลอกลิงก์">
             <i class="fa-solid fa-link text-sm"></i>
           </button>
         </div>
@@ -278,7 +304,7 @@
   </div>
 
   <!-- ======================================================== -->
-  <!-- 🔍 POPUP 1: เช็กอาการฉุกเฉิน & ขั้นตอนปฐมพยาบาล -->
+  <!-- 🔍 MODAL 1: ประเมินอาการฉุกเฉินวิกฤต -->
   <!-- ======================================================== -->
   <div id="triage-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white max-w-lg w-full rounded-2xl shadow-2xl p-6 overflow-y-auto max-h-[90vh]">
@@ -322,14 +348,14 @@
   </div>
 
   <!-- ======================================================== -->
-  <!-- 💩 POPUP 2: ตรวจภาพอุจจาระ (เชื่อมต่อ Unji_Type1.jpg - Type6.jpg) -->
+  <!-- 💩 MODAL 2: ตรวจภาพอุจจาระ (Unji_Type1.jpg ถึง Type6.jpg) -->
   <!-- ======================================================== -->
   <div id="stool-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white max-w-2xl w-full rounded-2xl shadow-2xl p-6 overflow-y-auto max-h-[90vh]">
       <div class="flex items-center justify-between pb-3 border-b border-neutral-200">
         <div>
           <h3 class="font-display font-bold text-lg text-emerald-900 flex items-center gap-2">
-            <i class="fa-solid fa-poop text-emerald-600"></i>
+            <i class="fa-solid fa-poop text-brandGreen"></i>
             เกณฑ์ประเมินลักษณะอุจจาระ (Bristol Stool Form)
           </h3>
           <p class="text-xs text-neutral-400">เปรียบเทียบรูปทรงเพื่อประเมินภาวะการขับถ่าย</p>
@@ -342,55 +368,55 @@
         
         <!-- Type 1 -->
         <div class="flex items-center gap-3.5 p-3 rounded-xl bg-amber-50/80 border border-amber-200">
-          <img src="Unji_Type1.jpg" alt="Type 1" class="w-16 h-16 rounded-lg object-cover border border-amber-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+1'">
+          <img src="Unji_Type1.jpg" alt="Type 1" class="w-16 h-16 rounded-lg object-cover border border-amber-300 shrink-0 bg-white" onerror="this.onerror=null; this.src='https://placehold.co/80x80?text=Type+1';">
           <div class="text-sm">
             <div class="font-bold text-amber-900">Type 1: เม็ดแข็งกระสุน คล้ายขี้แพะ</div>
-            <p class="text-xs text-amber-700 mb-0"><strong>ท้องผูกรุนแรง:</strong> อุจจาระตกค้างในลำไส้นาน ขาดน้ำอย่างมาก แนะนำจิบน้ำเพิ่มและปรึกษาแพทย์</p>
+            <p class="text-xs text-amber-700 mb-0"><strong>ท้องผูกรุนแรง:</strong> ขาดน้ำอย่างมาก แนะนำจิบน้ำบ่อยๆ และปรึกษาแพทย์หากถ่ายไม่ออกต่อเนื่อง</p>
           </div>
         </div>
 
         <!-- Type 2 -->
         <div class="flex items-center gap-3.5 p-3 rounded-xl bg-amber-50/50 border border-amber-200">
-          <img src="Unji_Type2.jpg" alt="Type 2" class="w-16 h-16 rounded-lg object-cover border border-amber-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+2'">
+          <img src="Unji_Type2.jpg" alt="Type 2" class="w-16 h-16 rounded-lg object-cover border border-amber-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+2';">
           <div class="text-sm">
             <div class="font-bold text-amber-900">Type 2: ทรงไส้กรอกแต่เป็นก้อนตะปุ่มตะป่ำ</div>
-            <p class="text-xs text-amber-700 mb-0"><strong>ท้องผูกปานกลาง:</strong> เริ่มมีการเกาะตัวแข็ง ขับถ่ายต้องเบ่ง แนะนำเพิ่มใยอาหารชนิดละลายน้ำ</p>
+            <p class="text-xs text-amber-700 mb-0"><strong>ท้องผูกปานกลาง:</strong> เริ่มมีการเกาะตัวแข็ง ขับถ่ายต้องออกแรงเบ่ง ควรเพิ่มอาหารที่มีกากใย</p>
           </div>
         </div>
 
         <!-- Type 3 -->
         <div class="flex items-center gap-3.5 p-3 rounded-xl bg-emerald-50/60 border border-emerald-200">
-          <img src="Unji_Type3.jpg" alt="Type 3" class="w-16 h-16 rounded-lg object-cover border border-emerald-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+3'">
+          <img src="Unji_Type3.jpg" alt="Type 3" class="w-16 h-16 rounded-lg object-cover border border-emerald-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+3';">
           <div class="text-sm">
             <div class="font-bold text-emerald-900">Type 3: ทรงไส้กรอกมีรอยแยกที่ผิว</div>
-            <p class="text-xs text-emerald-700 mb-0"><strong>ปกติ (เกณฑ์ดี):</strong> ขับถ่ายได้สะดวก ไม่มีอาการปวดเบ่ง ลำไส้มีความชุ่มชื้นพอเหมาะ</p>
+            <p class="text-xs text-emerald-700 mb-0"><strong>ปกติ (เกณฑ์ดี):</strong> ถ่ายได้สะดวก ลำไส้มีความชุ่มชื้นพอเหมาะ</p>
           </div>
         </div>
 
         <!-- Type 4 -->
         <div class="flex items-center gap-3.5 p-3 rounded-xl bg-emerald-50 border border-emerald-300">
-          <img src="Unji_Type4.jpg" alt="Type 4" class="w-16 h-16 rounded-lg object-cover border border-emerald-400 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+4'">
+          <img src="Unji_Type4.jpg" alt="Type 4" class="w-16 h-16 rounded-lg object-cover border border-emerald-400 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+4';">
           <div class="text-sm">
             <div class="font-bold text-emerald-900">Type 4: ผิวเรียบนุ่ม คล้ายกล้วยหอม</div>
-            <p class="text-xs text-emerald-700 mb-0"><strong>สมบูรณ์แบบ (Ideal):</strong> สุขภาพลำไส้และระบบย่อยอาหารทำงานได้อย่างมีประสิทธิภาพสูงสุด</p>
+            <p class="text-xs text-emerald-700 mb-0"><strong>สมบูรณ์แบบ (Ideal):</strong> ระบบย่อยและดูดซึมทำงานมีประสิทธิภาพสูงสุด</p>
           </div>
         </div>
 
         <!-- Type 5 -->
         <div class="flex items-center gap-3.5 p-3 rounded-xl bg-amber-50/50 border border-amber-200">
-          <img src="Unji_Type5.jpg" alt="Type 5" class="w-16 h-16 rounded-lg object-cover border border-amber-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+5'">
+          <img src="Unji_Type5.jpg" alt="Type 5" class="w-16 h-16 rounded-lg object-cover border border-amber-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+5';">
           <div class="text-sm">
-            <div class="font-bold text-amber-900">Type 5: ชิ้นนุ่มขอบตัดชัดเจน ถ่ายง่าย</div>
-            <p class="text-xs text-amber-700 mb-0"><strong>ค่อนข้างเหลว:</strong> ลำไส้บีบตัวเร็วไปเล็กน้อย หรือได้รับกากใยไม่เพียงพอ สังเกตอาการต่อเนื่อง</p>
+            <div class="font-bold text-amber-900">Type 5: ชิ้นนุ่มขอบชัด ถ่ายง่าย</div>
+            <p class="text-xs text-amber-700 mb-0"><strong>ค่อนข้างเหลว:</strong> ลำไส้บีบตัวเร็วไปเล็กน้อย ให้สังเกตอาการต่อเนื่อง</p>
           </div>
         </div>
 
         <!-- Type 6 -->
         <div class="flex items-center gap-3.5 p-3 rounded-xl bg-red-50/80 border border-red-200">
-          <img src="Unji_Type6.jpg" alt="Type 6" class="w-16 h-16 rounded-lg object-cover border border-red-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+6'">
+          <img src="Unji_Type6.jpg" alt="Type 6" class="w-16 h-16 rounded-lg object-cover border border-red-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+6';">
           <div class="text-sm">
             <div class="font-bold text-red-900">Type 6: กึ่งเหลวกึ่งก้อน ขอบขุยยุ่ย</div>
-            <p class="text-xs text-red-700 mb-0"><strong>เริ่มท้องเสีย (Diarrhea):</strong> มีการอักเสบหรือติดเชื้อ ให้จิบผงเกลือแร่ ORS เพื่อชดเชยน้ำ</p>
+            <p class="text-xs text-red-700 mb-0"><strong>เริ่มท้องเสีย (Diarrhea):</strong> มีการอักเสบหรือติดเชื้อ ควรจิบผงเกลือแร่ ORS ชดเชยน้ำ</p>
           </div>
         </div>
 
@@ -402,9 +428,14 @@
     </div>
   </div>
 
-  <!-- Footer ท้ายหน้า -->
-  <footer class="bg-white border-t border-neutral-200 py-6 text-center text-xs text-neutral-400">
-    <p>© 2026 CaregiverFriends-hub. Designed for elderly & caregiver wellness.</p>
+  <!-- ======================================================== -->
+  <!-- FOOTER ท้ายสุด -->
+  <!-- ======================================================== -->
+  <footer class="bg-white border-t border-neutral-200 py-6 text-center text-xs text-neutral-500">
+    <div class="max-w-7xl mx-auto px-4 space-y-1">
+      <p>© 2026 ElderCGF | เพื่อนดูแลผู้สูงวัย CaregiverFriends. เพื่อสุขภาวะที่ดีของผู้สูงวัยและผู้ดูแล</p>
+      <p class="text-neutral-400">เนื้อหาทั้งหมดจัดทำขึ้นเพื่อการแลกเปลี่ยนข้อมูลเท่านั้น ไม่สามารถใช้แทนคำวินิจฉัยทางการแพทย์ได้</p>
+    </div>
   </footer>
 
 </body>
