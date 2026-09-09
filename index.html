@@ -1,104 +1,411 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOS Medical Guide - เพื่อนดูแลผู้สูงวัย Caregiver Friends</title>
-    <style>
-        body { font-family: -apple-system, sans-serif; text-align: center; padding: 15px; background: #fff; color: #2d3436; line-height: 1.4; }
-        .critical-area { border: 2px solid #dc3545; border-radius: 20px; padding: 20px; margin-bottom: 20px; background: #fffcfc; }
-        .btn { border-radius: 50px; display: block; font-weight: bold; text-decoration: none; margin-bottom: 12px; padding: 18px; font-size: 1.3rem; }
-        .btn-call { background: #dc3545; color: #fff; box-shadow: 0 4px 10px rgba(220,35,69,0.3); }
-        
-        .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
-        .mission-card { border: 1px solid #eee; border-radius: 12px; padding: 12px; text-decoration: none; color: inherit; text-align: left; background: #fafafa; border-left: 6px solid #ddd; }
-        .mission-card b { display: block; font-size: 0.9rem; margin-bottom: 3px; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CaregiverFriends-hub | ช่วยเหลือฉุกเฉิน & คลังความรู้ผู้สูงอายุ</title>
 
-        .action-details { margin-top: 20px; text-align: left; padding: 10px; }
-        .action-box { margin-bottom: 30px; padding: 15px; border-radius: 15px; background: #fdfdfd; border: 1px solid #eee; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .med-title { font-weight: bold; font-size: 1.1rem; color: #2d3436; margin-bottom: 10px; border-bottom: 2px solid #eee; padding-bottom: 5px; }
-        .self-care-list { font-size: 0.9rem; margin-bottom: 10px; list-style-type: none; padding-left: 0; }
-        .self-care-list li { margin-bottom: 5px; padding-left: 18px; position: relative; }
-        .self-care-list li::before { content: "•"; position: absolute; left: 0; color: #007bff; font-weight: bold; }
-        .lang-sub { font-size: 0.8rem; color: #636e72; border-top: 1px dashed #ddd; padding-top: 8px; margin-top: 10px; }
-    </style>
+  <!-- Google Fonts: Sarabun, Prompt, Inter, Noto Sans SC (3 ภาษา อ่านง่ายสำหรับผู้สูงอายุ) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Prompt:wght@600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Sarabun"', '"Noto Sans SC"', '"Inter"', 'sans-serif'],
+            display: ['"Prompt"', '"Noto Sans SC"', 'sans-serif'],
+          },
+          colors: {
+            emergency: '#DC2626',
+            emergencyBg: '#FEF2F2',
+            knowledge: {
+              bg: '#FDFBF7',
+              primary: '#2D5A43',
+              accent: '#8C5E3C',
+              border: '#EAE4D9',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Sarabun', 'Noto Sans SC', 'Inter', sans-serif;
+      background-color: #F8F9FA;
+      color: #1F2937;
+      -webkit-font-smoothing: antialiased;
+    }
+    .article-text p {
+      font-size: 1.15rem; /* ~18.5px ชัดเจนสำหรับผู้สูงอายุ */
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+  </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
-    <div class="critical-area">
-        <b style="color:#dc3545; font-size: 1.3rem;">🚨 EMERGENCY? CALL 1669</b>
-        <p style="font-size: 0.9rem; margin: 10px 0;">Unconscious | Severe Choking | Anaphylaxis | Dyspnea</p>
-        <a href="tel:1669" class="btn btn-call">📞 CALL 1669 (EMS)</a>
-        <a href="https://www.google.com/maps/search/private+hospital+near+me" style="color:#007bff; text-decoration:none; font-size:0.9rem;">🔍 Find Private Hospital Near Me</a>
-    </div>
-
-    <div class="mission-grid">
-        <a href="#edema" class="mission-card" style="border-left-color: #007bff;"><b>🦶 Edema / Dyspnea</b><span>บวม / หอบเหนื่อย</span></a>
-        <a href="#choking" class="mission-card" style="border-left-color: #fd7e14;"><b>🍞 Choking / FBAO</b><span>การสำลัก</span></a>
-        <a href="#allergy" class="mission-card" style="border-left-color: #e83e8c;"><b>🦐 Anaphylaxis</b><span>แพ้รุนแรง</span></a>
-        <a href="#heat" class="mission-card" style="border-left-color: #ffc107;"><b>🌡️ Heat Stroke</b><span>ตัวร้อนจัด</span></a>
-    </div>
-
-    <div class="action-details">
-        
-        <div id="edema" class="action-box" style="border-left: 6px solid #007bff;">
-            <div class="med-title">🦶 Edema / Dyspnea | บวม / หอบเหนื่อย | 水肿 / 呼吸困难</div>
-            <p style="font-weight: bold; font-size: 0.85rem; color: #007bff;">Self-care / การดูแลเบื้องต้น:</p>
-            <ul class="self-care-list">
-                <li><b>Elevation:</b> ยกขา/แขนสูงกว่าระดับหัวใจ (抬高患肢)</li>
-                <li><b>Movement:</b> ระบำนิ้วเท้า/ขยับร่างกายลดน้ำคั่ง (踝泵运动)</li>
-                <li><b>Reduce Salt:</b> ลดเค็ม/โซเดียม (减少盐摄入)</li>
-                <li><b>Compression:</b> สวมถุงน่องพยุงหากบวมที่ขา (穿弹力袜)</li>
-            </ul>
-            <div class="lang-sub">
-                *หากนอนราบไม่ได้ หายใจเสียงดัง หรือบวมฉับพลัน รีบพบแพทย์ทันที
-            </div>
+  <!-- ======================================================== -->
+  <!-- 🚨 TIER 1: EMERGENCY ACTION ZONE (ด่วนที่สุด ติดบนสุดของจอ) -->
+  <!-- ======================================================== -->
+  <section class="bg-emergencyBg border-b-2 border-red-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- ข้อความแจ้งเตือน 3 ภาษา -->
+      <div class="flex items-center gap-2.5">
+        <span class="flex h-9 w-9 items-center justify-center rounded-full bg-emergency text-white animate-pulse">
+          <i class="fa-solid fa-truck-medical text-sm"></i>
+        </span>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-display font-bold text-red-900 text-sm sm:text-base">ตรวจอาการฉุกเฉิน / 紧急评估 / Emergency</span>
+            <span class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-semibold">FAST / CPR</span>
+          </div>
+          <p class="text-xs text-red-700 hidden sm:block">ประเมินอาการและปฐมพยาบาลเบื้องต้นก่อนโทร หรือกดโทรออกทันทีหากวิกฤต</p>
         </div>
+      </div>
 
-        <div id="choking" class="action-box" style="border-left: 6px solid #fd7e14;">
-            <div class="med-title">🍞 Choking (FBAO) | การสำลัก | 窒息 (气道异物梗阻)</div>
-            <p style="font-weight: bold; font-size: 0.85rem; color: #fd7e14;">Emergency Action / การปฐมพยาบาล:</p>
-            <ul class="self-care-list">
-                <li><b>Encourage Cough:</b> หากยังพอไอได้ ให้ไอแรงๆ (鼓励咳嗽)</li>
-                <li><b>Heimlich Maneuver:</b> หากไอไม่ออก ให้รัดใต้ลิ้นปี่และกระทุ้งขึ้น (海姆立克急救法)</li>
-                <li><b>Oxygen:</b> ย้ายไปที่อากาศถ่ายเท (移至空气流通处)</li>
-            </ul>
-        </div>
+      <!-- ปุ่มโทร 1669 + เช็กอาการปฐมพยาบาล -->
+      <div class="flex items-center gap-2 w-full sm:w-auto">
+        <button onclick="document.getElementById('triage-modal').classList.remove('hidden')" class="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-3.5 py-2 rounded-xl transition shadow">
+          <i class="fa-solid fa-clipboard-check"></i>
+          <span>เช็กอาการ & ปฐมพยาบาล</span>
+        </button>
 
-        <div id="allergy" class="action-box" style="border-left: 6px solid #e83e8c;">
-            <div class="med-title">🦐 Anaphylaxis | การแพ้รุนแรง | 严重过敏反应</div>
-            <p style="font-weight: bold; font-size: 0.85rem; color: #e83e8c;">Observation / การเฝ้าระวัง:</p>
-            <ul class="self-care-list">
-                <li><b>Remove Allergen:</b> หยุดสิ่งที่สงสัยว่าแพ้ทันที (远离过敏原)</li>
-                <li><b>Airway Check:</b> เช็กหน้าบวม/เสียงหายใจวี๊ด (检查呼吸道)</li>
-                <li><b>Positioning:</b> นอนหงายยกขาสูงหากมีอาการช็อก (平卧并抬高双腿)</li>
-            </ul>
-        </div>
-
-        <div id="heat" class="action-box" style="border-left: 6px solid #ffc107;">
-            <div class="med-title">🌡️ Heat Stroke | ลมแดด / ตัวร้อนจัด | 中暑 (热射病)</div>
-            <p style="font-weight: bold; font-size: 0.85rem; color: #f39c12;">Rapid Cooling / วิธีลดอุณหภูมิ:</p>
-            <ul class="self-care-list">
-                <li><b>Pulse Point Cooling:</b> เช็ดตัวเน้นซอกคอ รักแร้ ขาหนีบ (脉搏点降温)</li>
-                <li><b>Airflow:</b> ใช้พัดลมเป่าระบายความร้อน (增加空气流通)</li>
-                <li><b>Hydration:</b> จิบน้ำเปล่าหากยังรู้สึกตัว (若意识清醒可少量饮水)</li>
-            </ul>
-        </div>
-
-    </div>
-          <!-- กล่องเมนูไปหน้าตรวจสุขภาพลำไส้ -->
-          <div style="margin-top: 20px; padding: 20px; background: #f0fdf4; border-radius: 15px; border: 1px solid #bbf7d0; text-align: center;">
-          <a href="stool-checker.html" style="text-decoration: none; color: #166534; font-weight: bold; font-size: 1.1rem;">
-        📊 ตรวจประเมินสุขภาพลำไส้เบื้องต้น (Daily Stool Check) 👉 กดที่นี่
-    </a>
-</div>
-    
-    <div style="margin-top: 30px; padding: 20px; background: #f0f7ff; border-radius: 15px; border: 1px solid #d0e7ff;">
-        <a href="https://www.facebook.com/profile.php?id=61570530366624" target="_blank" style="text-decoration: none; color: #1a73e8; font-weight: bold; font-size: 1rem;">
-            🏠 เพจ เพื่อนดูแลผู้สูงวัย Caregiver Friends
+        <a href="tel:1669" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-emergency hover:bg-red-700 text-white font-display font-bold text-base px-5 py-2 rounded-xl shadow-lg transition active:scale-95">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>โทร 1669 ฟรี</span>
         </a>
+      </div>
+
     </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- 🏥 TIER 2: QUICK TOOLS (ค้นหารพ.เอกชนใกล้ฉัน & ตรวจอุจจาระ) -->
+  <!-- ======================================================== -->
+  <section class="bg-white border-b border-neutral-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-hand-holding-heart text-knowledge-primary text-xl"></i>
+        <span class="font-display font-bold text-lg text-neutral-800">CaregiverFriends-hub</span>
+        <span class="text-xs text-neutral-400">| เครื่องมือดูแลประจำวัน</span>
+      </div>
+
+      <div class="flex items-center gap-3 w-full sm:w-auto">
+        <!-- ปุ่มค้นหา รพ. เอกชนใกล้ฉัน (GPS Direct ผ่าน Google Maps) -->
+        <a href="https://www.google.com/maps/search/%E0%B9%82%E0%B8%A3%E0%B8%87%E0%B8%9E%E0%B8%88%E0%B8%B2%E0%B8%9A%E0%B8%B2%E0%B8%A5%E0%B9%80%E0%B8%AD%E0%B8%81%E0%B8%87%E0%B8%99/@" target="_blank" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 px-4 py-2 rounded-xl text-sm font-semibold transition">
+          <i class="fa-solid fa-location-dot text-blue-600"></i>
+          <span>ค้นหา รพ.เอกชนใกล้ฉัน</span>
+        </a>
+
+        <!-- ปุ่มตรวจเช็กภาพอุจจาระ -->
+        <button onclick="document.getElementById('stool-modal').classList.remove('hidden')" class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-xl text-sm font-semibold transition">
+          <i class="fa-solid fa-poop text-emerald-600"></i>
+          <span>ตรวจภาพอุจจาระ (Type 1-6)</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- 📚 TIER 3: KNOWLEDGE BASE (สารบัญด้านซ้าย + บทความอ่านสบายตา) -->
+  <!-- ======================================================== -->
+  <div class="max-w-7xl mx-auto px-4 py-8 flex-grow flex flex-col md:flex-row gap-8 w-full">
+
+    <!-- TOOLBAR ด้านซ้าย: สารบัญหัวข้อเนื้อหา -->
+    <aside class="w-full md:w-80 shrink-0">
+      <div class="sticky top-28 bg-white p-5 rounded-2xl border border-knowledge-border shadow-sm">
+        
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-neutral-100">
+          <span class="font-display font-bold text-sm uppercase tracking-wider text-neutral-500">
+            <i class="fa-solid fa-book-open mr-1 text-knowledge-accent"></i> สารบัญเนื้อหา (All Topics)
+          </span>
+          <span class="text-xs bg-neutral-100 text-neutral-600 px-2 py-0.5 rounded-full font-medium">All Posts</span>
+        </div>
+
+        <nav class="space-y-2 text-base font-medium">
+          <a href="#section-triage" class="flex items-start gap-2.5 p-3 rounded-xl bg-knowledge-bg text-knowledge-primary border-l-4 border-knowledge-primary font-bold">
+            <span>1.</span>
+            <span>เกณฑ์ตรวจเช็กอาการฉุกเฉิน & ปฐมพยาบาล</span>
+          </a>
+          <a href="#section-hospital" class="flex items-start gap-2.5 p-3 rounded-xl text-neutral-600 hover:bg-neutral-50 hover:text-black transition">
+            <span>2.</span>
+            <span>ขั้นตอนเลือก รพ. เอกชนกรณีไม่วิกฤต</span>
+          </a>
+          <a href="#section-stool" class="flex items-start gap-2.5 p-3 rounded-xl text-neutral-600 hover:bg-neutral-50 hover:text-black transition">
+            <span>3.</span>
+            <span>คู่มือแปลผลภาพอุจจาระ 6 รูปแบบ</span>
+          </a>
+          <a href="#section-caregiver" class="flex items-start gap-2.5 p-3 rounded-xl text-neutral-600 hover:bg-neutral-50 hover:text-black transition">
+            <span>4.</span>
+            <span>การดูแลสุขภาวะและกำลังใจของผู้ดูแล</span>
+          </a>
+        </nav>
+
+        <div class="mt-6 p-3.5 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-800 leading-relaxed">
+          <i class="fa-solid fa-shield-heart text-amber-600 mr-1"></i>
+          ข้อมูลอ้างอิงจากหลักเกณฑ์ทางการแพทย์ หากผู้สูงอายุมีอาการทรุดลงเฉียบพลันให้กดโทร 1669 ทันที
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENT ขวา: เนื้อหาบทความอ่านง่าย สบายตา -->
+    <main class="flex-1 bg-white p-6 sm:p-10 rounded-2xl border border-knowledge-border shadow-sm min-w-0">
+      
+      <div class="flex items-center justify-between gap-2 text-xs sm:text-sm text-neutral-400 mb-3 pb-3 border-b border-neutral-100">
+        <div class="flex items-center gap-2">
+          <span class="bg-red-50 text-red-700 px-2.5 py-0.5 rounded font-medium">คู่มือประจำบ้าน</span>
+          <span>• สำหรับผู้ดูแลและครอบครัว</span>
+        </div>
+        <div class="text-xs text-neutral-500 font-medium">
+          ไทย | EN | 中文
+        </div>
+      </div>
+
+      <!-- หัวข้อสีน้ำตาลอบอุ่น อ่านสบายตา -->
+      <h1 id="section-triage" class="font-display font-bold text-2xl sm:text-3xl text-knowledge-accent leading-snug mb-4">
+        วิธีตรวจเช็กอาการว่า “ฉุกเฉินจริงหรือไม่” และขั้นตอนปฐมพยาบาลเบื้องต้น
+      </h1>
+
+      <div class="article-text text-neutral-800">
+        <p>
+          เมื่อเกิดเหตุการณ์ไม่คาดคิด สิ่งสำคัญที่สุดคือ <strong>“การตั้งสติ”</strong> เพื่อแยกแยะระดับความรุนแรงของอาการ การประเมินที่ถูกต้องจะช่วยให้ผู้สูงอายุได้รับการรักษาที่ตรงจุดและทันเวลา
+        </p>
+
+        <!-- การ์ดเปรียบเทียบระดับอาการ -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+          <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-xl">
+            <h4 class="font-display font-bold text-red-900 text-base mb-1">🚨 อาการฉุกเฉินวิกฤต (โทร 1669 ทันที)</h4>
+            <ul class="text-sm text-red-800 space-y-1 list-disc list-inside">
+              <li>หมดสติ ปลุกไม่ตื่น ไม่มีการตอบสนอง</li>
+              <li>เจ็บแน่นกลางหน้าอก หายใจไม่ออก เหงื่อแตก</li>
+              <li>ปากเบี้ยว แขนขาอ่อนแรง พูดไม่ชัด (FAST)</li>
+              <li>สำลักอาหาร ทางเดินหายใจอุดกั้น ชักเกร็ง</li>
+            </ul>
+          </div>
+
+          <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-xl">
+            <h4 class="font-display font-bold text-blue-900 text-base mb-1">🏥 อาการไม่วิกฤต (ไป รพ. เอกชนใกล้บ้าน)</h4>
+            <ul class="text-sm text-blue-800 space-y-1 list-disc list-inside">
+              <li>มีไข้สูง หนาวสั่น แต่ยังรู้ตัว พูดคุยรู้เรื่อง</li>
+              <li>หกล้มมีแผลฟกช้ำ แต่ขยับแขนขาได้ ไม่มีกระดูกผิดรูป</li>
+              <li>ถ่ายเหลวเล็กน้อย ปัสสาวะยังออก ไม่มีมูกเลือดปน</li>
+              <li>เวียนศีรษะ บ้านหมุน จากการเปลี่ยนท่า</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 id="section-hospital" class="font-display font-bold text-xl text-neutral-900 mt-8 mb-3">
+          ขั้นตอนปฐมพยาบาลเบื้องต้น
+        </h3>
+
+        <div class="mb-5 p-4 rounded-xl bg-knowledge-bg border border-knowledge-border">
+          <h4 class="font-bold text-knowledge-primary text-lg mb-1">1. กรณีผู้สูงอายุหกล้ม (Falls)</h4>
+          <p class="text-base text-neutral-700 mb-0">
+            <strong>ห้ามดึงให้ลุกขึ้นทันที</strong> ให้ประเมินการบาดเจ็บบริเวณศีรษะ คอ และสะโพก ตรวจดูว่ามีการขยับนิ้วมือและเท้าได้ตามปกติหรือไม่ หากมีอาการปวดรุนแรงให้ประคองให้อยู่นิ่งที่สุด
+          </p>
+        </div>
+
+        <div class="mb-5 p-4 rounded-xl bg-knowledge-bg border border-knowledge-border">
+          <h4 class="font-bold text-knowledge-primary text-lg mb-1">2. กรณีสิ่งแปลกปลอมอุดกั้นทางเดินหายใจ (Choking)</h4>
+          <p class="text-base text-neutral-700 mb-0">
+            หากยังไอได้ ให้กระตุ้นให้ไอแรงๆ ห้ามใช้นิ้วล้วงในลำคอหากมองไม่เห็นสิ่งแปลกปลอม หากหายใจไม่ได้และไม่มีเสียง ให้ยืนด้านหลังแล้วทำท่ารัดกระตุกหน้าท้อง (Heimlich Maneuver)
+          </p>
+        </div>
+
+        <!-- กล่องแนะนำตรวจอุจจาระ -->
+        <div id="section-stool" class="mt-8 p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-display font-bold text-emerald-900 text-lg flex items-center gap-2">
+              <i class="fa-solid fa-notes-medical text-emerald-700"></i>
+              การตรวจเช็กอุจจาระประจำวัน (Bristol Scale)
+            </h4>
+            <button onclick="document.getElementById('stool-modal').classList.remove('hidden')" class="text-xs bg-emerald-700 text-white px-3 py-1.5 rounded-lg hover:bg-emerald-800 transition font-semibold">
+              ดูรูปภาพ Type 1-6
+            </button>
+          </div>
+          <p class="text-sm text-emerald-900 mb-0 leading-relaxed">
+            ลักษณะอุจจาระสะท้อนถึงระดับน้ำในร่างกาย ภาวะการดูดซึม และสุขภาพของทางเดินอาหาร การสังเกตรูปแบบเป็นประจำจะช่วยป้องกันภาวะลำไส้อุดตันและตรวจพบความผิดปกติได้ตั้งแต่ระยะแรก
+          </p>
+        </div>
+      </div>
+
+      <!-- FOOTER ติดต่อสอบถามและแชร์ (FB, TikTok, X, LINE, Copy Link) -->
+      <div id="section-caregiver" class="mt-12 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <div>
+          <span class="block font-display font-semibold text-neutral-700 text-sm">ติดตามและติดต่อสอบถาม Elder CG:</span>
+          <span class="text-xs text-neutral-400">关注我们 / Connect with our caregiver community</span>
+        </div>
+
+        <div class="flex items-center gap-4 text-neutral-600">
+          <!-- Facebook -->
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition shadow-sm" title="Facebook">
+            <i class="fa-brands fa-facebook-f text-base"></i>
+          </a>
+          <!-- TikTok -->
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-black hover:text-white flex items-center justify-center transition shadow-sm" title="TikTok">
+            <i class="fa-brands fa-tiktok text-base"></i>
+          </a>
+          <!-- X (Twitter) -->
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-900 hover:text-white flex items-center justify-center transition shadow-sm" title="X">
+            <i class="fa-brands fa-x-twitter text-base"></i>
+          </a>
+          <!-- LINE Official -->
+          <a href="https://line.me" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-emerald-500 hover:text-white flex items-center justify-center transition shadow-sm" title="LINE">
+            <i class="fa-brands fa-line text-lg"></i>
+          </a>
+          <!-- ปุ่ม Copy Link -->
+          <button onclick="navigator.clipboard.writeText(window.location.href); alert('คัดลอกลิงก์เรียบร้อยแล้วค่ะ');" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-knowledge-accent hover:text-white flex items-center justify-center transition shadow-sm" title="คัดลอกลิงก์">
+            <i class="fa-solid fa-link text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 🔍 POPUP 1: เช็กอาการฉุกเฉิน & ขั้นตอนปฐมพยาบาล -->
+  <!-- ======================================================== -->
+  <div id="triage-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-lg w-full rounded-2xl shadow-2xl p-6 overflow-y-auto max-h-[90vh]">
+      <div class="flex items-center justify-between pb-3 border-b border-neutral-200">
+        <h3 class="font-display font-bold text-lg text-red-700 flex items-center gap-2">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          ประเมินอาการฉุกเฉินวิกฤต (Triage Checklist)
+        </h3>
+        <button onclick="document.getElementById('triage-modal').classList.add('hidden')" class="text-neutral-400 hover:text-black text-2xl leading-none">&times;</button>
+      </div>
+      
+      <div class="py-4 space-y-3 text-sm text-neutral-700">
+        <p class="font-medium text-neutral-900">หากพบสัญญาณเตือนข้อใดข้อหนึ่งต่อไปนี้ ให้กดโทร 1669 ทันที:</p>
+        <label class="flex items-center gap-3 p-2.5 rounded-xl bg-neutral-50 hover:bg-red-50 cursor-pointer">
+          <input type="checkbox" class="h-4 w-4 text-red-600 rounded">
+          <span>หมดสติ ปลุกไม่ตื่น ไม่รู้สึกตัว</span>
+        </label>
+        <label class="flex items-center gap-3 p-2.5 rounded-xl bg-neutral-50 hover:bg-red-50 cursor-pointer">
+          <input type="checkbox" class="h-4 w-4 text-red-600 rounded">
+          <span>หายใจเฮือก หายใจลำบาก หรือหยุดหายใจ</span>
+        </label>
+        <label class="flex items-center gap-3 p-2.5 rounded-xl bg-neutral-50 hover:bg-red-50 cursor-pointer">
+          <input type="checkbox" class="h-4 w-4 text-red-600 rounded">
+          <span>หน้าเบี้ยว แขนขาอ่อนแรงครึ่งซีก พูดไม่ชัด (FAST)</span>
+        </label>
+        <label class="flex items-center gap-3 p-2.5 rounded-xl bg-neutral-50 hover:bg-red-50 cursor-pointer">
+          <input type="checkbox" class="h-4 w-4 text-red-600 rounded">
+          <span>เจ็บแน่นหน้าอกรุนแรง เหงื่อแตก ตัวเย็น</span>
+        </label>
+      </div>
+
+      <div class="pt-3 border-t border-neutral-100 flex gap-3">
+        <a href="tel:1669" class="flex-1 bg-emergency hover:bg-red-700 text-white font-bold py-2.5 text-center rounded-xl shadow transition">
+          โทร 1669 ทันที
+        </a>
+        <button onclick="document.getElementById('triage-modal').classList.add('hidden')" class="px-4 py-2.5 bg-neutral-100 text-neutral-600 rounded-xl hover:bg-neutral-200">
+          ปิดหน้าต่าง
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 💩 POPUP 2: ตรวจภาพอุจจาระ (เชื่อมต่อ Unji_Type1.jpg - Type6.jpg) -->
+  <!-- ======================================================== -->
+  <div id="stool-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-2xl w-full rounded-2xl shadow-2xl p-6 overflow-y-auto max-h-[90vh]">
+      <div class="flex items-center justify-between pb-3 border-b border-neutral-200">
+        <div>
+          <h3 class="font-display font-bold text-lg text-emerald-900 flex items-center gap-2">
+            <i class="fa-solid fa-poop text-emerald-600"></i>
+            เกณฑ์ประเมินลักษณะอุจจาระ (Bristol Stool Form)
+          </h3>
+          <p class="text-xs text-neutral-400">เปรียบเทียบรูปทรงเพื่อประเมินภาวะการขับถ่าย</p>
+        </div>
+        <button onclick="document.getElementById('stool-modal').classList.add('hidden')" class="text-neutral-400 hover:text-black text-2xl leading-none">&times;</button>
+      </div>
+      
+      <!-- รายการรูปภาพ Unji_Type1 ถึง Type6 ของคุณ -->
+      <div class="py-4 space-y-3.5">
+        
+        <!-- Type 1 -->
+        <div class="flex items-center gap-3.5 p-3 rounded-xl bg-amber-50/80 border border-amber-200">
+          <img src="Unji_Type1.jpg" alt="Type 1" class="w-16 h-16 rounded-lg object-cover border border-amber-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+1'">
+          <div class="text-sm">
+            <div class="font-bold text-amber-900">Type 1: เม็ดแข็งกระสุน คล้ายขี้แพะ</div>
+            <p class="text-xs text-amber-700 mb-0"><strong>ท้องผูกรุนแรง:</strong> อุจจาระตกค้างในลำไส้นาน ขาดน้ำอย่างมาก แนะนำจิบน้ำเพิ่มและปรึกษาแพทย์</p>
+          </div>
+        </div>
+
+        <!-- Type 2 -->
+        <div class="flex items-center gap-3.5 p-3 rounded-xl bg-amber-50/50 border border-amber-200">
+          <img src="Unji_Type2.jpg" alt="Type 2" class="w-16 h-16 rounded-lg object-cover border border-amber-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+2'">
+          <div class="text-sm">
+            <div class="font-bold text-amber-900">Type 2: ทรงไส้กรอกแต่เป็นก้อนตะปุ่มตะป่ำ</div>
+            <p class="text-xs text-amber-700 mb-0"><strong>ท้องผูกปานกลาง:</strong> เริ่มมีการเกาะตัวแข็ง ขับถ่ายต้องเบ่ง แนะนำเพิ่มใยอาหารชนิดละลายน้ำ</p>
+          </div>
+        </div>
+
+        <!-- Type 3 -->
+        <div class="flex items-center gap-3.5 p-3 rounded-xl bg-emerald-50/60 border border-emerald-200">
+          <img src="Unji_Type3.jpg" alt="Type 3" class="w-16 h-16 rounded-lg object-cover border border-emerald-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+3'">
+          <div class="text-sm">
+            <div class="font-bold text-emerald-900">Type 3: ทรงไส้กรอกมีรอยแยกที่ผิว</div>
+            <p class="text-xs text-emerald-700 mb-0"><strong>ปกติ (เกณฑ์ดี):</strong> ขับถ่ายได้สะดวก ไม่มีอาการปวดเบ่ง ลำไส้มีความชุ่มชื้นพอเหมาะ</p>
+          </div>
+        </div>
+
+        <!-- Type 4 -->
+        <div class="flex items-center gap-3.5 p-3 rounded-xl bg-emerald-50 border border-emerald-300">
+          <img src="Unji_Type4.jpg" alt="Type 4" class="w-16 h-16 rounded-lg object-cover border border-emerald-400 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+4'">
+          <div class="text-sm">
+            <div class="font-bold text-emerald-900">Type 4: ผิวเรียบนุ่ม คล้ายกล้วยหอม</div>
+            <p class="text-xs text-emerald-700 mb-0"><strong>สมบูรณ์แบบ (Ideal):</strong> สุขภาพลำไส้และระบบย่อยอาหารทำงานได้อย่างมีประสิทธิภาพสูงสุด</p>
+          </div>
+        </div>
+
+        <!-- Type 5 -->
+        <div class="flex items-center gap-3.5 p-3 rounded-xl bg-amber-50/50 border border-amber-200">
+          <img src="Unji_Type5.jpg" alt="Type 5" class="w-16 h-16 rounded-lg object-cover border border-amber-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+5'">
+          <div class="text-sm">
+            <div class="font-bold text-amber-900">Type 5: ชิ้นนุ่มขอบตัดชัดเจน ถ่ายง่าย</div>
+            <p class="text-xs text-amber-700 mb-0"><strong>ค่อนข้างเหลว:</strong> ลำไส้บีบตัวเร็วไปเล็กน้อย หรือได้รับกากใยไม่เพียงพอ สังเกตอาการต่อเนื่อง</p>
+          </div>
+        </div>
+
+        <!-- Type 6 -->
+        <div class="flex items-center gap-3.5 p-3 rounded-xl bg-red-50/80 border border-red-200">
+          <img src="Unji_Type6.jpg" alt="Type 6" class="w-16 h-16 rounded-lg object-cover border border-red-300 shrink-0 bg-white" onerror="this.src='https://placehold.co/80x80?text=Type+6'">
+          <div class="text-sm">
+            <div class="font-bold text-red-900">Type 6: กึ่งเหลวกึ่งก้อน ขอบขุยยุ่ย</div>
+            <p class="text-xs text-red-700 mb-0"><strong>เริ่มท้องเสีย (Diarrhea):</strong> มีการอักเสบหรือติดเชื้อ ให้จิบผงเกลือแร่ ORS เพื่อชดเชยน้ำ</p>
+          </div>
+        </div>
+
+      </div>
+
+      <button onclick="document.getElementById('stool-modal').classList.add('hidden')" class="w-full py-2.5 bg-neutral-100 text-neutral-700 font-semibold rounded-xl hover:bg-neutral-200 transition">
+        ปิดหน้าต่าง
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer ท้ายหน้า -->
+  <footer class="bg-white border-t border-neutral-200 py-6 text-center text-xs text-neutral-400">
+    <p>© 2026 CaregiverFriends-hub. Designed for elderly & caregiver wellness.</p>
+  </footer>
 
 </body>
 </html>
-
