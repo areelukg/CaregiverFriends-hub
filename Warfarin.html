@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warfarin Safe Dining Guide - Elder CGF</title>
+  <style>
+    :root {
+      --green-bg: #e8f5e9;
+      --green-text: #2e7d32;
+      --yellow-bg: #fffde7;
+      --yellow-text: #b78103;
+      --red-bg: #ffebee;
+      --red-text: #c62828;
+      --primary: #1e3a8a;
+      --text: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: #f1f5f9; color: var(--text); padding: 16px; }
+    .container { max-width: 900px; margin: 0 auto; background: #ffffff; border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08); }
+    
+    .lang-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; }
+    .brand-tag { font-size: 0.82rem; font-weight: 700; color: #475569; letter-spacing: 0.5px; }
+    .lang-btn-group { display: flex; gap: 6px; }
+    .lang-btn { padding: 4px 10px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; font-size: 0.8rem; font-weight: 600; color: #475569; }
+    .lang-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    header { text-align: center; margin-bottom: 20px; }
+    header h1 { color: var(--primary); font-size: 1.5rem; margin-bottom: 6px; }
+    header p { color: #64748b; font-size: 0.88rem; line-height: 1.4; }
+
+    .search-box { margin-bottom: 12px; }
+    .search-box input { width: 100%; padding: 12px 16px; border: 2px solid #cbd5e1; border-radius: 10px; font-size: 0.95rem; outline: none; transition: 0.2s; }
+    .search-box input:focus { border-color: var(--primary); }
+
+    .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .filter-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; font-size: 0.82rem; font-weight: 600; }
+    .filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    .stats-bar { display: flex; justify-content: space-between; font-size: 0.8rem; color: #64748b; margin-bottom: 12px; padding: 0 4px; }
+
+    .result-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .food-card { border-radius: 10px; padding: 16px; border-left: 6px solid #ccc; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .food-card.green { border-left-color: var(--green-text); background: var(--green-bg); }
+    .food-card.yellow { border-left-color: var(--yellow-text); background: var(--yellow-bg); }
+    .food-card.red { border-left-color: var(--red-text); background: var(--red-bg); }
+
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 8px; }
+    .food-name { font-size: 1.05rem; font-weight: 700; color: #0f172a; }
+    .food-tag { font-size: 0.78rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
+    .food-card.green .food-tag { background: #c8e6c9; color: var(--green-text); }
+    .food-card.yellow .food-tag { background: #fff9c4; color: var(--yellow-text); }
+    .food-card.red .food-tag { background: #ffcdd2; color: var(--red-text); }
+
+    .info-row { font-size: 0.85rem; margin-bottom: 4px; color: #1e293b; display: flex; flex-wrap: wrap; gap: 6px; }
+    .info-label { font-weight: 700; }
+    .vit-k-val { font-size: 0.8rem; font-weight: 700; color: #0369a1; background: #e0f2fe; padding: 2px 6px; border-radius: 4px; }
+    .reason { font-size: 0.83rem; color: #475569; line-height: 1.45; margin-top: 4px; }
+
+    .disclaimer-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 0.76rem; color: #475569; line-height: 1.5; margin-bottom: 16px; }
+    .disclaimer-card strong { color: #0f172a; }
+
+    footer { text-align: center; font-size: 0.72rem; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 16px; line-height: 1.6; }
+    .no-result { text-align: center; color: #64748b; padding: 32px; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="lang-bar">
+    <div class="brand-tag">Elder CGF | CaregiverFriends | เพื่อนดูแลผู้สูงวัย</div>
+    <div class="lang-btn-group">
+      <button class="lang-btn active" onclick="changeLang('th', this)">ไทย</button>
+      <button class="lang-btn" onclick="changeLang('en', this)">English</button>
+      <button class="lang-btn" onclick="changeLang('zh', this)">中文</button>
+    </div>
+  </div>
+
+  <header>
+    <h1 id="ui-title">💊 เช็กเมนูอาหารกับยาวาร์ฟาริน (Warfarin)</h1>
+    <p id="ui-subtitle">อ้างอิงคู่มืออาหารท้องถิ่นลดโซเดียม สสส./สช., ฐานข้อมูล Thai FCD มหิดล และ USDA</p>
+  </header>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="พิมพ์ชื่อเมนู เช่น ส้มตำ, ต้มส้ม, ผักหวาน, แกงแค, Matcha..." onkeyup="filterFoods()">
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="setZone('all', this)" id="btn-all">ทั้งหมด</button>
+    <button class="filter-btn" onclick="setZone('green', this)" id="btn-green">🟢 ไฟเขียว (ทานได้ปกติ)</button>
+    <button class="filter-btn" onclick="setZone('yellow', this)" id="btn-yellow">🟡 ไฟเหลือง (คุมปริมาณ)</button>
+    <button class="filter-btn" onclick="setZone('red', this)" id="btn-red">🔴 ไฟแดง (เลี่ยงเด็ดขาด)</button>
+  </div>
+
+  <div class="stats-bar">
+    <span id="resultCount"></span>
+    <span id="ui-ref-note">Ref: สสส. เมนูลดโซเดียม & Thai FCD มหิดล</span>
+  </div>
+
+  <div class="result-list" id="foodList"></div>
+
+  <!-- Medical / Legal Disclaimer -->
+  <div class="disclaimer-card" id="ui-disclaimer-box">
+    <strong>ข้อจำกัดความรับผิดชอบทางการแพทย์และกฎหมาย (Medical Disclaimer):</strong><br>
+    ข้อมูลในแอปพลิเคชันนี้จัดทำขึ้นเพื่อการศึกษาและการจัดสรรโภชนาการเบื้องต้นเท่านั้น มิใช่การให้คำปรึกษาทางการแพทย์ การวินิจฉัย หรือการปรับขนาดยา ปริมาณวิตามินเคและสารอาหารอาจแปรผันตามแหล่งวัตถุดิบและสูตรปรุงอาหาร ผู้ป่วยที่ใช้ยาวาร์ฟารินต้องปฏิบัติตามคำสั่งแพทย์และเข้ารับการตรวจวัดระดับการแข็งตัวของเลือด (INR) อย่างสม่ำเสมอ ห้ามปรับเปลี่ยนพฤติกรรมการรับประทานอาหารอย่างกะทันหันโดยไม่ปรึกษาแพทย์หรือเภสัชกรประจำตัว
+  </div>
+
+  <footer>
+    MIT License © 2026 Elder CGF / CaregiverFriends (เพื่อนดูแลผู้สูงวัย)<br>
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction. The software is provided "AS IS", without warranty of any kind.
+  </footer>
+</div>
+
+<script>
+let currentLang = 'th';
+let currentZone = 'all';
+
+const uiText = {
+  th: {
+    title: "💊 เช็กเมนูอาหารกับยาวาร์ฟาริน (Warfarin)",
+    subtitle: "อ้างอิงคู่มืออาหารท้องถิ่นลดโซเดียม สสส./สช., ฐานข้อมูล Thai FCD มหิดล และ USDA",
+    searchPlaceholder: "พิมพ์ชื่อเมนู เช่น ส้มตำ, ต้มส้ม, ผักหวาน, แกงแค, Matcha...",
+    btnAll: "ทั้งหมด",
+    btnGreen: "🟢 ไฟเขียว (ทานได้ปกติ)",
+    btnYellow: "🟡 ไฟเหลือง (คุมปริมาณ)",
+    btnRed: "🔴 ไฟแดง (เลี่ยงเด็ดขาด)",
+    countText: "พบข้อมูล {n} รายการ",
+    noResult: "ไม่พบเมนูที่ค้นหา ลองพิมพ์ชื่อวัตถุดิบหลัก หรือค้นหาด้วยภาษาอังกฤษดูนะคะ",
+    portionPrefix: "โควตาแนะนำ: ",
+    vitKPrefix: "วิตามินเคโดยประมาณ: ",
+    reasonPrefix: "กลไกอาหาร: ",
+    refNote: "อ้างอิง: สสส. เมนูลดโซเดียม & Thai FCD มหิดล",
+    disclaimer: "<strong>ข้อจำกัดความรับผิดชอบทางการแพทย์และกฎหมาย (Medical Disclaimer):</strong><br>ข้อมูลในแอปพลิเคชันนี้จัดทำขึ้นเพื่อการศึกษาและการจัดสรรโภชนาการเบื้องต้นเท่านั้น มิใช่การให้คำปรึกษาทางการแพทย์ การวินิจฉัย หรือการปรับขนาดยา ปริมาณวิตามินเคและสารอาหารอาจแปรผันตามแหล่งวัตถุดิบและสูตรปรุงอาหาร ผู้ป่วยที่ใช้ยาวาร์ฟารินต้องปฏิบัติตามคำสั่งแพทย์และเข้ารับการตรวจวัดระดับการแข็งตัวของเลือด (INR) อย่างสม่ำเสมอ ห้ามปรับเปลี่ยนพฤติกรรมการรับประทานอาหารอย่างกะทันหันโดยไม่ปรึกษาแพทย์หรือเภสัชกรประจำตัว"
+  },
+  en: {
+    title: "💊 Warfarin Safe Dining Guide",
+    subtitle: "Based on 77 Prov. Low-Sodium Recipes, INMU Thai FCD & USDA Database",
+    searchPlaceholder: "Search dish name e.g., Som Tum, Tom Yum, Curry, Matcha...",
+    btnAll: "All",
+    btnGreen: "🟢 Green (Safe)",
+    btnYellow: "🟡 Yellow (Moderate)",
+    btnRed: "🔴 Red (Strictly Avoid)",
+    countText: "Found {n} items",
+    noResult: "No dishes found. Try searching by main ingredients.",
+    portionPrefix: "Safe Portion: ",
+    vitKPrefix: "Estimated Vit K: ",
+    reasonPrefix: "Mechanism: ",
+    refNote: "Ref: Thai Health Low-Sodium & INMU Thai FCD",
+    disclaimer: "<strong>Medical & Legal Disclaimer:</strong><br>This application is strictly for educational and dietary planning purposes. It does not constitute medical advice, diagnosis, or prescription adjustment. Vitamin K content may vary depending on agricultural sources and culinary recipes. Patients taking Warfarin must strictly adhere to physician instructions and monitor INR regularly. Do not abruptly change dietary habits without consulting your healthcare provider."
+  },
+  zh: {
+    title: "💊 华法林（Warfarin）饮食安全速查",
+    subtitle: "参考泰国77府减盐特色食谱、玛希敦大学营养所（Thai FCD）及美国USDA",
+    searchPlaceholder: "输入菜品名称，如：木瓜沙拉、冬阴功、咖喱、抹茶...",
+    btnAll: "全部",
+    btnGreen: "🟢 绿灯（安全可食）",
+    btnYellow: "🟡 黄灯（适量控量）",
+    btnRed: "🔴 红灯（严格避免）",
+    countText: "找到 {n} 道菜品",
+    noResult: "未找到相关菜品，请尝试搜索主要食材。",
+    portionPrefix: "建议分量：",
+    vitKPrefix: "预估维生素K：",
+    reasonPrefix: "药理机制：",
+    refNote: "参考来源：泰国减盐乡土菜系与玛希敦Thai FCD",
+    disclaimer: "<strong>医疗与法律免责声明（Medical Disclaimer）：</strong><br>本应用内容仅用于公众健康宣教及日常膳食计划参考，不得视为医疗诊断、处方调整或临床诊疗建议。因食材产地及烹饪手法不同，维生素K含量可能存在差异。服用华法林患者应严格遵医嘱定期复查抗凝指标（INR）。未经主治医师或临床药师评估，切勿短期内剧烈改变绿叶蔬菜摄入习惯。"
+  }
+};
+
+const foodDatabase = [
+  // 🟢 GREEN ZONE (ไฟเขียว - ปลอดภัย ทานได้ตามปกติ)
+  {
+    zone: "green",
+    name: { th: "ต้มส้มปลากระบอก (ภาคใต้ลดโซเดียม)", en: "Southern Sour Fish Soup (Tom Som Pla)", zh: "泰南酸角姜黄乌鱼汤（Tom Som）" },
+    zoneText: { th: "🟢 ทานได้ปกติ", en: "🟢 Safe", zh: "🟢 安全可食" },
+    portion: { th: "1 ถ้วยปกติ", en: "1 regular bowl", zh: "正常食用1小碗" },
+    vitK: "< 5 µg / ถ้วย",
+    reason: {
+      th: "น้ำแกงใสจากส้มแขก ขมิ้นชัน และหอมแดง ไม่มีผักใบเขียวสะสมวิตามินเค โซเดียมต่ำ ปลอดภัยต่อหัวใจและยา",
+      en: "Clear sour broth made with Garcinia and turmeric. No dark leafy greens; low sodium and gentle on clotting factors.",
+      zh: "采用藤黄果与姜黄熬制的清汤，无深色绿叶菜蓄积维生素K，减盐配方利于心脏且完全不扰抗凝。"
+    }
+  },
+  {
+    zone: "green",
+    name: { th: "แกงเหลืองปลากะพงยอดมะพร้าว (ภาคใต้)", en: "Southern Yellow Curry with Coconut Shoots", zh: "泰南姜黄椰子芯鲈鱼酸咖喱" },
+    zoneText: { th: "🟢 ทานได้ปกติ", en: "🟢 Safe", zh: "🟢 安全可食" },
+    portion: { th: "1 ถ้วย", en: "1 standard bowl", zh: "正常食用1碗" },
+    vitK: "< 10 µg / ถ้วย",
+    reason: {
+      th: "ยอดมะพร้าวขาวและเนื้อปลามีวิตามินเคต่ำมาก ปลอดภัย ไม่รบกวนยาวาร์ฟาริน",
+      en: "Pale coconut heart shoots and fish fillets have negligible Vitamin K, completely safe with Warfarin.",
+      zh: "白色嫩椰子芯与鱼肉维生素K极低，不干扰华法林药效。"
+    }
+  },
+  {
+    zone: "green",
+    name: { th: "ไก่ต้มขมิ้น (ภาคใต้)", en: "Southern Turmeric Chicken Soup", zh: "泰南鲜黄姜炖鸡汤" },
+    zoneText: { th: "🟢 ทานได้ปกติ", en: "🟢 Safe", zh: "🟢 安全可食" },
+    portion: { th: "1 ถ้วย", en: "1 bowl", zh: "正常食用1碗" },
+    vitK: "< 5 µg / ถ้วย",
+    reason: {
+      th: "ขมิ้นสดบุบต้มในน้ำแกงระดับปรุงอาหารไม่ได้เข้มข้นจนกระทบเกล็ดเลือด ซดน้ำซุปทานเนื้อไก่ได้สบายใจ",
+      en: "Culinary levels of boiled fresh turmeric do not affect platelets. A very safe warm broth for seniors.",
+      zh: "日常烹饪分量的鲜姜黄煮汤不影响血小板，可放心喝汤吃鸡肉。"
+    }
+  },
+  {
+    zone: "green",
+    name: { th: "แกงอ่อมปลา / ไก่ (ภาคอีสานสูตรลดเค็ม)", en: "Isan Herbal Fish Soup (Gaeng Om)", zh: "泰东北伊善清炖鱼肉草本汤（Gaeng Om）" },
+    zoneText: { th: "🟢 ทานได้ปกติ", en: "🟢 Safe", zh: "🟢 安全可食" },
+    portion: { th: "1 ถ้วย", en: "1 regular bowl", zh: "正常食用1小碗" },
+    vitK: "~15 – 25 µg / ถ้วย",
+    reason: {
+      th: "มะเขือเปราะ บวบ กะหล่ำปลี วิตามินเคต่ำ (เพียงแค่ไม่ตักผักชีลาวหรือผักแขยงพูนชาม)",
+      en: "Thai eggplants, luffa, and cabbage have very low Vitamin K. Just avoid heavy heaps of fresh dill.",
+      zh: "小圆绿茄、丝瓜及包菜维生素K很低（仅需避免过量添加新鲜莳萝叶）。"
+    }
+  },
+  {
+    zone: "green",
+    name: { th: "ส้มตำ (ตำไทย / ปูปลาร้าลดโซเดียม)", en: "Papaya Salad (Som Tum)", zh: "青木瓜沙拉（Som Tum）" },
+    zoneText: { th: "🟢 ทานได้ปกติ", en: "🟢 Safe", zh: "🟢 安全可食" },
+    portion: { th: "1 จานปกติ", en: "1 regular plate", zh: "正常食用1盘" },
+    vitK: "< 10 µg / จาน",
+    reason: {
+      th: "มะละกอดิบ มะเขือเทศ ถั่วฝักยาว วิตามินเคต่ำมาก ระวังเพียงโซเดียมและไม่เคี้ยวผักเคียงยอดกระถินดิบ",
+      en: "Raw papaya and tomatoes are very low in Vitamin K. Avoid raw lead-tree shoot garnish.",
+      zh: "生木瓜丝和番茄的维生素K极低。仅需注意控盐，避免嚼食生银合欢嫩梢。"
+    }
+  },
+  {
+    zone: "green",
+    name: { th: "ผัดไทยกุ้งสด (Pad Thai)", en: "Pad Thai with Prawns", zh: "鲜虾泰式炒河粉（Pad Thai）" },
+    zoneText: { th: "🟢 ทานได้ปกติ", en: "🟢 Safe", zh: "🟢 安全可食" },
+    portion: { th: "1 จาน", en: "1 standard plate", zh: "正常食用1盘" },
+    vitK: "~20 – 30 µg / จาน",
+    reason: {
+      th: "ใบกุยช่ายผัด 10–15g วิตามินเคไม่เกินเกณฑ์ปลอดภัย ถั่วงอกดิบเคียงทานได้ปกติ",
+      en: "Contains only 10-15g of Chinese chives, staying well within safe daily limits. Raw bean sprouts are safe.",
+      zh: "热炒韭菜仅10-15克，维生素K完全在安全阈值内，附带的生豆芽可放心吃。"
+    }
+  },
+  {
+    zone: "green",
+    name: { th: "ผัดกะเพราหมู / ไก่", en: "Holy Basil Stir-fry (Pad Krapow)", zh: "打抛猪肉/鸡肉饭" },
+    zoneText: { th: "🟢 ทานได้ปกติ", en: "🟢 Safe", zh: "🟢 安全可食" },
+    portion: { th: "1 จานปกติ", en: "1 standard plate", zh: "正常食用1份" },
+    vitK: "~35 – 55 µg / จาน",
+    reason: {
+      th: "ใบกะเพรา 1 กำมือหลวมๆ ผัดสุกแล้วมีวิตามินเคไม่เกินโควตาประจำวัน ทานได้ (ไม่ต้องขอใบกะเพรากรอบพูนจาน)",
+      en: "One handful of basil delivers only 35-55 µg of Vitamin K after cooking. Avoid heaps of crispy fried basil.",
+      zh: "单份打抛叶熟后维生素K仅35-55微克，在每日安全配额内（无需额外加大量炸脆叶）。"
+    }
+  },
+  {
+    zone: "green",
+    name: { th: "ต้มยำกุ้งน้ำใส / ต้มข่าไก่", en: "Tom Yum Kung (Clear Broth) / Tom Kha Gai", zh: "清汤冬阴功 / 椰汁鸡汤" },
+    zoneText: { th: "🟢 ทานได้ปกติ", en: "🟢 Safe", zh: "🟢 安全可食" },
+    portion: { th: "1 ถ้วย", en: "1 standard bowl", zh: "正常喝汤吃肉" },
+    vitK: "< 5 µg / ถ้วย",
+    reason: {
+      th: "ข่า ตะไคร้ ใบมะกรูด หั่นชิ้นใหญ่ต้มเอากลิ่น ไม่ได้เคี้ยวกลืน สารสกัดไม่ออกมาเข้มข้นจนส่งผลต่อเลือด",
+      en: "Herbs are infused in large slices for fragrance and not swallowed; active phytochemicals remain very low.",
+      zh: "南姜、香茅、柠檬叶为大块煮沸提味，并不直接嚼食，溶出的活性成分微乎其微。"
+    }
+  },
+  {
+    zone: "green",
+    name: { th: "ปลากะพงทอดน้ำปลา / ปลานึ่งมะนาว", en: "Fried Sea Bass with Fish Sauce / Steamed Lime Fish", zh: "香酥鲈鱼 / 清蒸柠檬鲈鱼" },
+    zoneText: { th: "🟢 ทานได้ปกติ", en: "🟢 Safe", zh: "🟢 安全可食" },
+    portion: { th: "ตามปกติ", en: "Standard serving", zh: "正常食用" },
+    vitK: "< 1 µg / 100g",
+    reason: {
+      th: "โปรตีนเนื้อปลาไม่มีผักใบเขียวรบกวนยา ปลอดภัยและเหมาะกับผู้สูงวัย",
+      en: "Lean fish protein contains virtually zero Vitamin K, safe and highly recommended for elderly patients.",
+      zh: "优质鱼肉蛋白几乎不含维生素K，无深色蔬菜干扰，对高龄患者极佳。"
+    }
+  },
+  {
+    zone: "green",
+    name: { th: "กะหล่ำปลีทอดน้ำปลา / ผัดฟักทอง", en: "Stir-fried White Cabbage / Pumpkin", zh: "鱼露炒卷心菜 / 炒南瓜" },
+    zoneText: { th: "🟢 ทานได้ปกติ", en: "🟢 Safe", zh: "🟢 安全可食" },
+    portion: { th: "1 จานเล็ก", en: "1 small side dish", zh: "小份配菜1盘" },
+    vitK: "~30 – 45 µg / จาน",
+    reason: {
+      th: "กะหล่ำปลีขาวและฟักทอง มีวิตามินเคต่ำกว่าผักใบเขียวเข้มมาก ปลอดภัยต่อค่าวาร์ฟาริน",
+      en: "Pale cabbage and pumpkin have far less Vitamin K than dark leafy greens, reliable vegetable choices.",
+      zh: "白卷心菜（包菜）与南瓜维生素K显著低于深绿蔬菜，是患者理想安全的佐餐蔬菜。"
+    }
+  },
+  {
+    zone: "green",
+    name: { th: "สปาเกตตีคาโบนารา / โบโลเนส", en: "Spaghetti Carbonara / Bolognese", zh: "奶油培根面 / 番茄肉酱意面" },
+    zoneText: { th: "🟢 ทานได้ปกติ", en: "🟢 Safe", zh: "🟢 安全可食" },
+    portion: { th: "1 จาน", en: "1 plate", zh: "正常食用1盘" },
+    vitK: "< 15 µg / จาน",
+    reason: {
+      th: "เส้นพาสต้า เนื้อสัตว์ และซอสมะเขือเทศมีวิตามินเคต่ำมาก ปลอดภัยต่อยา",
+      en: "Wheat pasta, minced meat, and tomato sauce are inherently low in Vitamin K.",
+      zh: "意大利面、肉类及番茄酱底维生素K含量极低，不影响药效。"
+    }
+  },
+
+  // 🟡 YELLOW ZONE (ไฟเหลือง - ทานได้แต่ต้องคุมปริมาณสม่ำเสมอ)
+  {
+    zone: "yellow",
+    name: { th: "แกงเลียงกุ้งสดผักรวม (ภาคกลาง)", en: "Central Thai Mixed Vegetable Soup (Gaeng Liang)", zh: "泰中部杂菜鲜虾清汤（Gaeng Liang）" },
+    zoneText: { th: "🟡 คุมปริมาณ", en: "🟡 Moderate", zh: "🟡 适量控量" },
+    portion: { th: "1 ถ้วย (เน้นฟักทอง/บวบ)", en: "1 bowl (focus on pumpkin/gourd)", zh: "1小碗（多吃南瓜丝瓜）" },
+    vitK: "~45 – 65 µg / ถ้วย",
+    reason: {
+      th: "ฟักทองและบวบปลอดภัยมาก แต่วิตามินเคจะมาจากใบแมงลักที่ต้มสุกยุบตัว เลี่ยงการตักใบแมงลักทานเป็นกำ",
+      en: "Pumpkin and luffa are very safe, but lemon basil concentrates Vitamin K when cooked down. Don't eat basil alone in heaps.",
+      zh: "南瓜与丝瓜极安全，维生素K主要来自煮透软缩的柠檬罗勒叶；避免大量单吃熟树叶。"
+    }
+  },
+  {
+    zone: "yellow",
+    name: { th: "แกงแคไก่ / แกงแคปลา (ภาคเหนือ)", en: "Northern Herbal Stew (Gaeng Khae)", zh: "泰北百草煨鸡/鱼（Gaeng Khae）" },
+    zoneText: { th: "🟡 ชิมแต่น้อย", en: "🟡 Moderate", zh: "🟡 适量分食" },
+    portion: { th: "1–2 ทัพพีเล็ก", en: "1-2 small ladles", zh: "分食1-2小勺" },
+    vitK: "~60 – 85 µg / ถ้วย",
+    reason: {
+      th: "ผักรวมมีดอกแค มะเขือพวง ตำลึง ชะอม ตักทานเนื้อไก่และน้ำแกงเล็กน้อย เลี่ยงการกินผักจนหมดชามคนเดียว",
+      en: "Contains Sesbania flowers, eggplants, ivy gourd, and acacia. Enjoy the chicken and broth; avoid finishing all greens alone.",
+      zh: "汇聚白木槿花、苦茄、小叶臭菜等多种野菜。品尝鸡肉少许喝汤，切忌一人独吞碗底野菜。"
+    }
+  },
+  {
+    zone: "yellow",
+    name: { th: "จอผักกาด (ภาคเหนือสูตรลดเค็ม)", en: "Northern Mustard Greens Stew (Jor Pak Kad)", zh: "泰北大芥菜酸汤（Jor Pak Kad）" },
+    zoneText: { th: "🟡 นานๆ ครั้ง", en: "🟡 Rare Occasions", zh: "🟡 偶尔浅尝" },
+    portion: { th: "1 ทัพพีเล็ก สัปดาห์ละ 1 ครั้ง", en: "1 small scoop once a week", zh: "每周最多1小勺" },
+    vitK: "~70 – 95 µg / ถ้วย",
+    reason: {
+      th: "ผักกวางตุ้งเมื่อต้มเปื่อยจนยุบตัว วิตามินเคจะสะสมค่อนข้างสูง ทานปริมาณคงที่สม่ำเสมอ ไม่ทานติดต่อกันหลายมื้อ",
+      en: "Mustard/Choy greens accumulate dense Vitamin K when stewed tender. Maintain steady weekly intake, avoid bingeing.",
+      zh: "大芥菜焖煮酥烂后体积萎缩，聚集较多维生素K。重在保持每周平稳摄入，切勿连续吃几餐。"
+    }
+  },
+  {
+    zone: "yellow",
+    name: { th: "แกงส้มชะอมกุ้ง", en: "Sour Soup with Acacia Omelet (Gaeng Som)", zh: "酸辣臭菜煎蛋汤（Gaeng Som）" },
+    zoneText: { th: "🟡 ชิมแต่น้อย", en: "🟡 Moderate", zh: "🟡 适量浅尝" },
+    portion: { th: "ไข่ชะอม 1–2 ชิ้นเต๋า", en: "1-2 omelet cubes", zh: "1-2小块煎蛋" },
+    vitK: "~15 – 25 µg (1–2 ชิ้น)",
+    reason: {
+      th: "ชะอมมีวิตามินเคสูง แต่ 1 ชิ้นมีชะอมจริง 3–5g ห้ามซดน้ำแกงจนหมดหรือกินคนเดียวหมดหม้อ 10 กว่าชิ้น",
+      en: "Acacia leaves are rich in Vitamin K (~250 µg/100g), but 1-2 cubes contain only 3-5g. Never finish the whole pot.",
+      zh: "臭菜（羽叶金合欢）维生素K高达250µg/100g，但1-2小块仅含几克鲜叶；切忌一人独吞整锅。"
+    }
+  },
+  {
+    zone: "yellow",
+    name: { th: "กาแฟส้มยูซุ / กาแฟผลไม้สด", en: "Yuzu Iced Americano / Citrus Coffee", zh: "柚子冰美式 / 柑橘咖啡" },
+    zoneText: { th: "🟡 พอประมาณ", en: "🟡 Moderate", zh: "🟡 适量浅尝" },
+    portion: { th: "ไม่เกิน 1 แก้ว/วัน", en: "Max 1 cup/day", zh: "每天最多1杯" },
+    vitK: "< 2 µg / แก้ว",
+    reason: {
+      th: "น้ำส้มยูซุแท้มีสารบล็อกเอนไซม์ตับน้อยมาก ไม่เหมือนเกรปฟรุต ดื่มได้วันละ 1 แก้ว ระวังคาเฟอีนดีดใจสั่น",
+      en: "Unlike grapefruit, pure yuzu juice has negligible CYP3A4 inhibitors. Monitor caffeine for cardiac conditions.",
+      zh: "天然柚子真果汁中CYP3A4抑制物极少，不同于西柚；每天1杯无妨，需留意咖啡因心悸。"
+    }
+  },
+  {
+    zone: "yellow",
+    name: { th: "ชาเขียวมัทฉะเข้มข้น", en: "Concentrated Matcha Green Tea", zh: "浓郁抹茶饮品" },
+    zoneText: { th: "🟡 จิบพอรู้รส", en: "🟡 Moderate", zh: "🟡 适量浅尝" },
+    portion: { th: "จิบ 2–3 อึก หรือชงใส", en: "A few sips / choose clear green tea", zh: "浅尝数口或改喝淡绿茶" },
+    vitK: "~30 – 60 µg / แก้ว",
+    reason: {
+      th: "บดใบชาเขียวทั้งใบมาชง วิตามินเคสูงกว่าชาใส แนะนำเลือกชาเขียวชงใสเจือจางแทน",
+      en: "Whole tea leaves are powdered, providing significantly higher Vitamin K than brewed loose-leaf tea.",
+      zh: "研磨整叶饮用，维生素K显著高于滤渣绿茶。建议选择稀释冲泡的绿茶清汤。"
+    }
+  },
+  {
+    zone: "yellow",
+    name: { th: "ซีซาร์สลัด (ผักกาดโรเมน/คอส)", en: "Caesar Salad (Romaine Lettuce)", zh: "凯撒沙拉（罗马生菜）" },
+    zoneText: { th: "🟡 คุมปริมาณ", en: "🟡 Moderate", zh: "🟡 稳定摄入" },
+    portion: { th: "ถ้วยเล็ก 1 ถ้วย", en: "1 small side bowl", zh: "小碗食用" },
+    vitK: "~50 – 70 µg / ถ้วย",
+    reason: {
+      th: "ผักกาดโรเมนมีวิตามินเคปานกลาง ทานได้แต่ต้องทานสม่ำเสมอทุกสัปดาห์ ไม่กินชามยักษ์กะทันหัน",
+      en: "Romaine lettuce has moderate Vitamin K (~100 µg/100g). Safe if intake is consistent week-to-week.",
+      zh: "罗马生菜含中等维生素K（约100µg/100g）。重点在保持每周规律摄入，避免突击暴食大碗。"
+    }
+  },
+  {
+    zone: "yellow",
+    name: { th: "น้ำมันมะกอก Extra Virgin / อะโวคาโด", en: "Extra Virgin Olive Oil / Avocado Oil", zh: "特级初榨橄榄油 / 牛油果油" },
+    zoneText: { th: "🟡 ทานสม่ำเสมอ", en: "🟡 Consistent", zh: "🟡 规律摄入" },
+    portion: { th: "1–2 ช้อนโต๊ะ/มื้อ", en: "1-2 tbsp in salad dressing", zh: "每餐拌菜1-2汤匙" },
+    vitK: "~10 – 18 µg / ช้อนโต๊ะ",
+    reason: {
+      th: "มีวิตามินเค 1 ปานกลาง (~50–60 µg/100g) นำมาคลุกสลัดทานได้ปกติ แต่ต้องทานปริมาณสม่ำเสมอทุกสัปดาห์",
+      en: "Contains moderate Vitamin K1. Perfectly fine for dressing as long as daily/weekly volume stays steady.",
+      zh: "含中等维生素K1，拌沙拉食用完全正常，关键在于保持每日用量稳定，勿忽断忽续。"
+    }
+  },
+  {
+    zone: "yellow",
+    name: { th: "ผัดผักบุ้งไฟแดง", en: "Stir-fried Morning Glory (Water Spinach)", zh: "辣炒空心菜（通菜）" },
+    zoneText: { th: "🟡 คุมปริมาณ", en: "🟡 Moderate", zh: "🟡 适量分食" },
+    portion: { th: "1–2 ทัพพีเล็ก", en: "1-2 small scoops", zh: "分食1-2小勺" },
+    vitK: "~70 – 90 µg / ทัพพี",
+    reason: {
+      th: "ผักบุ้งมีวิตามินเคค่อนข้างสูง ตักทานร่วมโต๊ะได้ 1–2 ทัพพี ห้ามเหมาทานคนเดียวหมดจาน",
+      en: "Water spinach has relatively high Vitamin K. Safe to share 1-2 small scoops; do not finish the whole plate alone.",
+      zh: "空心菜维生素K偏高。聚餐时分食1-2小勺无妨，切勿独自一人扫光整整一盘。"
+    }
+  },
+
+  // 🔴 RED ZONE (ไฟแดง - อันตราย เสี่ยงค่ายาแกว่งรุนแรง ควรเลี่ยงเด็ดขาด)
+  {
+    zone: "red",
+    name: { th: "แกงผักหวานป่าใส่ไข่มดแดง / ปลาย่าง", en: "Wild Melientha Soup with Ant Eggs (Gaeng Phak Waan)", zh: "野生凹叶木叶辣汤（Gaeng Phak Waan）" },
+    zoneText: { th: "🔴 เลี่ยงเด็ดขาด", en: "🔴 Strictly Avoid", zh: "🔴 严格避免" },
+    portion: { th: "เลี่ยงเด็ดขาด (ชิมไม่เกิน 1 ช้อน)", en: "Avoid / max 1 small spoonful", zh: "坚决不吃 / 最多尝半勺" },
+    vitK: "> 500 – 700 µg / ถ้วย",
+    reason: {
+      th: "ผักหวานป่าสดต้มยุบตัวลงมหาศาล (Thai FCD: วิตามินเคสูงถึง 350–450 µg/100g) ทานหมดถ้วยหักล้างยาวาร์ฟารินฉับพลัน เสี่ยงลิ่มเลือดอุดตัน",
+      en: "Wild Melientha shrinks down heavily when boiled, packing >500 µg Vitamin K per bowl and severely neutralizing Warfarin.",
+      zh: "野生凹叶木嫩叶水煮急剧收缩，整碗聚集超500微克超强维生素K，严重破坏抗凝平衡，诱发血栓！"
+    }
+  },
+  {
+    zone: "red",
+    name: { th: "ยำผักกูดทรงเครื่อง (ภาคใต้)", en: "Southern Paco Fern Salad (Yum Phak Koot)", zh: "泰南凉拌过猫野菜/蹄盖蕨（Phak Koot）" },
+    zoneText: { th: "🔴 เสี่ยงสูง", en: "🔴 High Risk", zh: "🔴 极高风险" },
+    portion: { th: "งดทานจานเดี่ยว (ชิมไม่เกิน 1 คำ)", en: "Avoid full plate; taste 1 bite only", zh: "切勿单点整盘，仅尝一口" },
+    vitK: "~350 – 450 µg / จาน",
+    reason: {
+      th: "ยอดผักกูดเขียวเข้มมีวิตามินเค 1 หนาแน่นมาก การทานยำผักกูดหมดจานทำให้ค่าวาร์ฟารินดิ่งทันที",
+      en: "Paco fern fiddleheads are packed with Vitamin K1. Finishing a whole salad plummets INR rapidly.",
+      zh: "蹄盖蕨（过猫嫩叶）深绿部分富含强力维生素K，吃光一整盘凉拌菜会使抗凝指标发生断崖式下跌。"
+    }
+  },
+  {
+    zone: "red",
+    name: { th: "แกงขี้เหล็กปลาย่าง (สูตรดั้งเดิม)", en: "Cassia Leaf Curry with Grilled Fish", zh: "泰式铁刀木苦叶清咖喱" },
+    zoneText: { th: "🔴 เลี่ยงเด็ดขาด", en: "🔴 Strictly Avoid", zh: "🔴 严格避免" },
+    portion: { th: "เลี่ยงเด็ดขาด", en: "Strictly avoid", zh: "坚决忌口" },
+    vitK: "> 400 – 600 µg / ถ้วย",
+    reason: {
+      th: "วิตามินเคละลายในไขมัน จึงไม่สลายไปกับการต้มน้ำทิ้ง ใบขี้เหล็กที่ต้มเปื่อยยุบตัวอัดแน่นด้วยวิตามินเคสูงมาก",
+      en: "Vitamin K is fat-soluble and is NOT lost during water-boiling blanching. Stewed down cassia leaves concentrate mega-dose Vitamin K.",
+      zh: "维生素K属于脂溶性，不会随焯水流失。煮烂浓缩的铁刀木苦叶维生素K极度饱和，直接阻断药效。"
+    }
+  },
+  {
+    zone: "red",
+    name: { th: "ใบเหลียงผัดไข่", en: "Stir-fried Melinjo Leaves (Bai Liang Pad Khai)", zh: "泰南名菜炒买麻藤叶（Bai Liang）" },
+    zoneText: { th: "🔴 เลี่ยงเด็ดขาด", en: "🔴 Strictly Avoid", zh: "🔴 严格避免" },
+    portion: { th: "เลี่ยงได้เลี่ยง (ชิมไม่เกิน 1 ช้อน)", en: "Avoid / max 1 small spoonful", zh: "坚决不点 / 最多尝半勺" },
+    vitK: "> 800 – 1,200 µg / จาน",
+    reason: {
+      th: "ใบเหลียงสด 1 จานใช้เกือบ 2 ขีด (Thai FCD: วิตามินเคสูงถึง 400–600 µg/100g) ทานหมดจานหักล้างยาวาร์ฟารินฉับพลัน",
+      en: "1 plate requires ~200g of leaves (Vit K >500 µg/100g). Eating a full plate floods the body with >1,000 µg, neutralizing Warfarin.",
+      zh: "单盘需耗费近200克生叶（含量高达400-600µg/100g），整盘摄入破1000微克，直接失效抗凝药！"
+    }
+  },
+  {
+    zone: "red",
+    name: { th: "เมี่ยงคำโบราณ", en: "Herbal Betel Leaf Wraps (Miang Kham)", zh: "泰式传统一口包/槟榔假蒌叶包" },
+    zoneText: { th: "🔴 เสี่ยงสูง", en: "🔴 High Risk", zh: "🔴 极高风险" },
+    portion: { th: "ชิมได้ 1–2 คำพอ ห้ามกินหมดชุด", en: "Taste 1-2 wraps only; never finish", zh: "浅尝1-2个，切勿包揽整盘" },
+    vitK: "~150 – 250 µg / ชุด",
+    reason: {
+      th: "ใบชะพลูดิบมีวิตามินเคสูงปรี๊ด และมีขิงสด กระเทียมสดหั่นเต๋า เสริมฤทธิ์เลือดออกผิดปกติ",
+      en: "Raw wild betel leaves are dense in Vitamin K, while raw ginger and garlic cubes introduce additive bleeding risks.",
+      zh: "生假蒌叶富含极高维生素K，同时附带大块生姜生蒜，双重剧烈扰乱INR凝血指标。"
+    }
+  },
+  {
+    zone: "red",
+    name: { th: "น้ำผักผลไม้สกัดเย็นเข้มข้น (Green Juice)", en: "Cold-Pressed Green Juice / Wheatgrass", zh: "特浓冷榨羽衣甘蓝青汁 / 小麦草汁" },
+    zoneText: { th: "🔴 งดเด็ดขาด", en: "🔴 Strictly Avoid", zh: "🔴 坚决禁用" },
+    portion: { th: "ไม่ควรดื่มแม้แก้วเล็ก", en: "Do not drink even small shots", zh: "哪怕一小杯也严禁饮用" },
+    vitK: "> 500 – 1,000 µg / แก้ว",
+    reason: {
+      th: "บีบอัดผักเคล ผักโขม เซเลอรีเป็นกิโลลงแก้วเดียว วิตามินเคมหาศาล ยาต้านไม่อยู่ เลือดข้นเสี่ยงลิ่มเลือดฉับพลัน",
+      en: "Condenses kilograms of raw greens into a single cup. Massive Vitamin K completely overpowers Warfarin, risking clots.",
+      zh: "将整斤菠菜、羽衣甘蓝机械高压浓缩，涌入天量维生素K，药效全失，极易突发血栓！"
+    }
+  },
+  {
+    zone: "red",
+    name: { th: "สลัดผักเคลชามโต (Kale Superfood Bowl)", en: "Raw Kale Superfood Salad Bowl", zh: "纯生羽衣甘蓝超级沙拉大碗" },
+    zoneText: { th: "🔴 เลี่ยงแบบเคลล้วน", en: "🔴 Strictly Avoid", zh: "🔴 避免纯食" },
+    portion: { th: "ทานผักเคียงได้ 1–2 ใบ", en: "1-2 leaves as side garnish only", zh: "仅限1-2片点缀，切勿主食" },
+    vitK: "~400 – 600 µg / ชาม",
+    reason: {
+      th: "ผักเคลดิบมีวิตามินเค 1 สูงระดับหัวแถว การกินสลัดเคลชามโตทำให้ค่าวาร์ฟารินดิ่งทันที",
+      en: "Raw kale contains ~500 µg/100g of Vitamin K1. A giant salad bowl causes immediate INR drop.",
+      zh: "生羽衣甘蓝维生素K高达近500µg/100g，一整大碗会引发抗凝指标剧烈断崖式下跌。"
+    }
+  },
+  {
+    zone: "red",
+    name: { th: "น้ำมันเมล็ดแฟลกซ์ / งาขี้ม่อนสกัดเย็น", en: "Flaxseed / Perilla Oil (Raw Drops/Capsules)", zh: "亚麻籽油 / 紫苏籽油（纯生饮/胶囊）" },
+    zoneText: { th: "🔴 งดเด็ดขาด", en: "🔴 Strictly Avoid", zh: "🔴 坚决禁用" },
+    portion: { th: "ห้ามดื่มสดเป็นช้อนหรือทานแบบเม็ด", en: "Strictly avoid shots or softgels", zh: "严禁直接勺服或服用软胶囊" },
+    vitK: "N/A (เสี่ยงต้านเกล็ดเลือด)",
+    reason: {
+      th: "กรดไขมันโอเมก้า 3 (ALA) สูงถึง 50–60% ต้านการเกาะกลุ่มของเกล็ดเลือดรุนแรง เสี่ยงเลือดออกไม่หยุด",
+      en: "Contains 50-60% Omega-3 (ALA) with potent antiplatelet action, drastically magnifying bleeding hemorrhage risks.",
+      zh: "富含50-60%植物性Omega-3（ALA），具强效抗血小板活性，与华法林叠加大增出血风险。"
+    }
+  },
+  {
+    zone: "red",
+    name: { th: "ถั่วหมักนัตโตะ (Natto)", en: "Japanese Fermented Soybeans (Natto)", zh: "日本纳豆（Natto）" },
+    zoneText: { th: "🔴 งดเด็ดขาด", en: "🔴 Strictly Avoid", zh: "🔴 坚决禁用" },
+    portion: { th: "ห้ามรับประทาน", en: "Strictly prohibited", zh: "绝对禁止食用" },
+    vitK: "> 800 µg (K2) / กล่อง",
+    reason: {
+      th: "แบคทีเรียผลิตวิตามินเค 2 (MK-7) ปริมาณมหาศาล ตกค้างในกระแสเลือดนานหลายวัน หักล้างยาอย่างรุนแรง",
+      en: "Bacteria generate mega-doses of Vitamin K2 (MK-7) which stays in blood for days, totally blocking Warfarin.",
+      zh: "枯草芽孢杆菌生成天量长效维生素K2（MK-7），在体内留存数日，极强力瓦解华法林药效。"
+    }
+  },
+  {
+    zone: "red",
+    name: { th: "น้ำเกรปฟรุตสด / ส้มซ่าฝรั่ง", en: "Fresh Grapefruit / Seville Orange Juice", zh: "新鲜西柚汁（葡萄柚）/ 苦橙汁" },
+    zoneText: { th: "🔴 งดเด็ดขาด", en: "🔴 Strictly Avoid", zh: "🔴 坚决禁用" },
+    portion: { th: "ห้ามดื่ม", en: "Strictly prohibited", zh: "绝对禁止饮用" },
+    vitK: "N/A (เสี่ยงยับยั้งเอนไซม์ตับ)",
+    reason: {
+      th: "สาร Furanocoumarins บล็อกเอนไซม์ CYP3A4 ที่ตับอย่างถาวร ทำให้ยาวาร์ฟารินคั่งในเลือด เลือดออกง่ายผิดปกติ",
+      en: "Furanocoumarins irreversibly disable CYP3A4 liver/gut enzymes, causing Warfarin toxicity and severe bleeding.",
+      zh: "高浓度呋喃香豆素不可逆地抑制肝肠CYP3A4酶，致使药物在血液中病理性蓄积，极易出血。"
+    }
+  }
+];
+
+function changeLang(lang, btn) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const t = uiText[lang];
+  document.getElementById('ui-title').innerText = t.title;
+  document.getElementById('ui-subtitle').innerText = t.subtitle;
+  document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+  document.getElementById('btn-all').innerText = t.btnAll;
+  document.getElementById('btn-green').innerText = t.btnGreen;
+  document.getElementById('btn-yellow').innerText = t.btnYellow;
+  document.getElementById('btn-red').innerText = t.btnRed;
+  document.getElementById('ui-ref-note').innerText = t.refNote;
+  document.getElementById('ui-disclaimer-box').innerHTML = t.disclaimer;
+
+  filterFoods();
+}
+
+function setZone(zone, btn) {
+  currentZone = zone;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterFoods();
+}
+
+function filterFoods() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const list = document.getElementById('foodList');
+  list.innerHTML = '';
+
+  const t = uiText[currentLang];
+
+  const filtered = foodDatabase.filter(item => {
+    const matchZone = (currentZone === 'all') || (item.zone === currentZone);
+    const nameMatch = item.name.th.toLowerCase().includes(query) || 
+                      item.name.en.toLowerCase().includes(query) || 
+                      item.name.zh.toLowerCase().includes(query);
+    const reasonMatch = item.reason[currentLang].toLowerCase().includes(query);
+    return matchZone && (nameMatch || reasonMatch);
+  });
+
+  document.getElementById('resultCount').innerText = t.countText.replace('{n}', filtered.length);
+
+  if (filtered.length === 0) {
+    list.innerHTML = `<div class="no-result">${t.noResult}</div>`;
+    return;
+  }
+
+  filtered.forEach(item => {
+    const card = document.createElement('div');
+    card.className = `food-card ${item.zone}`;
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="food-name">${item.name[currentLang]}</div>
+        <div class="food-tag">${item.zoneText[currentLang]}</div>
+      </div>
+      <div class="info-row">
+        <span class="info-label">${t.portionPrefix}</span>
+        <span>${item.portion[currentLang]}</span>
+        <span class="vit-k-val">${t.vitKPrefix}${item.vitK}</span>
+      </div>
+      <div class="reason"><strong>${t.reasonPrefix}</strong>${item.reason[currentLang]}</div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+// Initial Run
+filterFoods();
+</script>
+
+</body>
+</html>
