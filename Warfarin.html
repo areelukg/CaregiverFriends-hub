@@ -74,14 +74,13 @@
     .disclaimer-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 0.76rem; color: #475569; line-height: 1.5; margin-bottom: 16px; }
     .disclaimer-card strong { color: #0f172a; }
 
-    /* Footer & CC BY-NC 4.0 Styling */
+    /* Footer & Utility Class Styling */
     footer { border-top: 1px solid #e2e8f0; padding-top: 18px; margin-top: 12px; }
-    .license-container { background: #f8fafc; border-radius: 8px; padding: 12px 16px; font-size: 0.75rem; color: #475569; line-height: 1.55; }
-    .license-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; font-weight: 700; color: #1e293b; }
-    .license-badge { display: inline-flex; align-items: center; gap: 4px; background: #e2e8f0; color: #334155; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; text-decoration: none; font-weight: 700; }
-    .license-badge:hover { background: #cbd5e1; }
-    .license-desc { margin-bottom: 8px; }
-    .license-reviewers { font-style: italic; color: #64748b; font-size: 0.72rem; border-top: 1px dashed #cbd5e1; padding-top: 6px; }
+    .license-container { background: #f8fafc; border-radius: 8px; padding: 14px 16px; font-size: 0.75rem; color: #475569; line-height: 1.55; }
+    .text-slate-400 { color: #94a3b8; font-size: 0.75rem; margin-bottom: 6px; }
+    .underline { text-decoration: underline; }
+    .hover\:text-blue-600:hover { color: #2563eb; }
+    .license-reviewers { font-style: italic; color: #64748b; font-size: 0.72rem; border-top: 1px dashed #cbd5e1; padding-top: 8px; margin-top: 8px; }
     
     .no-result { text-align: center; color: #64748b; padding: 32px; font-size: 0.9rem; }
   </style>
@@ -158,17 +157,18 @@ const uiText = {
     refNote: "ฐานข้อมูล: สสส. & Thai FCD มหิดล",
     disclaimer: "<strong>ข้อจำกัดความรับผิดชอบทางการแพทย์และกฎหมาย (Medical Disclaimer):</strong><br>ข้อมูลในระบบจัดทำขึ้นเพื่อการศึกษาและการจัดสรรโภชนาการเบื้องต้นสำหรับผู้ดูแลเท่านั้น มิใช่การให้คำปรึกษาทางการแพทย์ การวินิจฉัย หรือการปรับขนาดยา ปริมาณสารสำคัญอาจแปรผันตามแหล่งวัตถุดิบและสูตรปรุงอาหาร ผู้ป่วยที่ใช้ยาวาร์ฟารินต้องปฏิบัติตามคำสั่งแพทย์และเข้ารับการตรวจวัดระดับการแข็งตัวของเลือด (INR) อย่างสม่ำเสมอ ห้ามปรับเปลี่ยนพฤติกรรมการรับประทานอาหารอย่างกะทันหันโดยไม่ปรึกษาแพทย์หรือเภสัชกร",
     licenseBox: `
-      <div class="license-header">
-        <span property="dct:title">Warfarin Safe Dining Guide</span>
-        <a class="license-badge" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.th" target="_blank">
-          <span>CC BY-NC 4.0</span>
-        </a>
-      </div>
-      <div class="license-desc">
+      <p class="text-slate-400">
+        Licensed under
+        <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.th"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="underline hover:text-blue-600">
+          Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+        </a>.
+      </p>
+      <div style="margin-top: 4px;">
         © 2026 สร้างสรรค์โดย <strong property="cc:attributionName">Elder CGF / CaregiverFriends (เพื่อนดูแลผู้สูงวัย)</strong><br>
-        ผลงานนี้เผยแพร่ภายใต้สัญญาอนุญาต <strong>Creative Commons แบบแสดงที่มา-ไม่ใช้เพื่อการค้า 4.0 สากล (CC BY-NC 4.0)</strong><br>
-        • <strong>อนุญาต:</strong> ทำซ้ำ แจกจ่าย และส่งต่อเพื่อประโยชน์ทางการศึกษาและการดูแลผู้สูงวัย โดยต้องแสดงที่มาอย่างชัดเจน<br>
-        • <strong>ข้อห้าม:</strong> ไม่อนุญาตให้นำโค้ด ฐานข้อมูล หรือเนื้อหานี้ไปใช้เพื่อการค้า หรือแสวงหากำไรเชิงพาณิชย์โดยเด็ดขาด
+        อนุญาตให้เผยแพร่และส่งต่อเพื่อประโยชน์ทางการศึกษาและการดูแลผู้สูงวัยโดย<strong>ต้องแสดงที่มา (Attribution)</strong> และ<strong>ห้ามนำไปใช้เพื่อการค้าหรือแสวงหากำไรโดยเด็ดขาด (Non-Commercial)</strong>
       </div>
       <div class="license-reviewers">
         Reviewed & Verified by Multidisciplinary Health Team: Pharmacist, Internist, Clinical Dietitian, Chef & Thai Traditional Medicine Specialist.
@@ -197,17 +197,18 @@ const uiText = {
     refNote: "Ref: ThaiHealth & INMU Thai FCD",
     disclaimer: "<strong>Medical & Legal Disclaimer:</strong><br>This tool is for educational and nutritional screening purposes only. It does not constitute medical advice, diagnosis, or medication adjustments. Nutritional actives vary by recipes. Warfarin patients must consult their physician and monitor INR regularly. Do not make drastic dietary changes without professional supervision.",
     licenseBox: `
-      <div class="license-header">
-        <span property="dct:title">Warfarin Safe Dining Guide</span>
-        <a class="license-badge" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">
-          <span>CC BY-NC 4.0</span>
-        </a>
-      </div>
-      <div class="license-desc">
+      <p class="text-slate-400">
+        Licensed under
+        <a href="https://creativecommons.org/licenses/by-nc/4.0/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="underline hover:text-blue-600">
+          Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+        </a>.
+      </p>
+      <div style="margin-top: 4px;">
         © 2026 Developed by <strong property="cc:attributionName">Elder CGF / CaregiverFriends</strong><br>
-        Licensed under <strong>Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</strong><br>
-        • <strong>Permitted:</strong> Free to share, adapt, and distribute for non-commercial caregiver education with appropriate attribution.<br>
-        • <strong>Restricted:</strong> Strictly prohibited from commercial exploitation, re-selling, or monetized deployment.
+        Permitted for non-commercial educational sharing with attribution. Strictly prohibited from commercial use, resale, or monetized deployment.
       </div>
       <div class="license-reviewers">
         Reviewed & Verified by Multidisciplinary Health Team: Pharmacist, Internist, Clinical Dietitian, Chef & Thai Traditional Medicine Specialist.
@@ -236,17 +237,18 @@ const uiText = {
     refNote: "来源：泰国减盐乡土菜系与玛希敦Thai FCD",
     disclaimer: "<strong>医疗与法律免责声明（Medical Disclaimer）：</strong><br>本应用内容仅用于公众健康宣教及日常膳食计划参考，不得视为医疗诊断、处方调整或临床诊疗建议。因食材产地及烹饪手法不同，活性成分可能存在差异。服用华法林患者应严格遵医嘱定期复查抗凝指标（INR）。未经主治医师或临床药师评估，切勿短期内剧烈改变绿叶蔬菜与香料摄入习惯。",
     licenseBox: `
-      <div class="license-header">
-        <span property="dct:title">Warfarin Safe Dining Guide</span>
-        <a class="license-badge" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh" target="_blank">
-          <span>CC BY-NC 4.0</span>
-        </a>
-      </div>
-      <div class="license-desc">
+      <p class="text-slate-400">
+        Licensed under
+        <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="underline hover:text-blue-600">
+          Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+        </a>.
+      </p>
+      <div style="margin-top: 4px;">
         © 2026 由 <strong property="cc:attributionName">Elder CGF / CaregiverFriends（长者照护之友）</strong> 创制保留所有著作权<br>
-        本系统采用 <strong>知识共享 署名-非商业性使用 4.0 国际许可协议（CC BY-NC 4.0）</strong> 授权<br>
-        • <strong>允许：</strong> 允许在明确注明署名出处的前提下，出于非商业性照护教育与公益目的自由共享与传播。<br>
-        • <strong>禁止：</strong> 严禁任何个人或机构将本代码、数据库及解析内容用于商业销售、营利性打包或商用软件开发。
+        允许出于非商业性照护教育目的自由共享（须注明署名出处），严禁用于任何形式的商业营利与付费部署。
       </div>
       <div class="license-reviewers">
         多学科专业健康团队严格复核：临床药师、内科医师、注册营养师、资深主厨及泰医传统医学专员。
