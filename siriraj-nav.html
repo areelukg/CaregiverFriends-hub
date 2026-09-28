@@ -1,1068 +1,336 @@
-
-แชทใหม่
-ค้นหาแชท
-พรีพรอมต์
-ชุดคำสั่งที่บันทึกไว้
-คลัง
-เรียนรู้เกี่ยวกับ AI
-ผู้ช่วยอัจฉริยะ
-โฟลเดอร์
-
-รายการแชท
-ปรับปรุงแอปดูแลผู้ป่วยศิริราช
-วิธีป้องกันน้ำท่วมและเตรียมพร้อมรับมือ
-วิธีตรวจสอบและแก้ไขข้อมูลจากAI
-ตรวจสอบสถานะและรักษาสิทธิ์โปรโมชั่น
-วิธีดูแลผู้สูงอายุช่วงหน้าฝน
-AI บริหารธุรกิจดูแลผู้สูงอายุ
-ผลกระทบของอนุสัญญา UPOV1991 ต่อเกษตรกรไทย
-เลือกรับประทานหวานอย่างไรให้ปลอดภัยยา
-เลือกของหวานปลอดภัยให้ผู้สูงอายุ
-เทคนิคเลือกของหวานเพื่อผู้สูงอายุ
-แนวทางการทานหวานสำหรับผู้สูงอายุ
-การเลือกบริโภครสหวานอย่างปลอดภัย
-
-
-คำตอบ
-
-ลิงก์
-
-รูปภาพ
-
-Claude Sonnet 5
-Screenshot_20260928_125234_com.facebook.katana.jpg
-Screenshot_20260928_125223_com.facebook.katana.jpg
-Screenshot_20260928_115258_com.android.chrome.jpg
-ช่วยทำcodeปรับappนี้โดยปุ่มและหน้าตาภายนอกและโซนเหมือนเดิมให้caregiverใช้งานง่านสุดในการไปรพ.​ศิริราชคั แต่ปรับเนื้อหาให้ประเมินข้อมูลreal timeมากสุด ป้องกันปัญหามากสุดค
-
-เข้าใจแล้วค่ะ อยากได้แอป CareNav เวอร์ชันที่หน้าตา ปุ่ม และโซนเดิมทั้งหมด แต่ปรับให้:
-
-ข้อมูล Real-time มากขึ้น เช่น สภาพจราจรสด สภาพน้ำท่วมถนนแบบอัปเดตต่อเนื่อง (ไม่ใช่ข้อความ static)
-ป้องกันปัญหาระหว่างทาง เช่น เตือนเส้นทางเสี่ยงน้ำท่วม, จุดที่รถเล็กผ่านไม่ได้, เส้นทางเลี่ยงเมื่อรถติดหนัก, แจ้งเตือนก่อนถึงจุดเสี่ยง
-ก่อนจะแก้โค้ดให้ตรงจุดที่สุด ผมต้องขอดู โค้ดต้นฉบับ ของหน้านี้ก่อนครับ (ไฟล์ HTML/JS/CSS ที่ areelukg.github.io ใช้อยู่) เพราะ:
-
-ภาพหน้าจอบอกโครงสร้าง UI ได้ แต่ไม่เห็น logic เบื้องหลัง เช่น เช็คสภาพทางยังไง, ดึงข้อมูลจากไหน, แผนที่ Leaflet ผูกกับ API อะไร
-ถ้าผมเขียนใหม่จากภาพเดา จะเสี่ยงทำให้ปุ่ม/โซน/ฟังก์ชันเดิมเพี้ยนไปจากของจริง
-ช่วยส่งไฟล์โค้ดมาให้หน่อยได้ไหมครับ เช่น:
-
-ไฟล์ index.html / .js / .css (จากใน repo GitHub Pages ของ areelukg)
-หรือถ้าไม่สะดวกส่งไฟล์ ก็แชร์ลิงก์ repo GitHub มาได้ ผมจะดึงมาดูโครงสร้างจริง
-พอได้โค้ดแล้ว ผมจะช่วยปรับให้ครอบคลุมเช่น:
-
-ดึงข้อมูลจราจร/น้ำท่วมจาก API จริง (เช่น Traffy Fondue, กรมทางหลวง, หรือ Google/OSM traffic layer)
-Logic แจ้งเตือนอัตโนมัติเมื่อเส้นทางเสี่ยง (รถเล็กเจอจุดน้ำท่วม, ถนนปิด)
-ปุ่ม/โซนเดิมทั้งหมด ไม่เปลี่ยนหน้าตา
-ส่งโค้ดหรือลิงก์ repo มาได้เลยครับ 🙂
-
-เราทำopen sourceฟรีใช้งานแต่ไม่อนุญาตใช้ทางพาณิชย์คะ คทอช่วยคนล้วนๆคะ แต่เราไม่รู้ว่ามันไปติดสิทธิ์อะไรตรงใหนคะ<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CareNav: ระบบนำทางผู้ป่วยไป รพ.ศิริราช (Elder CGF CaregiverFriends)</title>
-  
-  <!-- Tailwind CSS & Leaflet Map Library -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <style>
-    #map { height: 380px; width: 100%; border-radius: 0.75rem; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Kanit", sans-serif; }
-  </style>
-</head>
-<body class="bg-slate-100 text-slate-800 min-h-screen">
-
-  <!-- แถบด้านบน: ปุ่มโทรฉุกเฉินด่วน -->
-  <header class="bg-sky-900 text-white sticky top-0 z-50 shadow-md">
-    <div class="max-w-2xl mx-auto px-4 py-2.5 flex items-center justify-between">
-      <div>
-        <h1 class="text-base font-bold flex items-center gap-1.5">
-          <span>🚑</span> CareNav มุ่งสู่ รพ.ศิริราช
-        </h1>
-        <p class="text-[11px] text-sky-200">Elder CGF CaregiverFriends • ปลอดภัย ไร้น้ำท่วม</p>
-      </div>
-      <div class="flex gap-2">
-        <a href="tel:1669" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3 py-2 rounded-lg shadow animate-pulse flex items-center gap-1">
-          🚨 1669
-        </a>
-        <a href="tel:*********" class="bg-slate-800 text-white text-xs px-2.5 py-2 rounded-lg border border-slate-600">
-          ER ศิริราช
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <main class="max-w-2xl mx-auto p-3 space-y-3">
-    <!-- ส่วนที่ 1: เลือกจุดเริ่มต้น (บ้าน / จุดฉุกเฉิน) -->
-    <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200">
-      <div class="flex justify-between items-center mb-2">
-        <span class="text-xs font-bold text-slate-700">📍 1. จุดเริ่มต้นเดินทาง (บ้าน / จุดฉุกเฉิน)</span>
-        <span id="start-label" class="text-[11px] text-sky-700 font-semibold truncate max-w-[180px]">เลือกจากโซนหรือ GPS</span>
-      </div>
-
-      <!-- ปุ่ม GPS พิกัดสดจุดเกิดเหตุ (ปุ่มหลักเด่นชัด) -->
-      <div class="mb-3">
-        <button onclick="getCurrentLocation()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition active:scale-95">
-          <span>📡</span> ใช้ตำแหน่งปัจจุบัน (GPS จุดเกิดเหตุ)
-        </button>
-      </div>
-
-      <div class="text-[11px] text-slate-500 mb-1.5">หรือเลือกโซนจุดเริ่มต้นด่วน (ครอบคลุม กทม. และปริมณฑล):</div>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
-        <button onclick="setPresetLocation(13.8585, 100.5288, 'งามวงศ์วาน - แคราย (นนทบุรี)')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-          🏢 งามวงศ์วาน / แคราย (นนท์)
-        </button>
-        <button onclick="setPresetLocation(13.9888, 100.6177, 'รังสิต - ดอนเมือง (ปทุมธานี)')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-          ✈️ รังสิต / ดอนเมือง (ปทุมฯ)
-        </button>
-        <button onclick="setPresetLocation(13.8388, 100.5509, 'ประชานิเวศน์ 1 - ประชาชื่น')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-          🌳 ประชานิเวศน์ 1 / ประชาชื่น
-        </button>
-        <button onclick="setPresetLocation(13.8050, 100.6400, 'เกษตรนวมินทร์ - ลาดพร้าว / นิด้า')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-          🎓 เกษตรนวมินทร์ / นิด้า
-        </button>
-        <button onclick="setPresetLocation(13.8035, 100.5300, 'เตาปูน / บางซื่อ / วงศ์สว่าง')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium col-span-2 sm:col-span-1">
-          🚆 เตาปูน / บางซื่อ
-        </button>
-      </div>
-      <p class="text-[10px] text-slate-400 mt-2">* ท่านสามารถคลิกบนแผนที่โดยตรง เพื่อเปลี่ยนตำแหน่งบ้านหรือจุดเกิดเหตุได้ทันที</p>
-    </div>
-
-
-
-    <!-- ส่วนที่ 2: เช็กประเภทรถและการสัญจร -->
-    <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200">
-      <div class="text-xs font-bold text-slate-700 mb-2">🚗 2. เลือกรถที่ใช้เดินทาง</div>
-      <div class="grid grid-cols-2 gap-2 text-xs">
-        <button onclick="setVehicle('small')" id="btn-small" class="p-2.5 border-2 border-sky-600 bg-sky-50 font-bold rounded-lg text-sky-900 text-left">
-          🚙 รถเก๋ง / รถเล็ก
-          <div class="text-[10px] font-normal text-slate-500">ทนน้ำไม่เกิน 15 ซม.</div>
-        </button>
-        <button onclick="setVehicle('suv')" id="btn-suv" class="p-2.5 border border-slate-200 bg-white font-medium rounded-lg text-slate-700 text-left">
-          🚐 SUV / รถยกสูง
-          <div class="text-[10px] font-normal text-slate-500">ทนน้ำได้ 25–35 ซม.</div>
-        </button>
-      </div>
-
-      <div id="status-box" class="mt-2.5 text-xs bg-emerald-50 text-emerald-900 border border-emerald-200 p-2.5 rounded-lg flex items-center gap-2">
-        <span class="text-base">✅</span>
-        <div><strong>สภาพทาง:</strong> เส้นทางหลักแห้งปกติ รถเล็กสัญจรได้ปลอดภัย</div>
-      </div>
-    </div>
-
-    <!-- ส่วนที่ 3: แผนที่แสดงเส้นทางและปลายทาง รพ.ศิริราช -->
-    <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200">
-      <div class="flex justify-between items-center mb-2">
-        <span class="text-xs font-bold text-slate-700">🗺️ 3. แนวเส้นทางมุ่งหน้าสู่ รพ.ศิริราช</span>
-        <span class="text-[11px] text-slate-400">ปลายทาง: ตึก ER วังหลัง</span>
-      </div>
-      
-      <div id="map"></div>
-
-      <!-- รายละเอียดระยะทางและเวลาประเมิน -->
-      <div class="mt-2.5 p-2 bg-slate-50 rounded-lg border text-xs flex justify-between items-center text-slate-700">
-        <div>
-          <span class="font-bold text-sky-900">ปลายทาง:</span> ประตู 8 ตึกนวมินทรบพิตรฯ (ER)
-        </div>
-        <div id="distance-info" class="font-bold text-slate-800">
-          ระยะทาง: คำนวณอัตโนมัติ
-        </div>
-      </div>
-    </div>
-
-    <!-- ส่วนที่ 4: ข้อมูลฉุกเฉินและกล้อง CCTV -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-      <div class="bg-white p-3 rounded-xl border border-slate-200">
-        <div class="font-bold text-slate-800 mb-1 flex items-center gap-1">
-          <span>🚨</span> จุดส่งผู้ป่วยฉุกเฉิน (รพ.ศิริราช)
-        </div>
-        <p class="text-slate-600 leading-relaxed text-[11px]">
-          นำส่งที่ <strong>อาคารนวมินทรบพิตร ๘๔ พรรษา (ชั้น 1 ห้องฉุกเฉิน)</strong> ฝั่งถนนวังหลัง จอดถ่ายผู้ป่วยลงเปลได้ทันที
-        </p>
-      </div>
-
-      <div class="bg-white p-3 rounded-xl border border-slate-200">
-        <div class="font-bold text-slate-800 mb-1 flex items-center gap-1">
-          <span>🎥</span> กล้องสด CCTV ตรวจน้ำท่วม
-        </div>
-        <div class="space-y-1">
-          <a href="http://www.bmatraffic.com" target="_blank" class="block text-sky-700 underline text-[11px]">
-            • ส่องกล้อง กทม. แยกประชานุกูล / อรุณอมรินทร์
-          </a>
-          <a href="https://dds.bangkok.go.th" target="_blank" class="block text-sky-700 underline text-[11px]">
-            • ตรวจเรดาร์ฝน สำนักการระบายน้ำ กทม.
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- ท้ายหน้า: สิทธิ์ Open Source โดย Elder CGF -->
-    <footer class="text-center text-[10px] text-slate-400 py-3 border-t border-slate-200">
-      <p class="font-medium text-slate-600">จัดทำด้วยใจเพื่อช่วยเหลือสังคมโดย Elder CGF CaregiverFriends (เพื่อนดูแลผู้สูงวัย)</p>
-      <p class="mt-0.5">สัญญาอนุญาต Open Source (CC BY-NC 4.0): ใช้งานและแจกจ่ายฟรีเพื่อช่วยเหลือผู้ป่วยและผู้สูงอายุ ห้ามใช้เชิงพาณิชย์</p>
-    </footer>
-
-  </main>
-
-  <script>
-    // ปลายทางคงที่: ตึกนวมินทรบพิตร ๘๔ พรรษา รพ.ศิริราช (ER)
-    const sirirajCoords = [13.7568, 100.4835];
-    
-    // จุดเริ่มต้นตั้งต้น: บองมาร์เช่
-    let currentStart = [13.8388, 100.5509];
-    let startMarker = null;
-    let routePolyline = null;
-
-    // เริ่มต้นแผนที่
-    const map = L.map('map').setView([13.7980, 100.5100], 12);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap'
-    }).addTo(map);
-
-    // มาร์กเกอร์ปลายทาง รพ.ศิริราช
-    L.marker(sirirajCoords, {
-      icon: L.icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41]
-      })
-    }).addTo(map).bindPopup('<b>ปลายทาง: รพ.ศิริราช</b><br>ห้องฉุกเฉิน (ตึกนวมินทรบพิตรฯ)').openPopup();
-
-    // มาร์กเกอร์ตรวจระดับน้ำเฝ้าระวัง
-    const checkpoints = [
-      { name: "แยกประชานุกูล", coords: [13.8290, 100.5401] },
-      { name: "แยกวงศ์สว่าง", coords: [13.8285, 100.5273] },
-      { name: "สะพานพระราม 7", coords: [13.8142, 100.5135] },
-      { name: "ถนนจรัญสนิทวงศ์ (บางพลัด)", coords: [13.7845, 100.4965] },
-      { name: "แยกอรุณอมรินทร์", coords: [13.7661, 100.4880] }
-    ];
-
-    checkpoints.forEach(cp => {
-      L.circleMarker(cp.coords, {
-        color: '#10b981',
-        fillColor: '#10b981',
-        fillOpacity: 0.8,
-        radius: 5
-      }).addTo(map).bindPopup(`<b>จุดตรวจ: ${cp.name}</b><br>สถานะ: ผิวทางแห้ง สัญจรได้ปกติ`);
-    });
-
-    // วาดจุดเริ่มต้นและเส้นทาง
-    function updateRoute(lat, lng, labelText) {
-      currentStart = [lat, lng];
-
-      // อัปเดตข้อความหัวข้อ
-      document.getElementById('start-label').innerText = labelText;
-
-      // ลบมาร์กเกอร์เดิม
-      if (startMarker) map.removeLayer(startMarker);
-      if (routePolyline) map.removeLayer(routePolyline);
-
-      // ปักหมุดจุดเริ่มต้นใหม่
-      startMarker = L.marker([lat, lng], { draggable: true }).addTo(map)
-        .bindPopup(`<b>จุดเริ่มต้น:</b><br>${labelText}`).openPopup();
-
-      // เมื่อลากหมุด ให้คำนวณใหม่ทันที
-      startMarker.on('dragend', function (e) {
-        const pos = e.target.getLatLng();
-        updateRoute(pos.lat, pos.lng, "จุดที่เลือกบนแผนที่");
-      });
-
-      // ลากเส้นนำทางจากจุดเริ่มไปยังศิริราช
-      routePolyline = L.polyline([
-        [lat, lng],
-        [13.8142, 100.5135], // จุดผ่านพระราม 7
-        [13.7845, 100.4965], // จุดผ่านจรัญฯ
-        sirirajCoords
-      ], { color: '#0284c7', weight: 5, opacity: 0.85 }).addTo(map);
-
-      // ปรับมุมมองแผนที่ให้ครอบคลุมทั้งต้นทางและปลายทาง
-      map.fitBounds(L.latLngBounds([ [lat, lng], sirirajCoords ]), { padding: [40, 40] });
-
-      // คำนวณระยะทางโดยประมาณ (เส้นตรงทางภูมิศาสตร์ x 1.3 สำหรับระยะทางวิ่งจริงบนถนน)
-      const distKm = (map.distance([lat, lng], sirirajCoords) / 1000 * 1.3).toFixed(1);
-      document.getElementById('distance-info').innerText = `ระยะทางโดยประมาณ: ~${distKm} กม.`;
-    }
-
-    // ฟังก์ชันดึง GPS จากมือถือ (จุดเกิดเหตุสด)
-    function getCurrentLocation() {
-      if (navigator.geolocation) {
-        document.getElementById('start-label').innerText = "กำลังค้นหาพิกัด GPS...";
-        navigator.geolocation.getCurrentPosition(
-          function (pos) {
-            updateRoute(pos.coords.latitude, pos.coords.longitude, "พิกัดปัจจุบัน (จุดเกิดเหตุ)");
-          },
-          function (err) {
-            alert("ไม่สามารถดึงตำแหน่ง GPS ได้ โปรดคลิกเลือกจุดบนแผนที่แทนครับ");
-            document.getElementById('start-label').innerText = "เลือกจุดบนแผนที่";
-          },
-          { enableHighAccuracy: true, timeout: 10000 }
-        );
-      } else {
-        alert("อุปกรณ์ของท่านไม่รองรับระบบ GPS โปรดคลิกเลือกบนแผนที่");
-      }
-    }
-
-    // ฟังก์ชันเลือกจุดตั้งต้นแบบด่วน
-    function setPresetLocation(lat, lng, name) {
-      updateRoute(lat, lng, name);
-    }
-
-    // แตะที่แผนที่เพื่อเลือกตำแหน่งบ้านหรือจุดเกิดเหตุเอง
-    map.on('click', function(e) {
-      updateRoute(e.latlng.lat, e.latlng.lng, "จุดที่เลือกบนแผนที่");
-    });
-
-    // เลือกรถ
-    function setVehicle(type) {
-      const btnSmall = document.getElementById('btn-small');
-      const btnSuv = document.getElementById('btn-suv');
-      const statusBox = document.getElementById('status-box');
-
-      if (type === 'small') {
-        btnSmall.className = "p-2.5 border-2 border-sky-600 bg-sky-50 font-bold rounded-lg text-sky-900 text-left";
-        btnSuv.className = "p-2.5 border border-slate-200 bg-white font-medium rounded-lg text-slate-700 text-left";
-        statusBox.innerHTML = '<span class="text-base">✅</span><div><strong>สภาพทาง (รถเล็ก):</strong> ผ่านได้ตลอดแนวเส้นทางหลัก ผิวทางแห้ง ไม่มีน้ำท่วมขัง</div>';
-      } else {
-        btnSuv.className = "p-2.5 border-2 border-sky-600 bg-sky-50 font-bold rounded-lg text-sky-900 text-left";
-        btnSmall.className = "p-2.5 border border-slate-200 bg-white font-medium rounded-lg text-slate-700 text-left";
-        statusBox.innerHTML = '<span class="text-base">🚙</span><div><strong>สภาพทาง (SUV/รถยกสูง):</strong> ผ่านได้คล่องตัวทุกเส้นทาง รวมทั้งแนวถนนเลียบตลิ่ง</div>';
-      }
-    }
-
-    // โหลดครั้งแรกด้วยตำแหน่ง บองมาร์เช่
-    updateRoute(13.8388, 100.5509, "ตลาดบองมาร์เช่ มาร์เก็ตพาร์ค");
-  </script>
-</body>
-</html>
-
-เข้าใจค่ะ ขอตอบ 2 เรื่องแยกกันนะคะ: (1) เรื่องสิทธิ์/ลิขสิทธิ์ที่คุณกังวล และ (2) โค้ดที่ปรับปรุงให้เรียลไทม์+ป้องกันปัญหามากขึ้น โดยหน้าตา ปุ่ม และโซนทั้งหมดเหมือนเดิมทุกจุด
-
-1. เรื่องสิทธิ์ที่อาจ "ติด" — เช็กให้แล้ว
-โค้ดของคุณดึง 4 อย่างจากภายนอกมาใช้ แต่ละอย่างมีสัญญาอนุญาตของตัวเอง แยกจาก CC BY-NC 4.0 ที่คุณประกาศ เพราะ CC BY-NC ใช้ได้เฉพาะกับ "โค้ดที่คุณเขียนเอง" (โครงหน้า, ข้อความ, จุดตรวจ, logic) ไม่ครอบคลุมไลบรารีของคนอื่น
-
-
-ของที่ใช้	สัญญาอนุญาตจริง	มีปัญหากับ NC ไหม
-Tailwind CSS (cdn.tailwindcss.com)	MIT — ใช้ได้ฟรีทุกกรณีรวมเชิงพาณิชย์	ไม่มีปัญหา (MIT อนุญาตมากกว่า NC อยู่แล้ว)
-Leaflet.js	BSD-2-Clause — ใช้ได้ฟรีทุกกรณี	ไม่มีปัญหา
-ไอคอนหมุด (pointhi/leaflet-color-markers)	BSD-2-Clause	ไม่มีปัญหา ยืนยันจาก 
-แผนที่ OpenStreetMap (tile.openstreetmap.org)	ข้อมูลแผนที่ = ODbL 1.0 (ต้องใส่เครดิต © OpenStreetMap — คุณใส่แล้ว ✅) + มี Tile Usage Policy แยกต่างหาก	ไม่ใช่เรื่องลิขสิทธิ์ แต่มีเงื่อนไขการใช้งานหนัก/เบา ดู 
-สรุปให้เข้าใจง่าย: สิ่งที่คุณ "ห้ามเชิงพาณิชย์" ได้จริง ๆ คือแค่ตัวแอป CareNav นี้ (การจัดหน้า, ข้อความ, ชุดจุดตรวจ, การจัดวางฟีเจอร์) — ไม่ได้ไปจำกัดสิทธิ์การใช้ Tailwind/Leaflet/OSM ของคนอื่น เพราะพวกนั้นเปิดกว้างกว่าอยู่แล้ว จึงไม่มีจุดใดขัดแย้งกันจริงจัง สิ่งเดียวที่ควรระวังคือ Tile Usage Policy ของ OSM — ถ้าแอปนี้มีคนเข้าใช้เยอะมาก (หลายแสนครั้ง/เดือน) OSM อาจบล็อกโดเมนคุณ เพราะ tile.openstreetmap.org เป็นเซิร์ฟเวอร์ที่พึ่งเงินบริจาค ไม่ใช่สำหรับโหลดหนัก — แต่สำหรับแอปช่วยเหลือสังคมแบบนี้ ปริมาณการใช้งานทั่วไปไม่น่ามีปัญหา
-
-สิ่งที่แนะนำเพิ่ม: ใส่หัวข้อ "Third-Party Notices" ท้ายหน้า ระบุเครดิตแต่ละไลบรารีชัดเจน (ผมใส่ให้แล้วในโค้ดด้านล่าง) เพื่อความโปร่งใสและป้องกันปัญหาทางกฎหมายในอนาคต
-
-2. สิ่งที่ปรับปรุงในโค้ด (หน้าตา/ปุ่ม/โซนเดิมทั้งหมด)
-ปัญหาที่เจอในโค้ดเดิมที่อันตรายที่สุดคือ สถานะ "ผิวทางแห้ง สัญจรได้ปกติ" เป็นข้อความ hardcode ตายตัว ไม่ได้เช็คจริง — ถ้าฝนตกหนักจริง caregiver จะเข้าใจผิดว่าปลอดภัย ผมแก้เป็นจุดหลักดังนี้:
-
-เส้นทางจริงตามถนน + เวลาเดินทางจริง — ใช้ OSRM (ฟรี ไม่ต้องขอ API key) แทนเส้นตรง×1.3 เดิม พร้อม fallback ถ้าอินเทอร์เน็ตหลุด
-เรดาร์ฝนสด (RainViewer, ฟรี ไม่ต้องขอ key, อัปเดตทุก ~10 นาที) ซ้อนบนแผนที่ ให้เห็นฝนจริงตอนนี้ตรงเส้นทาง
-ลบข้อความเท็จ "ปลอดภัย" ที่จุดตรวจ เปลี่ยนเป็นลิงก์ตรวจสอบกล้องสดจริงพร้อมคำเตือนว่าไม่ใช่ข้อมูลเรียลไทม์อัตโนมัติ
-ปุ่มรีเฟรชสถานะก่อนออกเดินทาง + เวลาที่อัปเดตล่าสุด ให้ caregiver กดเช็คซ้ำก่อนขับจริง
-จัดการ error ทุกจุด (GPS หลุด, เน็ตหลุด, API ตอบช้าเกิน 6 วิ) ไม่ให้แอปค้างหรือโชว์ข้อมูลผิด
-
-2. สิ่งที่ปรับปรุงในโค้ด (หน้าตา/ปุ่ม/โซนเดิมทั้งหมด)
-
-Code · HTML
-
-Open
-สรุปสิ่งที่เปลี่ยน (ไม่กระทบปุ่ม/โซนเดิม):
-
-ระยะทาง/เวลาเดินทางเป็นค่าจริงตามถนน ไม่ใช่เส้นตรงคูณ 1.3 อีกต่อไป
-มีเรดาร์ฝนสดซ้อนแผนที่ อัปเดตทุก ~10 นาที
-ลบข้อความเท็จ "ปลอดภัย" ที่จุดตรวจ เปลี่ยนเป็นคำเตือน+ลิงก์ตรวจสอบจริง
-เพิ่มปุ่มรีเฟรชเล็ก ๆ 1 ปุ่มในโซน 3 (จุดเดียวที่เพิ่ม) ให้กดเช็คซ้ำก่อนออกจากบ้านจริง
-จัดการ error ครบ (GPS ถูกปฏิเสธ/timeout, เน็ตหลุดตอนโหลดเส้นทางหรือเรดาร์ฝน)
-ข้อควรทราบ: OSRM demo server และ tile.openstreetmap.org เป็นบริการฟรีสาธารณะที่ไม่รับประกัน uptime 100% — ถ้าแอปมีคนใช้เยอะมากในอนาคต ควรพิจารณาย้ายไปเซิร์ฟเวอร์ของตัวเองหรือใช้ Longdo Traffic API (มีชั้นจราจรจริงของไทย ฟรีสำหรับไม่แสวงกำไร แต่ต้องขอ key)
-
-อยากให้ผมช่วยต่อเรื่องการขอ Longdo Traffic API (ชั้นสีจราจรติดขัดจริงของถนนไทย) เพื่อความแม่นยำขึ้นไปอีกไหมคะ หรือจะลองเทสโค้ดนี้ก่อนแล้วค่อยว่ากันดีคะ?
-
-
-
-แหล่งข้อมูล (10)
-จำเป็นต้องใช้ช่วยผู้ป่วยที่จะไปรพตอนนี้ให้เร็วสุดคะ
-
-เข้าใจค่ะ ตอนนี้เร่งด่วน ขอตอบสั้นและตรงประเด็นที่สุดนะคะ
-
-ทำทันทีตอนนี้
-1. โทร 1669 ก่อนเป็นอันดับแรก (ฟรี ไม่มีค่าใช้จ่าย) — ถ้าอาการหนัก/ฉุกเฉินจริง รถพยาบาลจะ:
-
-มีไซเรนเปิดทางได้ ไม่ติดไฟแดง/รถติดเหมือนรถทั่วไป
-มีทีมแพทย์ดูแลระหว่างทาง ปลอดภัยกว่าขับเองมาก
-ประสานตรงกับ ER ศิริราชล่วงหน้า ถึงแล้วรับตัวได้ทันที
-2. ถ้าจำเป็นต้องขับไปเอง (รอรถพยาบาลไม่ทัน/ไม่มีทางเลือก):
-
-เปิด Google Maps หรือ Waze พิมพ์ปลายทาง "โรงพยาบาลศิริราช ประตู 8" หรือ "ตึกนวมินทรบพิตร ๘๔ พรรษา" — แอปพวกนี้มีข้อมูลจราจรสดตอนนี้เลย แม่นกว่าแผนที่ในเว็บ CareNav มาก เพราะเช็ครถติดแบบเรียลไทม์
-ปลายทางที่ต้องบอกทางแอป: ฝั่งถนนวังหลัง ชั้น 1 ห้องฉุกเฉิน จอดส่งผู้ป่วยลงเปลได้ทันที
-บอกผมหน่อยได้ไหมคะ ตอนนี้อยู่โซนไหน (เช่น งามวงศ์วาน, รังสิต, ประชานิเวศน์ ฯลฯ) จะได้แนะนำเส้นทางที่เร็วที่สุดให้ตรงจุดเลย — หรือถ้าโทร 1669 แล้วกำลังรอ ให้เตรียมอาการผู้ป่วยสำคัญไว้บอกเจ้าหน้าที่ (ประวัติโรค, ยาที่ใช้, อาการตอนนี้) จะช่วยให้ทีมเตรียมพร้อมได้เร็วขึ้นค่ะ
-
-คนแก่ใช้แอพอ่านแอพไม่ค่อยเป็นเลยทำแอพให้เข้าใจง่ายสุดคะ สรุปว่าใช้codeที่คุณทำให้แทนของเก่าได้เลยมั้ยคะ
-
-ใช่ค่ะ แทนโค้ดเดิมได้เลยทันที ไม่ต้องปรับอะไรเพิ่ม เพราะ:
-
-หน้าตา ปุ่ม สี ตำแหน่งทุกจุด เหมือนเดิม 100% แค่คัดลอกทั้งไฟล์ไปทับของเก่าในไฟล์ index.html ของ repo
-ฟังก์ชันเดิมทำงานเหมือนเดิมทุกอย่าง (กด GPS, เลือกโซน, เลือกรถ) แค่เบื้องหลังฉลาดขึ้น (เส้นทางจริง, เรดาร์ฝนสด)
-ไม่มี dependency ใหม่ที่ต้องขอ API key หรือสมัครอะไรเพิ่ม ใช้งานได้ทันทีที่อัปโหลด
-เรื่อง "คนแก่ใช้ไม่ค่อยเป็น" — ขอชี้แจงนิดนึง
-แอปนี้ชื่อ CareNav... Elder CGF CaregiverFriends หมายถึงออกแบบมาให้ "ผู้ดูแล/คนในบ้าน" เป็นคนใช้ตอนพาผู้สูงอายุไปโรงพยาบาล ไม่ใช่ให้ผู้ป่วยสูงอายุเปิดแอปเอง ดังนั้นระดับความซับซ้อนตอนนี้ (แผนที่, ปุ่มเลือกโซน) เหมาะกับ caregiver ที่ใช้มือถือคล่องอยู่แล้ว
-
-แต่ถ้าอยากให้ ง่ายสุดในสถานการณ์ฉุกเฉินจริง แม้แต่คนที่ไม่ถนัดมือถือก็กดได้ แนะนำเพิ่มแบบนี้ได้ (ไม่กระทบของเดิม แค่เสริม):
-
-
-แนวทาง	ผลลัพธ์
-เพิ่มปุ่มใหญ่สุดบนสุด "🆘 ฉุกเฉิน กดปุ่มเดียว"	กด 1 ครั้ง = โทร 1669 + ดึง GPS + เปิดเส้นทางอัตโนมัติ ไม่ต้องกดหลายขั้นตอน
-ขยายฟอนต์/ปุ่มให้ใหญ่ขึ้นเฉพาะจุดสำคัญ	ผู้สูงอายุสายตาไม่ดีกดพลาดยาก
-ลดขั้นตอนเหลือ 2 จุด (จากเดิม 4 ส่วน)	เห็นแค่ "กดโทร" กับ "กดดูทาง" ส่วนอื่นซ่อนไว้ให้กดดูเพิ่มถ้าต้องการ
-อยากให้ผมทำ เวอร์ชันปุ่มเดียวจบ (One-Tap Emergency) เสริมจากโค้ดนี้ไหมคะ จะได้ใช้ได้ทั้ง 2 แบบ — โหมด caregiver คล่องมือถือ (แบบเดิม) กับโหมดฉุกเฉินกดง่ายสุดสำหรับทุกคนในบ้าน?
-
-ขอใช้ชื่อเดิมได้มั้ยคะ เราไม่มีเวลาไปแก้githubใหม่แล้วคะ
-
-ได้ค่ะ ใช้ชื่อเดิมได้เลย ไม่ต้องแก้อะไรใน GitHub เพิ่ม
-
-ชื่อ repo เดิม (areelukg.github.io) — ใช้ต่อได้เลย ไม่ต้องเปลี่ยน
-ชื่อไฟล์เดิม (index.html หรือชื่อไฟล์ที่มีอยู่) — แค่เปิดไฟล์เดิม แล้วเอาโค้ดทั้งหมดที่ให้ไปวางทับของเก่า (select all → paste ทับ) แล้ว commit/save เหมือนเดิมที่เคยทำ
-ชื่อแอป "CareNav มุ่งสู่ รพ.ศิริราช" ก็อยู่เหมือนเดิมในโค้ด ไม่ได้เปลี่ยนอะไร
-พูดง่าย ๆ คือ แทนที่เนื้อหาไฟล์เดิม ไม่ใช่สร้างของใหม่ — ลิงก์ areelukg.github.io ที่คนแชร์ต่อกันไว้ก็ยังใช้ได้เหมือนเดิม แค่พอเปิดจะเห็นเวอร์ชันที่ฉลาดขึ้น (เส้นทางจริง + เรดาร์ฝนสด) โดยหน้าตาเหมือนเดิมทุกอย่าง
-
-ลองอัปโหลดแล้วเปิดเช็คดูได้เลยไหมคะ ถ้าติดปัญหาตรงไหน (เช่น GitHub ไม่ยอมให้แก้ไฟล์, หรือหน้าเว็บพังหลังอัปเดต) บอกได้เลยจะช่วยแก้ให้ทันทีค่ะ
-
-ถามได้เลย
-AI อาจผิดพลาดได้ หลีกเลี่ยงการใส่ข้อมูลส่วนตัวหรือความลับ
-
-Artifact preview
-
-
-2. สิ่งที่ปรับปรุงในโค้ด (หน้าตา/ปุ่ม/โซนเดิมทั้งหมด)
 <!DOCTYPE html>
-
 <html lang="th">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>CareNav: ระบบนำทางผู้ป่วยไป รพ.ศิริราช (Elder CGF CaregiverFriends)</title>
 
-
   <script src="https://cdn.tailwindcss.com"></script>
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-
   <style>
-
     #map { height: 380px; width: 100%; border-radius: 0.75rem; }
-
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Kanit", sans-serif; }
-
   </style>
-
 </head>
-
 <body class="bg-slate-100 text-slate-800 min-h-screen">
 
-
   <header class="bg-sky-900 text-white sticky top-0 z-50 shadow-md">
-
     <div class="max-w-2xl mx-auto px-4 py-2.5 flex items-center justify-between">
-
       <div>
-
         <h1 class="text-base font-bold flex items-center gap-1.5">
-
           <span>🚑</span> CareNav มุ่งสู่ รพ.ศิริราช
-
         </h1>
-
         <p class="text-[11px] text-sky-200">Elder CGF CaregiverFriends • ปลอดภัย ไร้น้ำท่วม</p>
-
       </div>
-
       <div class="flex gap-2">
-
         <a href="tel:1669" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3 py-2 rounded-lg shadow animate-pulse flex items-center gap-1">
-
           🚨 1669
-
         </a>
-
         <a href="tel:*********" class="bg-slate-800 text-white text-xs px-2.5 py-2 rounded-lg border border-slate-600">
-
           ER ศิริราช
-
         </a>
-
       </div>
-
     </div>
-
   </header>
 
-
   <main class="max-w-2xl mx-auto p-3 space-y-3">
-
     <!-- ส่วนที่ 1: เลือกจุดเริ่มต้น -->
-
     <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200">
-
       <div class="flex justify-between items-center mb-2">
-
         <span class="text-xs font-bold text-slate-700">📍 1. จุดเริ่มต้นเดินทาง (บ้าน / จุดฉุกเฉิน)</span>
-
         <span id="start-label" class="text-[11px] text-sky-700 font-semibold truncate max-w-[180px]">เลือกจากโซนหรือ GPS</span>
-
       </div>
-
 
       <div class="mb-3">
-
         <button onclick="getCurrentLocation()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition active:scale-95">
-
           <span>📡</span> ใช้ตำแหน่งปัจจุบัน (GPS จุดเกิดเหตุ)
-
         </button>
-
       </div>
-
 
       <div class="text-[11px] text-slate-500 mb-1.5">หรือเลือกโซนจุดเริ่มต้นด่วน (ครอบคลุม กทม. และปริมณฑล):</div>
-
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
-
         <button onclick="setPresetLocation(13.8585, 100.5288, 'งามวงศ์วาน - แคราย (นนทบุรี)')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-
           🏢 งามวงศ์วาน / แคราย (นนท์)
-
         </button>
-
         <button onclick="setPresetLocation(13.9888, 100.6177, 'รังสิต - ดอนเมือง (ปทุมธานี)')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-
           ✈️ รังสิต / ดอนเมือง (ปทุมฯ)
-
         </button>
-
         <button onclick="setPresetLocation(13.8388, 100.5509, 'ประชานิเวศน์ 1 - ประชาชื่น')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-
           🌳 ประชานิเวศน์ 1 / ประชาชื่น
-
         </button>
-
         <button onclick="setPresetLocation(13.8050, 100.6400, 'เกษตรนวมินทร์ - ลาดพร้าว / นิด้า')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-
           🎓 เกษตรนวมินทร์ / นิด้า
-
         </button>
-
         <button onclick="setPresetLocation(13.8035, 100.5300, 'เตาปูน / บางซื่อ / วงศ์สว่าง')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium col-span-2 sm:col-span-1">
-
           🚆 เตาปูน / บางซื่อ
-
         </button>
-
       </div>
-
       <p class="text-[10px] text-slate-400 mt-2">* ท่านสามารถคลิกบนแผนที่โดยตรง เพื่อเปลี่ยนตำแหน่งบ้านหรือจุดเกิดเหตุได้ทันที</p>
-
     </div>
-
 
     <!-- ส่วนที่ 2: เช็กประเภทรถ -->
-
     <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200">
-
       <div class="text-xs font-bold text-slate-700 mb-2">🚗 2. เลือกรถที่ใช้เดินทาง</div>
-
       <div class="grid grid-cols-2 gap-2 text-xs">
-
         <button onclick="setVehicle('small')" id="btn-small" class="p-2.5 border-2 border-sky-600 bg-sky-50 font-bold rounded-lg text-sky-900 text-left">
-
           🚙 รถเก๋ง / รถเล็ก
-
           <div class="text-[10px] font-normal text-slate-500">ทนน้ำไม่เกิน 15 ซม.</div>
-
         </button>
-
         <button onclick="setVehicle('suv')" id="btn-suv" class="p-2.5 border border-slate-200 bg-white font-medium rounded-lg text-slate-700 text-left">
-
           🚐 SUV / รถยกสูง
-
           <div class="text-[10px] font-normal text-slate-500">ทนน้ำได้ 25–35 ซม.</div>
-
         </button>
-
       </div>
-
 
       <div id="status-box" class="mt-2.5 text-xs bg-amber-50 text-amber-900 border border-amber-200 p-2.5 rounded-lg flex items-start gap-2">
-
         <span class="text-base">⚠️</span>
-
         <div><strong>คำแนะนำ (รถเล็ก):</strong> โปรดดูชั้นเรดาร์ฝนสดบนแผนที่ด้านล่างก่อนออกเดินทางทุกครั้ง สีแดง/ม่วง = ฝนตกหนัก ควรพิจารณาใช้ SUV หรือรอสถานการณ์คลี่คลาย</div>
-
       </div>
-
     </div>
-
 
     <!-- ส่วนที่ 3: แผนที่ -->
-
     <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200">
-
       <div class="flex justify-between items-center mb-2">
-
         <span class="text-xs font-bold text-slate-700">🗺️ 3. แนวเส้นทางมุ่งหน้าสู่ รพ.ศิริราช</span>
-
         <span class="text-[11px] text-slate-400">ปลายทาง: ตึก ER วังหลัง</span>
-
       </div>
-
 
       <div id="map"></div>
-
       <p class="text-[10px] text-slate-400 mt-1.5">🌧️ ชั้นสีบนแผนที่ = เรดาร์ฝนสด (RainViewer) อัปเดตทุก ~10 นาที: ฟ้า/เขียว = ฝนเบา, เหลือง/ส้ม = ปานกลาง, แดง/ม่วง = ฝนตกหนัก</p>
 
-
       <div class="mt-2.5 p-2 bg-slate-50 rounded-lg border text-xs flex justify-between items-center text-slate-700">
-
         <div>
-
           <span class="font-bold text-sky-900">ปลายทาง:</span> ประตู 8 ตึกนวมินทรบพิตรฯ (ER)
-
         </div>
-
         <div id="distance-info" class="font-bold text-slate-800 text-right">
-
           กำลังคำนวณเส้นทาง...
-
         </div>
-
       </div>
-
 
       <div class="mt-1.5 flex justify-between items-center text-[10px] text-slate-500">
-
         <span id="last-updated">อัปเดตล่าสุด: -</span>
-
         <button onclick="refreshAll()" class="bg-slate-700 hover:bg-slate-900 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg flex items-center gap-1">
-
           🔄 รีเฟรชสด (เช็คก่อนออกเดินทาง)
-
         </button>
-
       </div>
-
     </div>
-
 
     <!-- ส่วนที่ 4: ข้อมูลฉุกเฉินและกล้อง CCTV -->
-
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-
       <div class="bg-white p-3 rounded-xl border border-slate-200">
-
         <div class="font-bold text-slate-800 mb-1 flex items-center gap-1">
-
           <span>🚨</span> จุดส่งผู้ป่วยฉุกเฉิน (รพ.ศิริราช)
-
         </div>
-
         <p class="text-slate-600 leading-relaxed text-[11px]">
-
           นำส่งที่ <strong>อาคารนวมินทรบพิตร ๘๔ พรรษา (ชั้น 1 ห้องฉุกเฉิน)</strong> ฝั่งถนนวังหลัง จอดถ่ายผู้ป่วยลงเปลได้ทันที
-
         </p>
-
       </div>
-
 
       <div class="bg-white p-3 rounded-xl border border-slate-200">
-
         <div class="font-bold text-slate-800 mb-1 flex items-center gap-1">
-
           <span>🎥</span> กล้องสด CCTV ตรวจน้ำท่วม (ยืนยันด้วยตาก่อนออกทาง)
-
         </div>
-
         <div class="space-y-1">
-
           <a href="http://www.bmatraffic.com" target="_blank" class="block text-sky-700 underline text-[11px]">
-
             • ส่องกล้อง กทม. แยกประชานุกูล / อรุณอมรินทร์
-
           </a>
-
           <a href="https://dds.bangkok.go.th" target="_blank" class="block text-sky-700 underline text-[11px]">
-
             • ตรวจเรดาร์ฝน สำนักการระบายน้ำ กทม.
-
           </a>
-
         </div>
-
       </div>
-
     </div>
 
-
     <footer class="text-center text-[10px] text-slate-400 py-3 border-t border-slate-200 space-y-1">
-
       <p class="font-medium text-slate-600">จัดทำด้วยใจเพื่อช่วยเหลือสังคมโดย Elder CGF CaregiverFriends (เพื่อนดูแลผู้สูงวัย)</p>
-
       <p>สัญญาอนุญาต Open Source (CC BY-NC 4.0): ใช้งานและแจกจ่ายฟรีเพื่อช่วยเหลือผู้ป่วยและผู้สูงอายุ ห้ามใช้เชิงพาณิชย์ — สัญญานี้ครอบคลุมเฉพาะโค้ด/เนื้อหาที่จัดทำขึ้นเอง</p>
-
       <p class="pt-1 border-t border-slate-100">Third-Party Notices: Tailwind CSS (MIT) • Leaflet.js (BSD-2-Clause) • แผนที่ฐาน © OpenStreetMap contributors (ODbL) • ไอคอนหมุดจาก pointhi/leaflet-color-markers (BSD-2-Clause) • เส้นทางถนนคำนวณโดย OSRM demo server (การใช้งานทั่วไป/ไม่ใช่เชิงพาณิชย์) • เรดาร์ฝนโดย RainViewer.com</p>
-
     </footer>
-
 
   </main>
 
-
   <script>
-
     const sirirajCoords = [13.7568, 100.4835]; // [lat, lng]
-
     let currentStart = [13.8388, 100.5509];
-
     let currentLabel = "ตลาดบองมาร์เช่ มาร์เก็ตพาร์ค";
-
     let startMarker = null;
-
     let routePolyline = null;
-
     let rainLayer = null;
 
-
     const map = L.map('map').setView([13.7980, 100.5100], 12);
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-
       attribution: '© OpenStreetMap contributors',
-
       maxZoom: 19
-
     }).addTo(map);
 
-
     L.marker(sirirajCoords, {
-
       icon: L.icon({
-
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-
         iconSize: [25, 41],
-
         iconAnchor: [12, 41]
-
       })
-
     }).addTo(map).bindPopup('<b>ปลายทาง: รพ.ศิริราช</b><br>ห้องฉุกเฉิน (ตึกนวมินทรบพิตรฯ)').openPopup();
 
-
     // จุดตรวจ: ไม่ฟันธงสถานะเท็จอีกต่อไป — ให้ลิงก์ตรวจสอบจริงแทน
-
     const checkpoints = [
-
       { name: "แยกประชานุกูล", coords: [13.8290, 100.5401] },
-
       { name: "แยกวงศ์สว่าง", coords: [13.8285, 100.5273] },
-
       { name: "สะพานพระราม 7", coords: [13.8142, 100.5135] },
-
       { name: "ถนนจรัญสนิทวงศ์ (บางพลัด)", coords: [13.7845, 100.4965] },
-
       { name: "แยกอรุณอมรินทร์", coords: [13.7661, 100.4880] }
-
     ];
 
-
     checkpoints.forEach(cp => {
-
       L.circleMarker(cp.coords, {
-
         color: '#f59e0b',
-
         fillColor: '#f59e0b',
-
         fillOpacity: 0.85,
-
         radius: 6
-
       }).addTo(map).bindPopup(
-
         `<b>จุดเฝ้าระวัง: ${cp.name}</b><br>
-
          <span style="color:#b45309;font-size:11px;">⚠️ สถานะนี้ไม่ได้เช็คเรียลไทม์อัตโนมัติ</span><br>
-
          <a href="http://www.bmatraffic.com" target="_blank" style="font-size:11px;">ตรวจสอบกล้องสด/สภาพจริงที่นี่ →</a>`
-
       );
-
     });
-
 
     // เพิ่มชั้นเรดาร์ฝนสด (RainViewer, ฟรี ไม่ต้องขอ key)
-
     async function loadRainRadar() {
-
       try {
-
         const controller = new AbortController();
-
         const timeout = setTimeout(() => controller.abort(), 6000);
-
         const res = await fetch('https://api.rainviewer.com/public/weather-maps.json', { signal: controller.signal });
-
         clearTimeout(timeout);
-
         const data = await res.json();
-
         const frames = data?.radar?.past;
-
         if (!frames || frames.length === 0) return;
-
         const latest = frames[frames.length - 1];
-
         if (rainLayer) map.removeLayer(rainLayer);
-
         rainLayer = L.tileLayer(
-
           `https://tilecache.rainviewer.com/v2/radar/${latest.time}/256/{z}/{x}/{y}/2/1_1.png`,
-
           { opacity: 0.55, attribution: 'RainViewer' }
-
         ).addTo(map);
-
       } catch (e) {
-
         console.warn("โหลดเรดาร์ฝนไม่สำเร็จ (อาจไม่มีอินเทอร์เน็ต):", e);
-
       }
-
     }
-
 
     // คำนวณเส้นทางถนนจริง + เวลาเดินทาง ด้วย OSRM (ฟรี ไม่ต้องขอ key) พร้อม fallback
-
     async function fetchRealRoute(lat, lng) {
-
       const url = `https://router.project-osrm.org/route/v1/driving/${lng},${lat};${sirirajCoords[1]},${sirirajCoords[0]}?overview=full&geometries=geojson`;
-
       try {
-
         const controller = new AbortController();
-
         const timeout = setTimeout(() => controller.abort(), 6000);
-
         const res = await fetch(url, { signal: controller.signal });
-
         clearTimeout(timeout);
-
         const data = await res.json();
-
         if (data.code !== "Ok" || !data.routes?.length) throw new Error("no route");
-
         const route = data.routes[0];
-
         const coords = route.geometry.coordinates.map(c => [c[1], c[0]]); // lng,lat -> lat,lng
-
         const distKm = (route.distance / 1000).toFixed(1);
-
         const durationMin = Math.round(route.duration / 60);
-
         return { coords, distKm, durationMin, isReal: true };
-
       } catch (e) {
-
         console.warn("OSRM ใช้ไม่ได้ ใช้ค่าประมาณเส้นตรงแทน:", e);
-
         const distKm = (map.distance([lat, lng], sirirajCoords) / 1000 * 1.3).toFixed(1);
-
         return {
-
           coords: [[lat, lng], [13.8142, 100.5135], [13.7845, 100.4965], sirirajCoords],
-
           distKm, durationMin: null, isReal: false
-
         };
-
       }
-
     }
-
 
     function setUpdatedTime() {
-
       const now = new Date();
-
       document.getElementById('last-updated').innerText =
-
         `อัปเดตล่าสุด: ${now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' })}`;
-
     }
-
 
     async function updateRoute(lat, lng, labelText) {
-
       currentStart = [lat, lng];
-
       currentLabel = labelText;
-
       document.getElementById('start-label').innerText = labelText;
-
       document.getElementById('distance-info').innerText = "กำลังคำนวณเส้นทาง...";
 
-
       if (startMarker) map.removeLayer(startMarker);
-
       if (routePolyline) map.removeLayer(routePolyline);
 
-
       startMarker = L.marker([lat, lng], { draggable: true }).addTo(map)
-
         .bindPopup(`<b>จุดเริ่มต้น:</b><br>${labelText}`).openPopup();
 
-
       startMarker.on('dragend', function (e) {
-
         const pos = e.target.getLatLng();
-
         updateRoute(pos.lat, pos.lng, "จุดที่เลือกบนแผนที่");
-
       });
 
-
       const result = await fetchRealRoute(lat, lng);
-
       routePolyline = L.polyline(result.coords, { color: '#0284c7', weight: 5, opacity: 0.85 }).addTo(map);
-
       map.fitBounds(L.latLngBounds([[lat, lng], sirirajCoords]), { padding: [40, 40] });
 
-
       if (result.isReal) {
-
         document.getElementById('distance-info').innerText =
-
           `เส้นทางจริง: ~${result.distKm} กม. • ~${result.durationMin} นาที (ยังไม่รวมจราจรสด)`;
-
       } else {
-
         document.getElementById('distance-info').innerText =
-
           `⚠️ ประเมินเส้นตรง: ~${result.distKm} กม. (ไม่พบเน็ต/เส้นทางจริง)`;
-
       }
-
       setUpdatedTime();
-
     }
-
 
     function getCurrentLocation() {
-
       if (!navigator.geolocation) {
-
         alert("อุปกรณ์ของท่านไม่รองรับระบบ GPS โปรดคลิกเลือกบนแผนที่");
-
         return;
-
       }
-
       document.getElementById('start-label').innerText = "กำลังค้นหาพิกัด GPS...";
-
       navigator.geolocation.getCurrentPosition(
-
         function (pos) {
-
           updateRoute(pos.coords.latitude, pos.coords.longitude, "พิกัดปัจจุบัน (จุดเกิดเหตุ)");
-
         },
-
         function (err) {
-
           let msg = "ไม่สามารถดึงตำแหน่ง GPS ได้ โปรดคลิกเลือกจุดบนแผนที่แทนครับ";
-
           if (err.code === 1) msg = "กรุณาอนุญาตสิทธิ์เข้าถึงตำแหน่ง (Location) ในเบราว์เซอร์ก่อน แล้วลองใหม่";
-
           if (err.code === 3) msg = "ค้นหาตำแหน่งใช้เวลานานเกินไป ลองใหม่อีกครั้งหรือเลือกจุดบนแผนที่";
-
           alert(msg);
-
           document.getElementById('start-label').innerText = "เลือกจุดบนแผนที่";
-
         },
-
         { enableHighAccuracy: true, timeout: 10000 }
-
       );
-
     }
-
 
     function setPresetLocation(lat, lng, name) {
-
       updateRoute(lat, lng, name);
-
     }
-
 
     map.on('click', function(e) {
-
       updateRoute(e.latlng.lat, e.latlng.lng, "จุดที่เลือกบนแผนที่");
-
     });
 
-
     function setVehicle(type) {
-
       const btnSmall = document.getElementById('btn-small');
-
       const btnSuv = document.getElementById('btn-suv');
-
       const statusBox = document.getElementById('status-box');
 
-
       if (type === 'small') {
-
         btnSmall.className = "p-2.5 border-2 border-sky-600 bg-sky-50 font-bold rounded-lg text-sky-900 text-left";
-
         btnSuv.className = "p-2.5 border border-slate-200 bg-white font-medium rounded-lg text-slate-700 text-left";
-
         statusBox.innerHTML = '<span class="text-base">⚠️</span><div><strong>คำแนะนำ (รถเล็ก):</strong> ทนน้ำได้ไม่เกิน 15 ซม. โปรดดูเรดาร์ฝนสดและกล้อง CCTV ก่อนออกเดินทาง หากพบสีแดง/ม่วงบนเรดาร์ฝนตรงเส้นทาง แนะนำรอหรือเปลี่ยนเป็น SUV</div>';
-
       } else {
-
         btnSuv.className = "p-2.5 border-2 border-sky-600 bg-sky-50 font-bold rounded-lg text-sky-900 text-left";
-
         btnSmall.className = "p-2.5 border border-slate-200 bg-white font-medium rounded-lg text-slate-700 text-left";
-
         statusBox.innerHTML = '<span class="text-base">✅</span><div><strong>คำแนะนำ (SUV/รถยกสูง):</strong> ทนน้ำได้ 25–35 ซม. ผ่านได้คล่องตัวกว่า แต่ยังควรตรวจเรดาร์ฝนและกล้องสดก่อนออกเดินทางทุกครั้ง</div>';
-
       }
-
     }
-
 
     function refreshAll() {
-
       loadRainRadar();
-
       updateRoute(currentStart[0], currentStart[1], currentLabel);
-
     }
 
-
     // เริ่มต้น
-
     loadRainRadar();
-
     updateRoute(13.8388, 100.5509, "ตลาดบองมาร์เช่ มาร์เก็ตพาร์ค");
-
   </script>
-
 </body>
-
 </html>
