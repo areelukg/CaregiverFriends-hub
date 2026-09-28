@@ -38,55 +38,42 @@
   </header>
 
   <main class="max-w-2xl mx-auto p-3 space-y-3">
-
-    <!-- ส่วนที่ 1: เลือกจุดเริ่มต้น (บ้าน / จุดเกิดเหตุ / พิกัดสด) -->
+    <!-- ส่วนที่ 1: เลือกจุดเริ่มต้น (บ้าน / จุดฉุกเฉิน) -->
     <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200">
       <div class="flex justify-between items-center mb-2">
         <span class="text-xs font-bold text-slate-700">📍 1. จุดเริ่มต้นเดินทาง (บ้าน / จุดฉุกเฉิน)</span>
-        <span id="start-label" class="text-[11px] text-sky-700 font-semibold truncate max-w-[200px]">บองมาร์เช่ มาร์เก็ตพาร์ค</span>
-      </div>
-      <div class="text-[11px] text-slate-500 mb-1">หรือเลือกโซนจุดเริ่มต้นด่วน (ครอบคลุม กทม. และปริมณฑล):</div>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
-        <button onclick="setPresetLocation(13.8585, 100.5288, 'งามวงศ์วาน - แคราย (นนทบุรี)')" class="p-2 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-          🏢 งามวงศ์วาน / แคราย (นนท์)
-        </button>
-        <button onclick="setPresetLocation(13.9888, 100.6177, 'รังสิต - ดอนเมือง (ปทุมธานี)')" class="p-2 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-          ✈️ รังสิต / ดอนเมือง (ปทุมฯ)
-        </button>
-        <button onclick="setPresetLocation(13.8388, 100.5509, 'ประชานิเวศน์ 1 - ประชาชื่น')" class="p-2 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-          🌳 ประชานิเวศน์ 1 / ประชาชื่น
-        </button>
-        <button onclick="setPresetLocation(13.8050, 100.6400, 'เกษตรนวมินทร์ - ลาดพร้าว / นิด้า')" class="p-2 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-          🎓 เกษตรนวมินทร์ / นิด้า
-        </button>
-        <button onclick="setPresetLocation(13.8035, 100.5300, 'เตาปูน / บางซื่อ / วงศ์สว่าง')" class="p-2 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
-          🚆 เตาปูน / บางซื่อ
-        </button>
-        <button onclick="getCurrentLocation()" class="p-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 rounded-lg text-emerald-800 text-center font-bold">
-          📍 พิกัด GPS สดจุดเกิดเหตุ
-        </button>
+        <span id="start-label" class="text-[11px] text-sky-700 font-semibold truncate max-w-[180px]">เลือกจากโซนหรือ GPS</span>
       </div>
 
-      <div class="flex gap-2 mb-2">
-        <button onclick="getCurrentLocation()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 shadow-sm transition">
+      <!-- ปุ่ม GPS พิกัดสดจุดเกิดเหตุ (ปุ่มหลักเด่นชัด) -->
+      <div class="mb-3">
+        <button onclick="getCurrentLocation()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition active:scale-95">
           <span>📡</span> ใช้ตำแหน่งปัจจุบัน (GPS จุดเกิดเหตุ)
         </button>
       </div>
 
-      <div class="text-[11px] text-slate-500 mb-1">หรือเลือกจุดเริ่มต้นยอดนิยม:</div>
-      <div class="grid grid-cols-3 gap-1.5 text-xs">
-        <button onclick="setPresetLocation(13.8388, 100.5509, 'ตลาดบองมาร์เช่')" class="p-1.5 bg-slate-50 hover:bg-sky-50 border rounded text-slate-700 text-center font-medium">
-          ตลาดบองมาร์เช่
+      <div class="text-[11px] text-slate-500 mb-1.5">หรือเลือกโซนจุดเริ่มต้นด่วน (ครอบคลุม กทม. และปริมณฑล):</div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+        <button onclick="setPresetLocation(13.8585, 100.5288, 'งามวงศ์วาน - แคราย (นนทบุรี)')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
+          🏢 งามวงศ์วาน / แคราย (นนท์)
         </button>
-        <button onclick="setPresetLocation(13.8500, 100.5370, 'ประชานิเวศน์ 2')" class="p-1.5 bg-slate-50 hover:bg-sky-50 border rounded text-slate-700 text-center font-medium">
-          ประชานิเวศน์
+        <button onclick="setPresetLocation(13.9888, 100.6177, 'รังสิต - ดอนเมือง (ปทุมธานี)')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
+          ✈️ รังสิต / ดอนเมือง (ปทุมฯ)
         </button>
-        <button onclick="setPresetLocation(13.8035, 100.5300, 'แยกเตาปูน / บางซื่อ')" class="p-1.5 bg-slate-50 hover:bg-sky-50 border rounded text-slate-700 text-center font-medium">
-          เตาปูน / บางซื่อ
+        <button onclick="setPresetLocation(13.8388, 100.5509, 'ประชานิเวศน์ 1 - ประชาชื่น')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
+          🌳 ประชานิเวศน์ 1 / ประชาชื่น
+        </button>
+        <button onclick="setPresetLocation(13.8050, 100.6400, 'เกษตรนวมินทร์ - ลาดพร้าว / นิด้า')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium">
+          🎓 เกษตรนวมินทร์ / นิด้า
+        </button>
+        <button onclick="setPresetLocation(13.8035, 100.5300, 'เตาปูน / บางซื่อ / วงศ์สว่าง')" class="p-2.5 bg-slate-50 hover:bg-sky-50 border rounded-lg text-slate-700 text-center font-medium col-span-2 sm:col-span-1">
+          🚆 เตาปูน / บางซื่อ
         </button>
       </div>
       <p class="text-[10px] text-slate-400 mt-2">* ท่านสามารถคลิกบนแผนที่โดยตรง เพื่อเปลี่ยนตำแหน่งบ้านหรือจุดเกิดเหตุได้ทันที</p>
     </div>
+
+
 
     <!-- ส่วนที่ 2: เช็กประเภทรถและการสัญจร -->
     <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200">
