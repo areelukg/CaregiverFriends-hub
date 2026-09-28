@@ -35,6 +35,16 @@
     </div>
   </header>
 
+  <!-- แบนเนอร์เตือน + ปุ่มบังคับเปิดในเบราว์เซอร์จริง (แสดงอัตโนมัติเฉพาะเมื่อเปิดผ่าน Facebook/LINE) -->
+  <div id="inapp-warning" class="hidden max-w-2xl mx-auto mt-2 mx-3 p-3 bg-red-50 border border-red-300 text-red-800 text-[12px] rounded-lg leading-relaxed">
+    <div class="font-bold mb-1.5">⚠️ กำลังเปิดผ่านแอป Facebook/LINE — GPS และข้อมูลสดจะใช้งานไม่ได้</div>
+    <div class="mb-2">แผนที่/ระยะทางประมาณยังใช้ได้ตามปกติ แต่เพื่อความแม่นยำสูงสุด กรุณาเปิดในเบราว์เซอร์จริง:</div>
+    <button onclick="forceOpenInBrowser()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2 rounded-lg">
+      🌐 เปิดในเบราว์เซอร์ทันที (Chrome/Safari)
+    </button>
+    <div class="text-[10px] text-red-600 mt-1.5">ถ้าปุ่มนี้ไม่ทำงาน: แตะไอคอน ⋮ มุมขวาบน แล้วเลือก "เปิดในเบราว์เซอร์"</div>
+  </div>
+
   <main class="max-w-2xl mx-auto p-3 space-y-3">
     <!-- ส่วนที่ 1: เลือกจุดเริ่มต้น -->
     <div class="bg-white p-3.5 rounded-xl shadow-sm border border-slate-200">
@@ -43,10 +53,16 @@
         <span id="start-label" class="text-[11px] text-sky-700 font-semibold truncate max-w-[180px]">เลือกจากโซนหรือ GPS</span>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-2">
         <button onclick="getCurrentLocation()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition active:scale-95">
           <span>📡</span> ใช้ตำแหน่งปัจจุบัน (GPS จุดเกิดเหตุ)
         </button>
+      </div>
+
+      <div class="mb-3">
+        <a id="google-nav-link" href="#" target="_blank" rel="noopener" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition active:scale-95">
+          <span>🧭</span> เปิด Google Maps นำทางจริง (แนะนำถ้ารีบ)
+        </a>
       </div>
 
       <div class="text-[11px] text-slate-500 mb-1.5">หรือเลือกโซนจุดเริ่มต้นด่วน (ครอบคลุม กทม. และปริมณฑล):</div>
@@ -86,7 +102,7 @@
 
       <div id="status-box" class="mt-2.5 text-xs bg-amber-50 text-amber-900 border border-amber-200 p-2.5 rounded-lg flex items-start gap-2">
         <span class="text-base">⚠️</span>
-        <div><strong>คำแนะนำ (รถเล็ก):</strong> โปรดดูชั้นเรดาร์ฝนสดบนแผนที่ด้านล่างก่อนออกเดินทางทุกครั้ง สีแดง/ม่วง = ฝนตกหนัก ควรพิจารณาใช้ SUV หรือรอสถานการณ์คลี่คลาย</div>
+        <div><strong>คำแนะนำ (รถเล็ก):</strong> โปรดดูสรุปสภาพฝนด้านล่างก่อนออกเดินทางทุกครั้ง</div>
       </div>
     </div>
 
@@ -98,7 +114,11 @@
       </div>
 
       <div id="map"></div>
-      <p class="text-[10px] text-slate-400 mt-1.5">🌧️ ชั้นสีบนแผนที่ = เรดาร์ฝนสด (RainViewer) อัปเดตทุก ~10 นาที: ฟ้า/เขียว = ฝนเบา, เหลือง/ส้ม = ปานกลาง, แดง/ม่วง = ฝนตกหนัก</p>
+      <p class="text-[10px] text-slate-400 mt-1.5">🌧️ ชั้นสีบนแผนที่ (ถ้าโหลดได้) = เรดาร์ฝนสด: ฟ้า/เขียว = ฝนเบา, เหลือง/ส้ม = ปานกลาง, แดง/ม่วง = ฝนตกหนัก</p>
+
+      <div id="weather-narrative" class="mt-2 p-2.5 bg-sky-50 border border-sky-200 rounded-lg text-[11px] text-sky-900 leading-relaxed">
+        กำลังตรวจสอบสภาพฝนตามเส้นทาง...
+      </div>
 
       <div class="mt-2.5 p-2 bg-slate-50 rounded-lg border text-xs flex justify-between items-center text-slate-700">
         <div>
@@ -130,16 +150,23 @@
 
       <div class="bg-white p-3 rounded-xl border border-slate-200">
         <div class="font-bold text-slate-800 mb-1 flex items-center gap-1">
-          <span>🎥</span> กล้องสด CCTV ตรวจน้ำท่วม (ยืนยันด้วยตาก่อนออกทาง)
+          <span>🎥</span> กล้องสด/จราจร ตรวจสภาพจริง
         </div>
         <div id="cctv-links" class="space-y-1">
-          <a href="https://traffic.longdo.com" target="_blank" class="block text-sky-700 underline text-[11px]">
-            • จราจร/กล้องสดทั่วประเทศ (ครอบคลุมนนท์ ปทุมฯ กทม.)
+          <a id="start-traffic-link" href="#" target="_blank" rel="noopener" class="block text-sky-700 underline text-[11px] font-semibold">
+            • 📍 ดูจราจรสด ณ จุดเริ่มต้น (Google Maps)
           </a>
-          <a href="http://www.bmatraffic.com" target="_blank" class="block text-sky-700 underline text-[11px]">
+          <a id="mid-traffic-link" href="#" target="_blank" rel="noopener" class="block text-sky-700 underline text-[11px] font-semibold">
+            • 📍 ดูจราจรสด กลางเส้นทาง (Google Maps)
+          </a>
+          <a id="dest-traffic-link" href="#" target="_blank" rel="noopener" class="block text-sky-700 underline text-[11px] font-semibold">
+            • 📍 ดูจราจรสด ใกล้ศิริราช (Google Maps)
+          </a>
+          <div class="pt-1 mt-1 border-t border-slate-100 text-[10px] text-slate-400">ลิงก์ทั่วไป (ต้องค้นหาโซนเอง):</div>
+          <a href="http://www.bmatraffic.com" target="_blank" rel="noopener" class="block text-sky-700 underline text-[11px]">
             • ส่องกล้อง กทม. ภาพรวมทุกเขต
           </a>
-          <a href="https://dds.bangkok.go.th" target="_blank" class="block text-sky-700 underline text-[11px]">
+          <a href="https://dds.bangkok.go.th" target="_blank" rel="noopener" class="block text-sky-700 underline text-[11px]">
             • เรดาร์ฝน/ระดับน้ำ สนง.ระบายน้ำ กทม.
           </a>
           <div id="nearest-checkpoint-links" class="pt-1 mt-1 border-t border-slate-100"></div>
@@ -150,18 +177,39 @@
     <footer class="text-center text-[10px] text-slate-400 py-3 border-t border-slate-200 space-y-1">
       <p class="font-medium text-slate-600">จัดทำด้วยใจเพื่อช่วยเหลือสังคมโดย Elder CGF CaregiverFriends (เพื่อนดูแลผู้สูงวัย)</p>
       <p>สัญญาอนุญาต Open Source (CC BY-NC 4.0): ใช้งานและแจกจ่ายฟรีเพื่อช่วยเหลือผู้ป่วยและผู้สูงอายุ ห้ามใช้เชิงพาณิชย์ — สัญญานี้ครอบคลุมเฉพาะโค้ด/เนื้อหาที่จัดทำขึ้นเอง</p>
-      <p class="pt-1 border-t border-slate-100">Third-Party Notices: Tailwind CSS (MIT) • Leaflet.js (BSD-2-Clause) • แผนที่ฐาน © OpenStreetMap contributors (ODbL) • ไอคอนหมุดจาก pointhi/leaflet-color-markers (BSD-2-Clause) • เส้นทางถนนคำนวณโดย OSRM demo server (การใช้งานทั่วไป/ไม่ใช่เชิงพาณิชย์) • เรดาร์ฝนโดย RainViewer.com</p>
+      <p class="pt-1 border-t border-slate-100">Third-Party Notices: Tailwind CSS (MIT) • Leaflet.js (BSD-2-Clause) • แผนที่ฐาน © OpenStreetMap contributors (ODbL) • ไอคอนหมุดจาก pointhi/leaflet-color-markers (BSD-2-Clause) • เส้นทางถนนคำนวณโดย OSRM demo server • เรดาร์ฝนโดย RainViewer.com • ข้อมูลสภาพอากาศโดย Open-Meteo.com</p>
     </footer>
 
   </main>
 
   <script>
-    const sirirajCoords = [13.7568, 100.4835]; // [lat, lng]
+    const sirirajCoords = [13.7568, 100.4835];
     let currentStart = [13.8388, 100.5509];
     let currentLabel = "ตลาดบองมาร์เช่ มาร์เก็ตพาร์ค";
     let startMarker = null;
     let routePolyline = null;
     let rainLayer = null;
+
+    const pageUrl = window.location.href;
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    function forceOpenInBrowser() {
+      if (isAndroid) {
+        // ใช้ Android Intent บังคับเปิดใน Chrome โดยตรง (ได้ผลกับ Facebook/LINE in-app browser บน Android)
+        const cleanUrl = pageUrl.replace(/^https?:\/\//, '');
+        window.location.href = `intent://${cleanUrl}#Intent;scheme=https;package=com.android.chrome;end`;
+      } else {
+        alert("บน iPhone: กรุณาแตะไอคอน ••• หรือ ⋮ ที่มุมขวาบนของหน้าจอ แล้วเลือก 'เปิดใน Safari' หรือ 'Open in Browser'");
+      }
+    }
+
+    (function detectInAppBrowser() {
+      const ua = navigator.userAgent || "";
+      const isInApp = /FBAN|FBAV|FB_IAB|Line\//i.test(ua);
+      if (isInApp) {
+        document.getElementById('inapp-warning').classList.remove('hidden');
+      }
+    })();
 
     const map = L.map('map').setView([13.7980, 100.5100], 12);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -177,7 +225,13 @@
       })
     }).addTo(map).bindPopup('<b>ปลายทาง: รพ.ศิริราช</b><br>ห้องฉุกเฉิน (ตึกนวมินทรบพิตรฯ)').openPopup();
 
-    // จุดตรวจ: ไม่ฟันธงสถานะเท็จอีกต่อไป — ให้ลิงก์ตรวจสอบจริงแทน
+    function googleTrafficLink(lat, lng) {
+      return `https://www.google.com/maps/@${lat},${lng},15z/data=!5m1!1e1`;
+    }
+    function googleNavLink(startLat, startLng) {
+      return `https://www.google.com/maps/dir/?api=1&origin=${startLat},${startLng}&destination=${sirirajCoords[0]},${sirirajCoords[1]}&travelmode=driving`;
+    }
+
     const checkpoints = [
       { name: "แยกงามวงศ์วาน", coords: [13.8497, 100.5407] },
       { name: "แยกประชานุกูล", coords: [13.8290, 100.5401] },
@@ -199,15 +253,14 @@
       }).addTo(map).bindPopup(
         `<b>จุดเฝ้าระวัง: ${cp.name}</b><br>
          <span style="color:#b45309;font-size:11px;">⚠️ สถานะนี้ไม่ได้เช็คเรียลไทม์อัตโนมัติ</span><br>
-         <a href="https://traffic.longdo.com" target="_blank" style="font-size:11px;">ตรวจสอบกล้องสด/สภาพจริงที่นี่ →</a>`
+         <a href="${googleTrafficLink(cp.coords[0], cp.coords[1])}" target="_blank" rel="noopener" style="font-size:11px;">ดูจราจรสดจุดนี้ (Google Maps) →</a>`
       );
     });
 
-    // เพิ่มชั้นเรดาร์ฝนสด (RainViewer, ฟรี ไม่ต้องขอ key)
     async function loadRainRadar() {
       try {
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 6000);
+        const timeout = setTimeout(() => controller.abort(), 5000);
         const res = await fetch('https://api.rainviewer.com/public/weather-maps.json', { signal: controller.signal });
         clearTimeout(timeout);
         const data = await res.json();
@@ -220,41 +273,108 @@
           { opacity: 0.55, attribution: 'RainViewer', maxNativeZoom: 9 }
         ).addTo(map);
       } catch (e) {
-        console.warn("โหลดเรดาร์ฝนไม่สำเร็จ (อาจไม่มีอินเทอร์เน็ต):", e);
+        console.warn("โหลดเรดาร์ฝนไม่สำเร็จ (อาจถูกบล็อกโดยเบราว์เซอร์ในแอป):", e);
       }
     }
 
-    // หาจุดเฝ้าระวังที่ใกล้จุดเริ่มต้นที่เลือกมากที่สุด (คำนวณอัตโนมัติทุกโซน/GPS)
-    function updateNearestCheckpoints(lat, lng) {
-      const withDist = checkpoints.map(cp => ({
-        ...cp,
-        dist: map.distance([lat, lng], cp.coords)
-      })).sort((a, b) => a.dist - b.dist);
+    function weatherCodeToText(code) {
+      if (code === 0) return "ท้องฟ้าแจ่มใส";
+      if ([1, 2, 3].includes(code)) return "มีเมฆบางส่วน";
+      if ([45, 48].includes(code)) return "มีหมอก";
+      if ([51, 53, 55, 56, 57].includes(code)) return "ฝนปรอย";
+      if ([61, 63, 65].includes(code)) return "ฝนตก";
+      if ([66, 67].includes(code)) return "ฝนตกหนักผิดปกติ";
+      if ([80, 81, 82].includes(code)) return "ฝนซู่ฉับพลัน";
+      if ([95, 96, 99].includes(code)) return "พายุฝนฟ้าคะนอง ⚠️";
+      return "ไม่ทราบสภาพอากาศ";
+    }
+    function precipToText(mm) {
+      if (mm <= 0) return "ไม่มีฝนตอนนี้";
+      if (mm < 2.5) return `ฝนเบา (${mm.toFixed(1)} มม./ชม.)`;
+      if (mm < 7.6) return `ฝนปานกลาง (${mm.toFixed(1)} มม./ชม.) — เริ่มเสี่ยงน้ำขัง`;
+      return `ฝนตกหนัก (${mm.toFixed(1)} มม./ชม.) ⚠️ เสี่ยงน้ำท่วมขังสูง`;
+    }
 
+    async function fetchPointWeather(lat, lng) {
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 5000);
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=precipitation,weather_code&timezone=Asia%2FBangkok`;
+        const res = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeout);
+        const data = await res.json();
+        return { precip: data.current.precipitation ?? 0, code: data.current.weather_code ?? -1, ok: true };
+      } catch (e) {
+        return { ok: false };
+      }
+    }
+
+    async function updateWeatherNarrative(lat, lng, label) {
+      const narrativeBox = document.getElementById('weather-narrative');
+      narrativeBox.innerText = "กำลังตรวจสอบสภาพฝนตามเส้นทาง...";
+
+      const midLat = (lat + sirirajCoords[0]) / 2;
+      const midLng = (lng + sirirajCoords[1]) / 2;
+
+      const [startW, midW, destW] = await Promise.all([
+        fetchPointWeather(lat, lng),
+        fetchPointWeather(midLat, midLng),
+        fetchPointWeather(sirirajCoords[0], sirirajCoords[1])
+      ]);
+
+      const allFailed = !startW.ok && !midW.ok && !destW.ok;
+
+      if (allFailed) {
+        narrativeBox.innerHTML = `
+          <div class="text-red-700 font-bold">⚠️ ไม่สามารถดึงข้อมูลสภาพอากาศได้</div>
+          <div class="mt-1">มักเกิดเมื่อเปิดผ่านแอป Facebook/LINE ที่บล็อกการเชื่อมต่อภายนอก กรุณากดปุ่ม "เปิดในเบราว์เซอร์ทันที" ด้านบนสุดของหน้า</div>
+          <button onclick="updateWeatherNarrative(currentStart[0], currentStart[1], currentLabel)" class="mt-2 bg-sky-700 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg">🔄 ลองดึงข้อมูลอีกครั้ง</button>
+        `;
+        return;
+      }
+
+      function line(w) {
+        if (!w.ok) return `⚠️ ดึงไม่ได้จุดนี้`;
+        return `${weatherCodeToText(w.code)} • ${precipToText(w.precip)}`;
+      }
+
+      const hasHeavyRain = [startW, midW, destW].some(w => w.ok && w.precip >= 7.6);
+      const warningLine = hasHeavyRain
+        ? '<div class="font-bold text-red-700 mt-1">⚠️ พบฝนตกหนักบางจุดในเส้นทาง แนะนำใช้ SUV หรือตรวจสอบกล้องสดก่อนออกเดินทาง</div>'
+        : '';
+
+      narrativeBox.innerHTML = `
+        <div><strong>📍 ${label}:</strong> ${line(startW)}</div>
+        <div><strong>🛣️ กลางเส้นทาง:</strong> ${line(midW)}</div>
+        <div><strong>🏥 ใกล้ศิริราช:</strong> ${line(destW)}</div>
+        ${warningLine}
+      `;
+    }
+
+    function updateNearestCheckpoints(lat, lng) {
+      const withDist = checkpoints.map(cp => ({ ...cp, dist: map.distance([lat, lng], cp.coords) })).sort((a, b) => a.dist - b.dist);
       const nearest = withDist.slice(0, 3);
       const container = document.getElementById('nearest-checkpoint-links');
       if (!container) return;
-
       container.innerHTML = '<div class="text-[10px] text-slate-400 mb-1">📍 จุดเฝ้าระวังใกล้เส้นทางที่เลือกที่สุด:</div>' +
         nearest.map(cp => `
-          <a href="https://traffic.longdo.com" target="_blank" class="block text-sky-700 underline text-[11px]">
-            • ${cp.name} (~${(cp.dist / 1000).toFixed(1)} กม. จากจุดเริ่มต้น)
+          <a href="${googleTrafficLink(cp.coords[0], cp.coords[1])}" target="_blank" rel="noopener" class="block text-sky-700 underline text-[11px]">
+            • ${cp.name} (~${(cp.dist / 1000).toFixed(1)} กม.)
           </a>
         `).join('');
     }
 
-    // คำนวณเส้นทางถนนจริง + เวลาเดินทาง ด้วย OSRM (ฟรี ไม่ต้องขอ key) พร้อม fallback
     async function fetchRealRoute(lat, lng) {
       const url = `https://router.project-osrm.org/route/v1/driving/${lng},${lat};${sirirajCoords[1]},${sirirajCoords[0]}?overview=full&geometries=geojson`;
       try {
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 6000);
+        const timeout = setTimeout(() => controller.abort(), 5000);
         const res = await fetch(url, { signal: controller.signal });
         clearTimeout(timeout);
         const data = await res.json();
         if (data.code !== "Ok" || !data.routes?.length) throw new Error("no route");
         const route = data.routes[0];
-        const coords = route.geometry.coordinates.map(c => [c[1], c[0]]); // lng,lat -> lat,lng
+        const coords = route.geometry.coordinates.map(c => [c[1], c[0]]);
         const distKm = (route.distance / 1000).toFixed(1);
         const durationMin = Math.round(route.duration / 60);
         return { coords, distKm, durationMin, isReal: true };
@@ -280,6 +400,13 @@
       document.getElementById('start-label').innerText = labelText;
       document.getElementById('distance-info').innerText = "กำลังคำนวณเส้นทาง...";
 
+      document.getElementById('google-nav-link').href = googleNavLink(lat, lng);
+      document.getElementById('start-traffic-link').href = googleTrafficLink(lat, lng);
+      const midLat = (lat + sirirajCoords[0]) / 2;
+      const midLng = (lng + sirirajCoords[1]) / 2;
+      document.getElementById('mid-traffic-link').href = googleTrafficLink(midLat, midLng);
+      document.getElementById('dest-traffic-link').href = googleTrafficLink(sirirajCoords[0], sirirajCoords[1]);
+
       if (startMarker) map.removeLayer(startMarker);
       if (routePolyline) map.removeLayer(routePolyline);
 
@@ -300,16 +427,17 @@
           `เส้นทางจริง: ~${result.distKm} กม. • ~${result.durationMin} นาที (ยังไม่รวมจราจรสด)`;
       } else {
         document.getElementById('distance-info').innerText =
-          `⚠️ ประเมินเส้นตรง: ~${result.distKm} กม. (ไม่พบเน็ต/เส้นทางจริง)`;
+          `⚠️ ประเมินเส้นตรง: ~${result.distKm} กม. (กดปุ่ม 'เปิด Google Maps นำทางจริง' เพื่อความแม่นยำ)`;
       }
 
       updateNearestCheckpoints(lat, lng);
+      updateWeatherNarrative(lat, lng, labelText);
       setUpdatedTime();
     }
 
     function getCurrentLocation() {
       if (!navigator.geolocation) {
-        alert("อุปกรณ์ของท่านไม่รองรับระบบ GPS โปรดคลิกเลือกบนแผนที่");
+        alert("อุปกรณ์ของท่านไม่รองรับระบบ GPS โปรดกดปุ่ม 'เปิด Google Maps นำทางจริง' แทน");
         return;
       }
       document.getElementById('start-label').innerText = "กำลังค้นหาพิกัด GPS...";
@@ -318,9 +446,8 @@
           updateRoute(pos.coords.latitude, pos.coords.longitude, "พิกัดปัจจุบัน (จุดเกิดเหตุ)");
         },
         function (err) {
-          let msg = "ไม่สามารถดึงตำแหน่ง GPS ได้ โปรดคลิกเลือกจุดบนแผนที่แทนครับ";
-          if (err.code === 1) msg = "กรุณาอนุญาตสิทธิ์เข้าถึงตำแหน่ง (Location) ในเบราว์เซอร์ก่อน แล้วลองใหม่";
-          if (err.code === 3) msg = "ค้นหาตำแหน่งใช้เวลานานเกินไป ลองใหม่อีกครั้งหรือเลือกจุดบนแผนที่";
+          let msg = "ไม่สามารถดึงตำแหน่ง GPS ได้ กรุณากดปุ่ม 'เปิด Google Maps นำทางจริง' หรือเลือกจุดบนแผนที่แทน";
+          if (err.code === 1) msg = "GPS ถูกบล็อกสิทธิ์ (มักเกิดจากเปิดผ่านแอป Facebook/LINE) กรุณากดปุ่ม 'เปิดในเบราว์เซอร์ทันที' ด้านบนสุด";
           alert(msg);
           document.getElementById('start-label').innerText = "เลือกจุดบนแผนที่";
         },
@@ -340,15 +467,14 @@
       const btnSmall = document.getElementById('btn-small');
       const btnSuv = document.getElementById('btn-suv');
       const statusBox = document.getElementById('status-box');
-
       if (type === 'small') {
         btnSmall.className = "p-2.5 border-2 border-sky-600 bg-sky-50 font-bold rounded-lg text-sky-900 text-left";
         btnSuv.className = "p-2.5 border border-slate-200 bg-white font-medium rounded-lg text-slate-700 text-left";
-        statusBox.innerHTML = '<span class="text-base">⚠️</span><div><strong>คำแนะนำ (รถเล็ก):</strong> ทนน้ำได้ไม่เกิน 15 ซม. โปรดดูเรดาร์ฝนสดและกล้อง CCTV ก่อนออกเดินทาง หากพบสีแดง/ม่วงบนเรดาร์ฝนตรงเส้นทาง แนะนำรอหรือเปลี่ยนเป็น SUV</div>';
+        statusBox.innerHTML = '<span class="text-base">⚠️</span><div><strong>คำแนะนำ (รถเล็ก):</strong> ทนน้ำได้ไม่เกิน 15 ซม. ดูสรุปสภาพฝนด้านล่างก่อนออกเดินทางเสมอ</div>';
       } else {
         btnSuv.className = "p-2.5 border-2 border-sky-600 bg-sky-50 font-bold rounded-lg text-sky-900 text-left";
         btnSmall.className = "p-2.5 border border-slate-200 bg-white font-medium rounded-lg text-slate-700 text-left";
-        statusBox.innerHTML = '<span class="text-base">✅</span><div><strong>คำแนะนำ (SUV/รถยกสูง):</strong> ทนน้ำได้ 25–35 ซม. ผ่านได้คล่องตัวกว่า แต่ยังควรตรวจเรดาร์ฝนและกล้องสดก่อนออกเดินทางทุกครั้ง</div>';
+        statusBox.innerHTML = '<span class="text-base">✅</span><div><strong>คำแนะนำ (SUV/รถยกสูง):</strong> ทนน้ำได้ 25–35 ซม. ยังควรดูสรุปสภาพฝนก่อนออกเดินทาง</div>';
       }
     }
 
@@ -357,7 +483,6 @@
       updateRoute(currentStart[0], currentStart[1], currentLabel);
     }
 
-    // เริ่มต้น
     loadRainRadar();
     updateRoute(13.8388, 100.5509, "ตลาดบองมาร์เช่ มาร์เก็ตพาร์ค");
   </script>
