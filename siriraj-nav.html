@@ -132,13 +132,17 @@
         <div class="font-bold text-slate-800 mb-1 flex items-center gap-1">
           <span>🎥</span> กล้องสด CCTV ตรวจน้ำท่วม (ยืนยันด้วยตาก่อนออกทาง)
         </div>
-        <div class="space-y-1">
+        <div id="cctv-links" class="space-y-1">
+          <a href="https://traffic.longdo.com" target="_blank" class="block text-sky-700 underline text-[11px]">
+            • จราจร/กล้องสดทั่วประเทศ (ครอบคลุมนนท์ ปทุมฯ กทม.)
+          </a>
           <a href="http://www.bmatraffic.com" target="_blank" class="block text-sky-700 underline text-[11px]">
-            • ส่องกล้อง กทม. แยกประชานุกูล / อรุณอมรินทร์
+            • ส่องกล้อง กทม. ภาพรวมทุกเขต
           </a>
           <a href="https://dds.bangkok.go.th" target="_blank" class="block text-sky-700 underline text-[11px]">
-            • ตรวจเรดาร์ฝน สำนักการระบายน้ำ กทม.
+            • เรดาร์ฝน/ระดับน้ำ สนง.ระบายน้ำ กทม.
           </a>
+          <div id="nearest-checkpoint-links" class="pt-1 mt-1 border-t border-slate-100"></div>
         </div>
       </div>
     </div>
@@ -175,11 +179,15 @@
 
     // จุดตรวจ: ไม่ฟันธงสถานะเท็จอีกต่อไป — ให้ลิงก์ตรวจสอบจริงแทน
     const checkpoints = [
+      { name: "แยกงามวงศ์วาน", coords: [13.8497, 100.5407] },
       { name: "แยกประชานุกูล", coords: [13.8290, 100.5401] },
       { name: "แยกวงศ์สว่าง", coords: [13.8285, 100.5273] },
       { name: "สะพานพระราม 7", coords: [13.8142, 100.5135] },
+      { name: "แยกเกษตร (พหลโยธิน)", coords: [13.8460, 100.5710] },
       { name: "ถนนจรัญสนิทวงศ์ (บางพลัด)", coords: [13.7845, 100.4965] },
-      { name: "แยกอรุณอมรินทร์", coords: [13.7661, 100.4880] }
+      { name: "แยกอรุณอมรินทร์", coords: [13.7661, 100.4880] },
+      { name: "แยกรัชโยธิน / เกษตรนวมินทร์", coords: [13.8180, 100.5900] },
+      { name: "แยกดอนเมือง / วิภาวดี", coords: [13.9200, 100.6050] }
     ];
 
     checkpoints.forEach(cp => {
@@ -191,7 +199,7 @@
       }).addTo(map).bindPopup(
         `<b>จุดเฝ้าระวัง: ${cp.name}</b><br>
          <span style="color:#b45309;font-size:11px;">⚠️ สถานะนี้ไม่ได้เช็คเรียลไทม์อัตโนมัติ</span><br>
-         <a href="http://www.bmatraffic.com" target="_blank" style="font-size:11px;">ตรวจสอบกล้องสด/สภาพจริงที่นี่ →</a>`
+         <a href="https://traffic.longdo.com" target="_blank" style="font-size:11px;">ตรวจสอบกล้องสด/สภาพจริงที่นี่ →</a>`
       );
     });
 
@@ -209,11 +217,30 @@
         if (rainLayer) map.removeLayer(rainLayer);
         rainLayer = L.tileLayer(
           `https://tilecache.rainviewer.com/v2/radar/${latest.time}/256/{z}/{x}/{y}/2/1_1.png`,
-          { opacity: 0.55, attribution: 'RainViewer' }
+          { opacity: 0.55, attribution: 'RainViewer', maxNativeZoom: 9 }
         ).addTo(map);
       } catch (e) {
         console.warn("โหลดเรดาร์ฝนไม่สำเร็จ (อาจไม่มีอินเทอร์เน็ต):", e);
       }
+    }
+
+    // หาจุดเฝ้าระวังที่ใกล้จุดเริ่มต้นที่เลือกมากที่สุด (คำนวณอัตโนมัติทุกโซน/GPS)
+    function updateNearestCheckpoints(lat, lng) {
+      const withDist = checkpoints.map(cp => ({
+        ...cp,
+        dist: map.distance([lat, lng], cp.coords)
+      })).sort((a, b) => a.dist - b.dist);
+
+      const nearest = withDist.slice(0, 3);
+      const container = document.getElementById('nearest-checkpoint-links');
+      if (!container) return;
+
+      container.innerHTML = '<div class="text-[10px] text-slate-400 mb-1">📍 จุดเฝ้าระวังใกล้เส้นทางที่เลือกที่สุด:</div>' +
+        nearest.map(cp => `
+          <a href="https://traffic.longdo.com" target="_blank" class="block text-sky-700 underline text-[11px]">
+            • ${cp.name} (~${(cp.dist / 1000).toFixed(1)} กม. จากจุดเริ่มต้น)
+          </a>
+        `).join('');
     }
 
     // คำนวณเส้นทางถนนจริง + เวลาเดินทาง ด้วย OSRM (ฟรี ไม่ต้องขอ key) พร้อม fallback
@@ -275,6 +302,8 @@
         document.getElementById('distance-info').innerText =
           `⚠️ ประเมินเส้นตรง: ~${result.distKm} กม. (ไม่พบเน็ต/เส้นทางจริง)`;
       }
+
+      updateNearestCheckpoints(lat, lng);
       setUpdatedTime();
     }
 
